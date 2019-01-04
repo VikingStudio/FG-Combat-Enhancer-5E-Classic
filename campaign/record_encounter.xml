@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="battle_npcmaplink" merge="join">
+		<sheetdata merge="join">
+			<tokencontrol name="token" merge="join">
+				<script merge="replace">
+					function onDragStart(draginfo)
+						local _,sRecord = DB.getValue(window.getDatabaseNode(), "...link");
+						local nSpace,_ = CombatManager.getNPCSpaceReach(DB.findNode(sRecord));
+						TokenManager.setDragTokenUnits(nSpace);
+					end
+					
+					function onDragEnd(draginfo)
+						TokenManager.endDragTokenWithUnits();
+						
+						local _, dropref = draginfo.getTokenData();
+						dropref.setVisible(false); 
+						window.setLink(dropref);
+						return true;
+					end
+				</script>
+			</tokencontrol>
+		</sheetdata>
+	</windowclass>
+</root>

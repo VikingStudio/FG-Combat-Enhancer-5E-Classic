@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>	
+	<!-- Combat Tracker -->
+	<!-- 
+	<icon name="button_fist" file="graphics/buttons/button_fist.png" />
+	<icon name="button_fist_down" file="graphics/buttons/button_fist_down.png" />	
+	<icon name="button_sword" file="graphics/buttons/button_sword.png" />
+	<icon name="button_sword_down" file="graphics/buttons/button_sword_down.png" />
+	<icon name="button_shield" file="graphics/buttons/button_shield.png" />
+	<icon name="button_shield_down" file="graphics/buttons/button_shield_down.png" />
+	<icon name="button_space" file="graphics/buttons/button_space.png" />
+	<icon name="button_space_down" file="graphics/buttons/button_space_down.png" />
+	-->
+	<icon name="button_effect" file="graphics/buttons/button_effect v2.png" />
+	<icon name="button_effect_down" file="graphics/buttons/button_effect_down v2.png" />
+	<!-- 
+	<icon name="button_section_targeting" file="graphics/buttons/button_section_targeting.png" />
+	<icon name="button_section_targeting_down" file="graphics/buttons/button_section_targeting_down.png" />
+	<icon name="button_menu" file="graphics/buttons/button_menu.png" />
+	<icon name="button_menu_down" file="graphics/buttons/button_menu.png" />
+	<icon name="button_ctnextround" file="graphics/buttons/button_ctnextround.png" />
+	<icon name="button_ctnextround_down" file="graphics/buttons/button_ctnextround_down.png" />
+	<icon name="button_ctnextactor" file="graphics/buttons/button_ctnextactor.png" />
+	<icon name="button_ctnextactor_down" file="graphics/buttons/button_ctnextactor_down.png" />
+	<icon name="drag_targeting" file="graphics/icons/drag_targeting.png" />
+	-->
+</root>

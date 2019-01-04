@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+	Copyright (C) 2018 Ken L.
+	Licensed under the GPL Version 3 license.
+	http://www.gnu.org/licenses/gpl.html
+	This script is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This script is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+-->
+
+<root>
+	<!-- Tokens - General -->
+	<icon name="cond_more" file="graphics/token/token_cond_more.png" />
+	<icon name="cond_generic" file="graphics/token/token_cond_generic.png" />
+	<icon name="cond_bonus" file="graphics/token/token_cond_bonus.png" />
+	<icon name="cond_penalty" file="graphics/token/token_cond_penalty.png" />
+
+	<!-- Tokens - Health -->
+	<icon name="healthbar" file="graphics/token/token_healthbar_horizontal.png" />	
+	<!--<icon name="healthbarempty" file="graphics/token/token_healthbar_horizontal_empty.png" />-->
+	<icon name="healthdot" file="graphics/token/token_healthdot.png" />
+	
+	<!-- Tokens - Tactical states -->
+	<icon name="cond_cover" file="graphics/token/token_cond_cover.png" />
+	<icon name="cond_scover" file="graphics/token/token_cond_superior_cover.png" />
+
+	<!-- Tokens - Immunity, resistance, ongoing damage, regeneration, fast healing, negative levels -->
+	<icon name="cond_immune" file="graphics/token/token_cond_immune.png" />
+	<icon name="cond_resist" file="graphics/token/token_cond_resist.png" />
+	<icon name="cond_vuln" file="graphics/token/token_cond_vuln.png" />
+	<icon name="cond_ongoing" file="graphics/token/token_cond_ongoing.png" />
+	<icon name="cond_regen" file="graphics/token/token_cond_regen.png" />
+	<icon name="cond_nlvl" file="graphics/token/token_cond_nlvl.png" />
+
+	<!-- Tokens - Condition icons -->
+	<icon name="cond_blinded" file="graphics/token/token_cond_blinded.png" />
+	<icon name="cond_charmed" file="graphics/token/token_cond_charmed.png" />
+	<icon name="cond_deafened" file="graphics/token/token_cond_deafened.png" />
+	<icon name="cond_encumbered" file="graphics/token/token_cond_encumbered.png" />
+	<icon name="cond_frightened" file="graphics/token/token_cond_frightened.png" />
+	<icon name="cond_grappled" file="graphics/token/token_cond_grappled.png" />
+	<icon name="cond_incorporeal" file="graphics/token/token_cond_incorporeal.png" />
+	<icon name="cond_invisible" file="graphics/token/token_cond_invisible.png" />
+	<icon name="cond_paralyzed" file="graphics/token/token_cond_paralyzed.png" />
+	<icon name="cond_helpless" file="graphics/token/token_cond_helpless.png" />
+	<icon name="cond_prone" file="graphics/token/token_cond_prone.png" />
+	<icon name="cond_restrained" file="graphics/token/token_cond_restrained.png" />
+	<icon name="cond_stunned" file="graphics/token/token_cond_stunned.png" />
+	<icon name="cond_unconscious" file="graphics/token/token_cond_unconscious.png" />
+
+	<!-- Tokens - Condition extras -->
+	<icon name="cond_intoxicated" file="graphics/token/token_cond_intoxicated.png" />
+	<icon name="cond_stable" file="graphics/token/token_cond_stable.png" />
+	<icon name="cond_poison" file="graphics/token/token_cond_poison.png" />
+	<icon name="cond_petrified" file="graphics/token/token_cond_petrified.png" />
+	<icon name="cond_turned" file="graphics/token/token_cond_turned.png" />
+	<icon name="cond_curse" file="graphics/token/token_cond_curse.png" />
+	<icon name="cond_exhausted" file="graphics/token/token_cond_exhausted.png" />
+	<icon name="cond_dmgtype" file="graphics/token/token_cond_damagetype.png" />
+	<icon name="cond_concentration" file="graphics/token/token_cond_concentration.png" />
+	<icon name="cond_ready" file="graphics/token/token_cond_ready.png" />
+	<icon name="cond_flight" file="graphics/token/token_cond_flight.png" />
+	<icon name="cond_recharge" file="graphics/token/token_cond_recharge.png" />
+	<icon name="cond_magicresist" file="graphics/token/token_cond_magicresist.png" />
+
+	<!-- Exhaustion Levels -->
+	<icon name="cond_exhausted_1" file="graphics/token/token_cond_exhausted_1.png" />
+	<icon name="cond_exhausted_2" file="graphics/token/token_cond_exhausted_2.png" />
+	<icon name="cond_exhausted_3" file="graphics/token/token_cond_exhausted_3.png" />
+	<icon name="cond_exhausted_4" file="graphics/token/token_cond_exhausted_4.png" />
+	<icon name="cond_exhausted_5" file="graphics/token/token_cond_exhausted_5.png" />
+	<icon name="cond_exhausted_6" file="graphics/token/token_cond_exhausted_6.png" />
+
+	<!-- advantage/disadvantage -->
+	<icon name="cond_advinit" file="graphics/token/token_cond_advinit.png" />
+	<icon name="cond_disinit" file="graphics/token/token_cond_disinit.png" />
+	<icon name="cond_advatk" file="graphics/token/token_cond_advattack.png" />
+	<icon name="cond_disatk" file="graphics/token/token_cond_disattack.png" />
+	<icon name="cond_grantadvatk" file="graphics/token/token_cond_grantadvattack.png" />
+	<icon name="cond_grantdisatk" file="graphics/token/token_cond_grantdisattack.png" />
+	<icon name="cond_advsav" file="graphics/token/token_cond_advsave.png" />
+	<icon name="cond_dissav" file="graphics/token/token_cond_dissave.png" />
+	<icon name="cond_advchk" file="graphics/token/token_cond_advcheck.png" />
+	<icon name="cond_dischk" file="graphics/token/token_cond_discheck.png" />
+	<icon name="cond_advskill" file="graphics/token/token_cond_advskill.png" />
+	<icon name="cond_disskill" file="graphics/token/token_cond_disskill.png" />
+	<icon name="cond_advdeath" file="graphics/token/token_cond_advdeath.png" />
+	<icon name="cond_disdeath" file="graphics/token/token_cond_disdeath.png" />
+
+	<!-- More indicators for non-bonus icons -->
+	<!-- Tokens - Condition icons -->
+	<icon name="cond_blinded_more" file="graphics/token/token_cond_blinded_more.png" />
+	<icon name="cond_charmed_more" file="graphics/token/token_cond_charmed_more.png" />
+	<icon name="cond_deafened_more" file="graphics/token/token_cond_deafened_more.png" />
+	<icon name="cond_encumbered_more" file="graphics/token/token_cond_encumbered_more.png" />
+	<icon name="cond_frightened_more" file="graphics/token/token_cond_frightened_more.png" />
+	<icon name="cond_grappled_more" file="graphics/token/token_cond_grappled_more.png" />
+	<icon name="cond_incorporeal_more" file="graphics/token/token_cond_incorporeal_more.png" />
+	<icon name="cond_invisible_more" file="graphics/token/token_cond_invisible_more.png" />
+	<icon name="cond_paralyzed_more" file="graphics/token/token_cond_paralyzed_more.png" />
+	<icon name="cond_helpless_more" file="graphics/token/token_cond_helpless_more.png" />
+	<icon name="cond_prone_more" file="graphics/token/token_cond_prone_more.png" />
+	<icon name="cond_restrained_more" file="graphics/token/token_cond_restrained_more.png" />
+	<icon name="cond_stunned_more" file="graphics/token/token_cond_stunned_more.png" />
+	<icon name="cond_unconscious_more" file="graphics/token/token_cond_unconscious_more.png" />
+	<!-- Tokens - Condition extras -->
+	<icon name="cond_intoxicated_more" file="graphics/token/token_cond_intoxicated_more.png" />
+	<icon name="cond_stable_more" file="graphics/token/token_cond_stable_more.png" />
+	<icon name="cond_poison_more" file="graphics/token/token_cond_poison_more.png" />
+	<icon name="cond_petrified_more" file="graphics/token/token_cond_petrified_more.png" />
+	<icon name="cond_turned_more" file="graphics/token/token_cond_turned_more.png" />
+	<icon name="cond_curse_more" file="graphics/token/token_cond_curse_more.png" />
+	<icon name="cond_exhausted_more" file="graphics/token/token_cond_exhausted_more.png" />
+	<icon name="cond_dmgtype_more" file="graphics/token/token_cond_damagetype_more.png" />
+	<icon name="cond_concentration_more" file="graphics/token/token_cond_concentration_more.png" />
+	<icon name="cond_ready_more" file="graphics/token/token_cond_ready_more.png" />
+	<icon name="cond_flight_more" file="graphics/token/token_cond_flight_more.png" />
+	<icon name="cond_recharge_more" file="graphics/token/token_cond_recharge_more.png" />
+	<icon name="cond_magicresist_more" file="graphics/token/token_cond_magicresist_more.png" />
+	<!-- advantage/disadvantage -->
+	<icon name="cond_advinit_more" file="graphics/token/token_cond_advinit_more.png" />
+	<icon name="cond_disinit_more" file="graphics/token/token_cond_disinit_more.png" />
+	<icon name="cond_advatk_more" file="graphics/token/token_cond_advattack_more.png" />
+	<icon name="cond_disatk_more" file="graphics/token/token_cond_disattack_more.png" />
+	<icon name="cond_grantadvatk_more" file="graphics/token/token_cond_grantadvattack_more.png" />
+	<icon name="cond_grantdisatk_more" file="graphics/token/token_cond_grantdisattack_more.png" />
+	<icon name="cond_advsav_more" file="graphics/token/token_cond_advsave_more.png" />
+	<icon name="cond_dissav_more" file="graphics/token/token_cond_dissave_more.png" />
+	<icon name="cond_advchk_more" file="graphics/token/token_cond_advcheck_more.png" />
+	<icon name="cond_dischk_more" file="graphics/token/token_cond_discheck_more.png" />
+	<icon name="cond_advskill_more" file="graphics/token/token_cond_advskill_more.png" />
+	<icon name="cond_disskill_more" file="graphics/token/token_cond_disskill_more.png" />
+	<icon name="cond_advdeath_more" file="graphics/token/token_cond_advdeath_more.png" />
+	<icon name="cond_disdeath_more" file="graphics/token/token_cond_disdeath_more.png" />
+	<!-- Exhaustion Levels -->
+	<icon name="cond_exhausted_more" file="graphics/token/token_cond_exhausted_more.png" />
+	<icon name="cond_exhausted_1_more" file="graphics/token/token_cond_exhausted_1_more.png" />
+	<icon name="cond_exhausted_2_more" file="graphics/token/token_cond_exhausted_2_more.png" />
+	<icon name="cond_exhausted_3_more" file="graphics/token/token_cond_exhausted_3_more.png" />
+	<icon name="cond_exhausted_4_more" file="graphics/token/token_cond_exhausted_4_more.png" />
+	<icon name="cond_exhausted_5_more" file="graphics/token/token_cond_exhausted_5_more.png" />
+	<icon name="cond_exhausted_6_more" file="graphics/token/token_cond_exhausted_6_more.png" />
+	<!-- Tokens - Tactical states -->
+	<icon name="cond_cover_more" file="graphics/token/token_cond_cover_more.png" />
+	<icon name="cond_scover_more" file="graphics/token/token_cond_superior_cover_more.png" />
+	<!-- Tokens - Immunity, resistance, ongoing damage, regeneration, fast healing, negative levels -->
+	<icon name="cond_immune_more" file="graphics/token/token_cond_immune_more.png" />
+	<icon name="cond_resist_more" file="graphics/token/token_cond_resist_more.png" />
+	<icon name="cond_vuln_more" file="graphics/token/token_cond_vuln_more.png" />
+	<icon name="cond_ongoing_more" file="graphics/token/token_cond_ongoing_more.png" />
+	<icon name="cond_regen_more" file="graphics/token/token_cond_regen_more.png" />
+	<icon name="cond_nlvl_more" file="graphics/token/token_cond_nlvl_more.png" />
+
+
+	<!-- Tokens - Condition Bonuses -->
+	<icon name="cond_bonus_str" file="graphics/token/token_cond_bonus_str.png" />
+	<icon name="cond_bonus_dex" file="graphics/token/token_cond_bonus_dex.png" />
+	<icon name="cond_bonus_con" file="graphics/token/token_cond_bonus_con.png" />
+	<icon name="cond_bonus_int" file="graphics/token/token_cond_bonus_int.png" />
+	<icon name="cond_bonus_wis" file="graphics/token/token_cond_bonus_wis.png" />
+	<icon name="cond_bonus_cha" file="graphics/token/token_cond_bonus_cha.png" />
+	<icon name="cond_bonus_atk" file="graphics/token/token_cond_bonus_atk.png" />
+	<icon name="cond_bonus_ac" file="graphics/token/token_cond_bonus_ac.png" />
+	<icon name="cond_bonus_sav" file="graphics/token/token_cond_bonus_sav.png" />
+	<icon name="cond_bonus_skill" file="graphics/token/token_cond_bonus_skill.png" />
+	<icon name="cond_bonus_abil" file="graphics/token/token_cond_bonus_abil.png" />
+	<icon name="cond_bonus_init" file="graphics/token/token_cond_bonus_init.png" />
+	<icon name="cond_bonus_heal" file="graphics/token/token_cond_bonus_heal.png" />
+	<icon name="cond_bonus_dmg" file="graphics/token/token_cond_bonus_dmg.png" />
+	<!-- penalties -->
+	<icon name="cond_penalty_str" file="graphics/token/token_cond_penalty_str.png" />
+	<icon name="cond_penalty_dex" file="graphics/token/token_cond_penalty_dex.png" />
+	<icon name="cond_penalty_con" file="graphics/token/token_cond_penalty_con.png" />
+	<icon name="cond_penalty_int" file="graphics/token/token_cond_penalty_int.png" />
+	<icon name="cond_penalty_wis" file="graphics/token/token_cond_penalty_wis.png" />
+	<icon name="cond_penalty_cha" file="graphics/token/token_cond_penalty_cha.png" />
+	<icon name="cond_penalty_atk" file="graphics/token/token_cond_penalty_atk.png" />
+	<icon name="cond_penalty_ac" file="graphics/token/token_cond_penalty_ac.png" />
+	<icon name="cond_penalty_sav" file="graphics/token/token_cond_penalty_sav.png" />
+	<icon name="cond_penalty_skill" file="graphics/token/token_cond_penalty_skill.png" />
+	<icon name="cond_penalty_abil" file="graphics/token/token_cond_penalty_abil.png" />
+	<icon name="cond_penalty_init" file="graphics/token/token_cond_penalty_init.png" />
+	<icon name="cond_penalty_heal" file="graphics/token/token_cond_penalty_heal.png" />
+	<icon name="cond_penalty_dmg" file="graphics/token/token_cond_penalty_dmg.png" />
+	<!-- bonus more -->
+	<icon name="cond_bonus_more_str" file="graphics/token/token_cond_bonus_more_str.png" />
+	<icon name="cond_bonus_more_dex" file="graphics/token/token_cond_bonus_more_dex.png" />
+	<icon name="cond_bonus_more_con" file="graphics/token/token_cond_bonus_more_con.png" />
+	<icon name="cond_bonus_more_int" file="graphics/token/token_cond_bonus_more_int.png" />
+	<icon name="cond_bonus_more_wis" file="graphics/token/token_cond_bonus_more_wis.png" />
+	<icon name="cond_bonus_more_cha" file="graphics/token/token_cond_bonus_more_cha.png" />
+	<icon name="cond_bonus_more_atk" file="graphics/token/token_cond_bonus_more_atk.png" />
+	<icon name="cond_bonus_more_ac" file="graphics/token/token_cond_bonus_more_ac.png" />
+	<icon name="cond_bonus_more_sav" file="graphics/token/token_cond_bonus_more_sav.png" />
+	<icon name="cond_bonus_more_skill" file="graphics/token/token_cond_bonus_more_skill.png" />
+	<icon name="cond_bonus_more_abil" file="graphics/token/token_cond_bonus_more_abil.png" />
+	<icon name="cond_bonus_more_init" file="graphics/token/token_cond_bonus_more_init.png" />
+	<icon name="cond_bonus_more_heal" file="graphics/token/token_cond_bonus_more_heal.png" />
+	<icon name="cond_bonus_more_dmg" file="graphics/token/token_cond_bonus_more_dmg.png" />
+	<!-- penalties more -->
+	<icon name="cond_penalty_more_str" file="graphics/token/token_cond_penalty_more_str.png" />
+	<icon name="cond_penalty_more_dex" file="graphics/token/token_cond_penalty_more_dex.png" />
+	<icon name="cond_penalty_more_con" file="graphics/token/token_cond_penalty_more_con.png" />
+	<icon name="cond_penalty_more_int" file="graphics/token/token_cond_penalty_more_int.png" />
+	<icon name="cond_penalty_more_wis" file="graphics/token/token_cond_penalty_more_wis.png" />
+	<icon name="cond_penalty_more_cha" file="graphics/token/token_cond_penalty_more_cha.png" />
+	<icon name="cond_penalty_more_atk" file="graphics/token/token_cond_penalty_more_atk.png" />
+	<icon name="cond_penalty_more_ac" file="graphics/token/token_cond_penalty_more_ac.png" />
+	<icon name="cond_penalty_more_sav" file="graphics/token/token_cond_penalty_more_sav.png" />
+	<icon name="cond_penalty_more_skill" file="graphics/token/token_cond_penalty_more_skill.png" />
+	<icon name="cond_penalty_more_abil" file="graphics/token/token_cond_penalty_more_abil.png" />
+	<icon name="cond_penalty_more_init" file="graphics/token/token_cond_penalty_more_init.png" />
+	<icon name="cond_penalty_more_heal" file="graphics/token/token_cond_penalty_more_heal.png" />
+	<icon name="cond_penalty_more_dmg" file="graphics/token/token_cond_penalty_more_dmg.png" />
+
+
+	<!-- Tokens - Overlay -->
+	<icon name="overlay_dying" file="graphics/token/overlay_dying.png" />
+	<icon name="overlay_dying_stable" file="graphics/token/overlay_dying_stable.png" />
+	<icon name="overlay_dying_ally" file="graphics/token/overlay_dying_ally.png" />
+	<icon name="overlay_dying_ally_stable" file="graphics/token/overlay_dying_ally_stable.png" />
+	<icon name="overlay_dead" file="graphics/token/overlay_dead.png" />
+	<icon name="overlay_ko" file="graphics/token/overlay_ko.png" />
+	<icon name="overlay_alert" file="graphics/token/overlay_alert.png" />
+	<icon name="overlay_moderate" file="graphics/token/overlay_moderate.png" />
+	<icon name="overlay_heavy" file="graphics/token/overlay_heavy.png" />
+	<icon name="overlay_critical" file="graphics/token/overlay_critical.png" />
+
+
+	<!-- Tokens - Save Overlays -->
+	<icon name="overlay_save_success" file="graphics/token/save_success.png" />
+	<icon name="overlay_save_failure" file="graphics/token/save_fail.png" />
+
+	<!-- Widgets - combat tracker -->
+	<icon name="onmap_icon" file="graphics/icon/onmap_icon.png" />
+
+
+	<!-- Image panel resize -->
+	<icon name="button_sizeup" file="graphics/buttons/button_sizeup.png" />
+	<icon name="button_sizeup_down" file="graphics/buttons/button_sizeup_down.png" />
+	<icon name="button_sizeup_hover" file="graphics/buttons/button_sizeup_hover.png" />
+	<icon name="button_sizedown" file="graphics/buttons/button_sizedown.png" />
+	<icon name="button_sizedown_down" file="graphics/buttons/button_sizedown_down.png" />
+	<icon name="button_sizedown_hover" file="graphics/buttons/button_sizedown_hover.png" />	
+
+	<!-- Combat Tracker -->
+	<icon name="button_effect" file="graphics/buttons/button_effect.png" />
+	<icon name="button_effect_down" file="graphics/buttons/button_effect_down.png" />	
+</root>

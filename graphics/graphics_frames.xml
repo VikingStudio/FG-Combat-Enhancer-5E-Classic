@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+
+
+
+
+	<!-- Combat tracker -->
+	<framedef name="ctentrybox_selected">
+		<bitmap file="graphics/frames/ctentrybox_selected.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_selected">
+		<bitmap file="graphics/frames/ctentrybox_friend_selected.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_selected">
+		<bitmap file="graphics/frames/ctentrybox_neutral_selected.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_selected">
+		<bitmap file="graphics/frames/ctentrybox_foe_selected.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+
+	<!-- Combat tracker dark frames -->
+	<framedef name="ctentrybox_dark">
+		<bitmap file="graphics/frames/ctentrybox_dark.png" />
+		<offset>28,3,5,6</offset>
+	</framedef>
+	<framedef name="ctentrybox_active_dark">
+		<bitmap file="graphics/frames/ctentrybox_active_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_dark">
+		<bitmap file="graphics/frames/ctentrybox_friend_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_active_dark">
+		<bitmap file="graphics/frames/ctentrybox_friend_active_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_dark">
+		<bitmap file="graphics/frames/ctentrybox_neutral_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_active_dark">
+		<bitmap file="graphics/frames/ctentrybox_neutral_active_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_dark">
+		<bitmap file="graphics/frames/ctentrybox_foe_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_active_dark">
+		<bitmap file="graphics/frames/ctentrybox_foe_active_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_selected_dark">
+		<bitmap file="graphics/frames/ctentrybox_selected_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_selected_dark">
+		<bitmap file="graphics/frames/ctentrybox_friend_selected_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_selected_dark">
+		<bitmap file="graphics/frames/ctentrybox_neutral_selected_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_selected_dark">
+		<bitmap file="graphics/frames/ctentrybox_foe_selected_dark.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+
+
+	<!-- Combat tracker unconscious frames -->
+	<framedef name="ctentrybox_uncon">
+		<bitmap file="graphics/frames/ctentrybox_uncon.png" />
+		<offset>28,3,5,6</offset>
+	</framedef>
+	<framedef name="ctentrybox_active_uncon">
+		<bitmap file="graphics/frames/ctentrybox_active_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_uncon">
+		<bitmap file="graphics/frames/ctentrybox_friend_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_active_uncon">
+		<bitmap file="graphics/frames/ctentrybox_friend_active_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_uncon">
+		<bitmap file="graphics/frames/ctentrybox_neutral_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_active_uncon">
+		<bitmap file="graphics/frames/ctentrybox_neutral_active_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_uncon">
+		<bitmap file="graphics/frames/ctentrybox_foe_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_active_uncon">
+		<bitmap file="graphics/frames/ctentrybox_foe_active_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_selected_uncon">
+		<bitmap file="graphics/frames/ctentrybox_selected_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_friend_selected_uncon">
+		<bitmap file="graphics/frames/ctentrybox_friend_selected_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_neutral_selected_uncon">
+		<bitmap file="graphics/frames/ctentrybox_neutral_selected_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+	<framedef name="ctentrybox_foe_selected_uncon">
+		<bitmap file="graphics/frames/ctentrybox_foe_selected_uncon.png" />
+		<offset>37,16,14,17</offset>
+	</framedef>
+
+
+	<!-- Combat tracker themed replacements --> 
+</root>

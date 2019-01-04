@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+	'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
+	The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
+-->
+
+<!--
+	Custom Modifications Copyright (C) 2018 Ken L.
+	Licensed under the GPL Version 3 license.
+	http://www.gnu.org/licenses/gpl.html
+	This script is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This script is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+-->
+
+
+<root version="2.0">
+	<icon name="tool_layers_30" file="graphics/toolbar/tool_layers_30.png" />
+	<icon name="tool_layers_background_30" file="graphics/toolbar/tool_layers_background_30.png" />
+	<icon name="tool_layers_features_30" file="graphics/toolbar/tool_layers_features_30.png" />
+	<icon name="tool_layers_play_30" file="graphics/toolbar/tool_layers_play_30.png" />
+	<icon name="tool_xycoord_30" file="graphics/toolbar/tool_xycoord_30.png" />
+	<!-- <icon name="addct_radial" file="graphics/radial/icon_addct.png" /> -->
+
+	<!--  turn icons -->
+	<icon name="turn_flag_neutral" file="graphics/icon/turn_flag.png" />
+	<icon name="turn_flag_none" file="graphics/icon/turn_flag_none.png" />
+	<icon name="turn_flag_foe" file="graphics/icon/turn_flag_npc.png" />
+	<icon name="turn_flag_foe_dying" file="graphics/icon/turn_flag_npc_dying.png" />
+	<icon name="turn_flag_friend" file="graphics/icon/turn_flag_pc.png" />
+	
+	<font name="toolbar_hud">
+		<fgffile name="graphics/fonts/regular-9.fgf" />
+		<color value="#1A6AAB" />
+	</font>
+
+	<font name="end_turn">
+		<ttf file="graphics/fonts/AlegreyaSansSC-Bold.ttf" name="Alegreya Sans SC" size="26" />
+		<color value="#000000" />
+	</font>
+</root>

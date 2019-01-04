@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+	Copyright (C) 2018 Ken L., Original Work.	
+	Copyright (C) December 2018 onwards Styrmir, code and graphics modified by Styrmir from Original Work and other sources. Changelog available in Features and Changes document.	
+
+	Licensed under the GPL Version 3 license.
+	http://www.gnu.org/licenses/gpl.html
+	This script is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This script is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+-->
+
+<root version="3.0" release="1">
+
+	<properties>
+		<name>5e Combat Enhancer</name>
+		<version>1.1.0</version>
+		
+		<author>Styrmir</author>
+		<description>5e Combat Enhancer</description>
+		
+		<ruleset>
+			<name>5E</name>
+			<!-- 
+			<maxrelease>8</maxrelease>
+			<minrelease>7</minrelease>
+			-->
+		</ruleset>
+	</properties>
+    
+
+	<base>
+		<!-- Custom modifications and additions to the base extension -->
+		<script name="Modifications" file="scripts/modifications.lua" />
+    	
+		<!-- Status icons -->
+		<icon name="ak_icon" file="icon.png" />
+		<script name="VersionCheck" file="scripts/manager_versionchk.lua" />
+        <script name="TokenManager2" file="scripts/manager_token2.lua" />
+        <script name="CombatManager2" file="scripts/manager_combat2.lua" />
+		<script name="DataCommon" file="scripts/data_common.lua" />
+        <script name="ActionSave" file="scripts/manager_action_save.lua" />
+        <script name="MiniEffect" file="scripts/manager_minieffect.lua" />
+		<script name="EffectManager" file="scripts/manager_effect.lua" />
+		<script name="EffectManager5E" file="scripts/manager_effect_5E.lua" />
+
+		<includefile source="graphics/graphics_icons.xml" />
+		<includefile source="graphics/graphics_radial.xml" />
+		<!-- <includefile source="utility/template_utility_override.xml" /> -->
+		<includefile source="utility/utility_effects_override.xml" />
+
+
+		<!-- Combat tracker icons changes -->
+		<includefile source="graphics/graphics_buttons.xml" />
+
+
+		<!-- Combat snapping -->
+		<string name="option_val_foe">Foe</string>
+		<script name="CombatSnap" file="scripts/snap_token.lua" />
+		<script name="TokenManager" file="scripts/manager_token.lua" />
+		<includefile source="graphics/graphics_frames.xml" />
+		<includefile source="ct/ct_client.xml" />
+		<includefile source="ct/ct_host.xml" />
+		<includefile source="ct/template_ct.xml" />
+
+
+		<!-- Layers -->				
+		<template name="image_record_step">
+			<imagecontrol name="image">
+				<indicators availability="image_sent" locked="image_locked" loading="image_loading" zoom="image_zoom" shortcuts="image_shortcuts" />
+				<default snap="on" drawingsize="200,200" />
+				<script file="campaign/scripts/image.lua" />
+			</imagecontrol>
+		</template>
+				
+		<includefile source="graphics/graphics_layers.xml" />		
+		<includefile source="common/template_toolbar.xml" /> 
+		<includefile source="campaign/record_image.xml" />  <!-- <<< this is the file that breaks images as backgrounds in 3.3.7 -->
+		<!-- <includefile source="campaign/record_image_resize.xml" /> -->
+		<includefile source="campaign/record_encounter.xml" />
+
+		<script name="CombatManager" file="scripts/manager_combat.lua" />
+		<script name="TargetingManager" file="scripts/manager_targeting.lua" />
+		<script name="LayerTokenManager" file="scripts/manager_layer_tokens.lua" />
+		<script name="PingManager" file="scripts/manager_ping.lua" /> 
+		<script name="MapTokenManager" file="scripts/manager_maptoken.lua" />		
+
+
+		<!-- Height -->
+        <script name="HeightManager" file="scripts/manager_height.lua" />
+		<includefile source="graphics/graphics_fonts.xml" />
+
+		<!-- for NPC id -->
+		<!-- Moon integrated his version of NPCID for 3.3.6 -->
+		<!--
+		<string name="option_label_NPID">NPC: Identification</string>
+		<string name="library_recordtype_empty_nonid_npc">Unidentified Creature</string>
+		<includefile source="campaign/record_npc.xml" />
+		-->
+
+		<script name="NPCManager" file="scripts/manager_npc.lua" />
+
+		<!-- Moon integrated his version of NPCID for 3.3.6 -->
+		<!--
+		<script name="LibraryData" file="scripts/data_library.lua" />
+		<script name="DataOptionsNPC" file="scripts/data_options_npcid.lua" />
+		-->
+
+
+
+
+		<!-- Change appearance of frames -->
+		<!-- Black background for images / battlemaps -->
+		<framedef name="imagebox">
+			<bitmap file="graphics/frames/imagebox v1.png" />
+			<offset>150,135,150,150</offset>
+			<insideoffset>0,0,18,22</insideoffset>
+		</framedef>
+		<!--
+		<framedef name="imagebox_header">
+			<bitmap file="graphics/frames/imagebox_header v1.png" />
+		</framedef>
+		<framedef name="imagepanel">
+			<bitmap file="graphics/frames/imagepanel v2.png" />
+		</framedef>		
+		<framedef name="headergray">
+			<bitmap file="graphics/frames/headergray v1.png" />
+		</framedef>	-->
+
+
+
+		<!-- Settings Menu items -->
+		<script name="5eCombatEnhancerMenuSettings">
+			function onInit()
+                OptionsManager.addOptionValue("5eCombatEnhancer", "option_val_5eCombatEnhancer_custom1", "5eCombatEnhancer_custom1", true);
+				OptionsManager.addOptionValue("5eCombatEnhancer", "option_val_5eCombatEnhancer_custom2", "5eCombatEnhancer_custom2", true);
+			end
+		</script>
+		
+		<string name="option_val_5eCombatEnhancer_custom1">Decal 1</string> 
+        <string name="option_val_5eCombatEnhancer_custom2">Decal 2</string> 
+
+		<icon name="5eCombatEnhancer_custom1" file="graphics/decals/1.jpg" />
+        <icon name="5eCombatEnhancer_custom2" file="graphics/decals/2.jpg" /> 
+
+		<options>
+		<public />
+			<CTAV type="string">on</CTAV>
+			<MC4C type="string">2C</MC4C>
+			<TBOX type="string">on</TBOX>
+			<TNAM type="string">tooltip</TNAM>
+		</options>
+	</base>
+	
+	<announcement text="5e Combat Enhancer" font="emotefont" icon="ak_icon" />
+</root>

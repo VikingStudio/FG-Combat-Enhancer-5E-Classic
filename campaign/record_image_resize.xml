@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="imagewindow" version="&gt;=4">
+		<frame>imagebox</frame>
+		<sizelimits>
+			<minimum width="300" height="300" />
+			<dynamic />
+		</sizelimits>
+		<playercontrol />
+		<sharable />
+		<nodelete />
+		<tooltip field="name" />
+		<minimize>minimized_image</minimize>
+		<script file="campaign/scripts/imagewindow.lua" />
+		<sheetdata>
+			<sub_record_header_image name="header" />
+			<sub_record_toolbar_image name="toolbar" />
+			
+			<image_record name="image" />
+			<scrollercontrol name="scroller_image">
+				<anchored to="image" position="insidebottomright" offset="3,3" width="40" height="38" />
+				<target>image</target>
+				<button normal="button_scrollerpan" pressed="button_scrollerpan_down" zoom="button_zoomer" zoompressed="button_zoomer_down" />
+			</scrollercontrol>
+			<imagedata_record name="imagedata" source="image" />
+
+			<list_viewers />
+			<resize_imagebox />
+			<button_imagewindow_sizeup />
+			<helper_image />
+			<close_imagebox />
+		</sheetdata>
+	</windowclass>
+	<windowclass name="imagewindow" version="&lt;4">
+		<frame>imagebox</frame>
+		<sizelimits>
+			<minimum width="120" height="120" />
+			<dynamic />
+		</sizelimits>
+		<playercontrol />
+		<sharable />
+		<nodelete />
+		<tooltip field="name" />
+		<minimize>minimized_image</minimize>
+		<script file="campaign/scripts/imagewindow.lua" />
+		<sheetdata>
+			<sub_record_header_image name="header" />
+			<sub_record_toolbar_image name="toolbar" />
+			
+			<image_record name="image" />
+			<scrollercontrol name="scroller_image">
+				<anchored to="image" position="insidebottomright" offset="3,3" width="40" height="38" />
+				<target>image</target>
+				<button normal="button_scrollerpan" pressed="button_scrollerpan_down" zoom="button_zoomer" zoompressed="button_zoomer_down" />
+			</scrollercontrol>
+
+			<list_viewers />
+			<resize_imagebox />
+			<button_imagewindow_sizeup />
+			<helper_image />
+			<close_imagebox />
+		</sheetdata>
+	</windowclass>
+	<windowclass name="imagepanelwindow">
+		<sharable shareas="imagewindow" />
+		<frame>imagepanel</frame>
+		<script file="campaign/scripts/imagewindow.lua" />
+		<sheetdata>
+			<sub_record_toolbar_imagepanel name="toolbar" />
+			
+			<imagepanel_record name="image" />
+			<scrollercontrol name="scroller_image">
+				<anchored to="image" position="insidebottomright" offset="3,3" width="40" height="38" />
+				<target>image</target>
+				<button normal="button_scrollerpan" pressed="button_scrollerpan_down" zoom="button_zoomer" zoompressed="button_zoomer_down" />
+			</scrollercontrol>
+			<imagepaneldata_record name="imagedata" source="image" />
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="imagewindow_header">
+		<margins control="0,2,0,8" />
+		<frame>imagebox_header</frame>
+		<script>
+			function onInit()
+				if User.isHost() then
+					nonid_name.resetAnchor("left");
+					nonid_name.setAnchor("left", nil, "center", "absolute", 10);
+					self.onSizeChanged = update;
+				end
+				update();
+			end
+			
+			function update()
+				local nodeRecord = getDatabaseNode();
+
+				local bReadOnly = WindowManager.getReadOnlyState(nodeRecord);
+				name.setReadOnly(bReadOnly);
+				nonid_name.setReadOnly(bReadOnly);
+				
+				local bID = LibraryData.getIDState("image", nodeRecord);
+				if User.isHost() then
+					local w,h = getSize();
+					local bShowNonID = (w >= 450);
+					isidentified.setVisible(bShowNonID);
+					nonid_name.setVisible(bShowNonID);
+				else
+					name.setVisible(bID);
+					nonid_name.setVisible(not bID);
+				end
+			end
+		</script>
+		<sheetdata>
+			<link_record_header_id name="link">
+				<class>imagewindow</class>
+			</link_record_header_id>
+
+			<anchor_record_image_header_right name="rightanchor" />
+			<icon_record_locked />
+			<button_record_locked />
+
+			<string_record_name_image name="nonid_name">
+				<empty textres="library_recordtype_empty_nonid_image" />
+			</string_record_name_image>
+			<button_record_isidentified_image name="isidentified" />
+			<string_record_name_image name="name">
+				<empty textres="library_recordtype_empty_image" />
+			</string_record_name_image>
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="imagewindow_toolbar">
+		<frame>toolbar_back</frame>
+		<script>
+			function onInit()
+				update();
+			end
+			
+			function getImage()
+				return parentcontrol.window.image;
+			end
+			
+			function update()
+				local bHasTokens = getImage().hasTokens();
+
+				if User.isHost() then
+					toolbar_draw.setVisibility(true);
+					h2.setVisible(true);
+					
+					local bShowGridToggle = getImage().hasGrid();
+					toggle_grid.setVisible(bShowGridToggle);
+					
+					local bShowGridToolbar = false;
+					if toggle_grid.getValue() > 0 then
+						bShowGridToolbar = bShowGridToggle;
+					end
+					toolbar_grid.setVisibility(bShowGridToolbar);
+
+					h1.setVisible(true);
+				end
+
+				toggle_select.setVisible(bHasTokens);
+				h3.setVisible(bHasTokens);
+				toggle_targetselect.setVisible(bHasTokens);
+				toolbar_targeting.setVisibility(bHasTokens);
+			end
+		</script>
+		<sheetdata>
+			<genericcontrol name="toolbar_anchor">
+				<anchored position="insidetopleft" offset="0,1" width="0" height="34" />
+				<disabled />
+			</genericcontrol>
+			
+			<toolbar_30 name="toolbar_draw">
+				<anchored to="toolbar_anchor">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<button>
+					<id>unmask</id>
+					<icon>tool_mask_30</icon>
+					<tooltipres>image_tooltip_toolbarmask</tooltipres>
+				</button>
+				<button>
+					<id>paint</id>
+					<icon>tool_paint_30</icon>
+					<tooltipres>image_tooltip_toolbardraw</tooltipres>
+				</button>
+				<button>
+					<id>erase</id>
+					<icon>tool_erase_30</icon>
+					<tooltipres>image_tooltip_toolbarerase</tooltipres>
+				</button>
+				<toggle />
+				<invisible />
+				<script>
+					function onValueChanged()
+						local sTool = window.getImage().getCursorMode();
+						if sTool == "unmask" then
+							setActive("unmask");
+						elseif sTool == "draw" then
+							setActive("paint");
+						elseif sTool == "erase" then
+							setActive("erase");
+						else
+							setActive("");
+						end
+					end
+					
+					function onButtonPress(id)
+						local image = window.getImage();
+						
+						if id == "paint" then
+							if image.getCursorMode() ~= "draw" then
+								image.setCursorMode("draw");
+							else
+								image.setCursorMode("");
+							end
+						elseif id == "erase" then
+							if image.getCursorMode() ~= "erase" then
+								image.setCursorMode("erase");
+							else
+								image.setCursorMode("");
+							end
+						elseif id == "unmask" then
+							if image.getCursorMode() ~= "unmask" then
+								image.setMaskEnabled(true);
+								image.setCursorMode("unmask");
+							else
+								image.setCursorMode("");
+							end
+						end
+					end
+				</script>
+			</toolbar_30>
+			<genericcontrol name="h2">
+				<anchored to="toolbar_anchor" width="5" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<invisible />
+			</genericcontrol>
+			<buttoncontrol name="toggle_grid">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<state icon="tool_grid_30" color="60A0A0A0" />
+				<state icon="tool_grid_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="image_tooltip_toolbargrid" />
+				<invisible />
+				<script>
+					function onValueChanged()
+						window.parentcontrol.window.updateDisplay();
+					end
+				</script>
+			</buttoncontrol>
+			<toolbar_30 name="toolbar_grid">
+				<anchored to="toolbar_anchor">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<invisible/>
+				<button>
+					<id>gridleft</id>
+					<icon>tool_left_30</icon>
+					<tooltipres>image_tooltip_toolbargridleft</tooltipres>
+				</button>
+				<button>
+					<id>gridright</id>
+					<icon>tool_right_30</icon>
+					<tooltipres>image_tooltip_toolbargridright</tooltipres>
+				</button>
+				<button>
+					<id>gridup</id>
+					<icon>tool_up_30</icon>
+					<tooltipres>image_tooltip_toolbargridup</tooltipres>
+				</button>
+				<button>
+					<id>griddown</id>
+					<icon>tool_down_30</icon>
+					<tooltipres>image_tooltip_toolbargriddown</tooltipres>
+				</button>
+				<button>
+					<id>gridplus</id>
+					<icon>tool_plus_30</icon>
+					<tooltipres>image_tooltip_toolbargridplus</tooltipres>
+				</button>
+				<button>
+					<id>gridminus</id>
+					<icon>tool_minus_30</icon>
+					<tooltipres>image_tooltip_toolbargridminus</tooltipres>
+				</button>
+				<script>
+					function onButtonPress(sID)
+						local image = window.getImage();
+						
+						local gridsize = image.getGridSize();
+						local ox, oy = image.getGridOffset();
+						
+						if (sID == "gridleft") then
+							ox = ox - 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "gridright") then
+							ox = ox + 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "gridup") then
+							oy = oy - 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "griddown") then
+							oy = oy + 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "gridplus") then
+							gridsize = gridsize + 1;
+							image.setGridSize(gridsize);
+						elseif (sID == "gridminus") then
+							gridsize = gridsize - 1;
+							image.setGridSize(gridsize);
+						end
+					end
+				</script>
+			</toolbar_30>
+			
+			<genericcontrol name="h1">
+				<anchored to="toolbar_anchor" width="5" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<invisible />
+			</genericcontrol>
+			<buttoncontrol name="toggle_select">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<state icon="tool_select_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="image_tooltip_toolbarselect" />
+				<script>
+					function onButtonPress()
+						local image = window.getImage();
+						
+						if image.getCursorMode() == "select" then
+							image.setCursorMode();
+						else
+							image.setCursorMode("select");
+						end
+					end
+					
+					function updateDisplay()
+						if window.getImage().getCursorMode() == "select" then
+							setColor("ffffffff");
+						else
+							setColor("60a0a0a0");
+						end
+					end
+				</script>
+			</buttoncontrol>
+
+			<genericcontrol name="h3">
+				<anchored to="toolbar_anchor" width="5" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<invisible />
+			</genericcontrol>
+			<buttoncontrol name="toggle_targetselect">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<state icon="tool_target_select_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="image_tooltip_toolbartarget" />
+				<script>
+					function onButtonPress()
+						local image = window.getImage();
+						
+						if image.getCursorMode() == "target" then
+							image.setCursorMode();
+						else
+							image.setCursorMode("target");
+						end
+					end
+					
+					function updateDisplay()
+						if window.getImage().getCursorMode() == "target" then
+							setColor("ffffffff");
+						else
+							setColor("60a0a0a0");
+						end
+					end
+				</script>
+			</buttoncontrol>
+			<toolbar_30 name="toolbar_targeting">
+				<anchored to="toolbar_anchor">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<invisible/>
+				<button>
+					<id>clear</id>
+					<icon>tool_target_clear_30</icon>
+					<tooltipres>image_tooltip_toolbartargetclear</tooltipres>
+				</button>
+				<button>
+					<id>friend</id>
+					<icon>tool_target_allies_30</icon>
+					<tooltipres>image_tooltip_toolbartargetfriend</tooltipres>
+				</button>
+				<button>
+					<id>foe</id>
+					<icon>tool_target_enemies_30</icon>
+					<tooltipres>image_tooltip_toolbartargetfoe</tooltipres>
+				</button>
+				<script>
+					function onButtonPress(sID)
+						if sID == "clear" then
+							TargetingManager.clearTargets(window.getImage());
+						elseif sID == "friend" then
+							TargetingManager.setFactionTargets(window.getImage());
+						elseif sID == "foe" then
+							TargetingManager.setFactionTargets(window.getImage(), true);
+						end
+					end
+				</script>
+			</toolbar_30>
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="imagepanelwindow_toolbar">
+		<frame>toolbar_back</frame>
+		<script>
+			function onInit()
+				update();
+			end
+			
+			function getImage()
+				return parentcontrol.window.image;
+			end
+			
+			function update()
+				local bHasTokens = getImage().hasTokens();
+
+				if User.isHost() then
+					toolbar_draw.setVisibility(true);
+					h2.setVisible(true);
+					
+					local bShowGridToggle = getImage().hasGrid();
+					toggle_grid.setVisible(bShowGridToggle);
+					
+					local bShowGridToolbar = false;
+					if toggle_grid.getValue() > 0 then
+						bShowGridToolbar = bShowGridToggle;
+					end
+					toolbar_grid.setVisibility(bShowGridToolbar);
+
+					h1.setVisible(true);
+				end
+
+				toggle_select.setVisible(bHasTokens);
+				h3.setVisible(bHasTokens);
+				toggle_targetselect.setVisible(bHasTokens);
+				toolbar_targeting.setVisibility(bHasTokens);
+			end
+		</script>
+		<sheetdata>
+			<genericcontrol name="toolbar_anchor">
+				<anchored position="insidetopright" offset="100,0" width="0" height="34" />
+				<disabled />
+			</genericcontrol>
+			
+			<toolbar_30 name="toolbar_targeting">
+				<anchored to="toolbar_anchor">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<invisible/>
+				<button>
+					<id>clear</id>
+					<icon>tool_target_clear_30</icon>
+					<tooltipres>image_tooltip_toolbartargetclear</tooltipres>
+				</button>
+				<button>
+					<id>friend</id>
+					<icon>tool_target_allies_30</icon>
+					<tooltipres>image_tooltip_toolbartargetfriend</tooltipres>
+				</button>
+				<button>
+					<id>foe</id>
+					<icon>tool_target_enemies_30</icon>
+					<tooltipres>image_tooltip_toolbartargetfoe</tooltipres>
+				</button>
+				<script>
+					function onButtonPress(sID)
+						if sID == "clear" then
+							TargetingManager.clearTargets(window.getImage());
+						elseif sID == "friend" then
+							TargetingManager.setFactionTargets(window.getImage());
+						elseif sID == "foe" then
+							TargetingManager.setFactionTargets(window.getImage(), true);
+						end
+					end
+				</script>
+			</toolbar_30>
+			<buttoncontrol name="toggle_targetselect">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<state icon="tool_target_select_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="image_tooltip_toolbartarget" />
+				<script>
+					function onButtonPress()
+						local image = window.getImage();
+						
+						if image.getCursorMode() == "target" then
+							image.setCursorMode();
+						else
+							image.setCursorMode("target");
+						end
+					end
+					
+					function updateDisplay()
+						if window.getImage().getCursorMode() == "target" then
+							setColor("ffffffff");
+						else
+							setColor("60a0a0a0");
+						end
+					end
+				</script>
+			</buttoncontrol>
+			<genericcontrol name="h3">
+				<anchored to="toolbar_anchor" width="5" height="34">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<invisible />
+			</genericcontrol>
+
+			<buttoncontrol name="toggle_select">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<state icon="tool_select_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="image_tooltip_toolbarselect" />
+				<script>
+					function onButtonPress()
+						local image = window.getImage();
+						
+						if image.getCursorMode() == "select" then
+							image.setCursorMode();
+						else
+							image.setCursorMode("select");
+						end
+					end
+					
+					function updateDisplay()
+						if window.getImage().getCursorMode() == "select" then
+							setColor("ffffffff");
+						else
+							setColor("60a0a0a0");
+						end
+					end
+				</script>
+			</buttoncontrol>
+			<genericcontrol name="h1">
+				<anchored to="toolbar_anchor" width="5" height="34">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<invisible />
+			</genericcontrol>
+
+			<toolbar_30 name="toolbar_grid">
+				<anchored to="toolbar_anchor">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<invisible/>
+				<button>
+					<id>gridleft</id>
+					<icon>tool_left_30</icon>
+					<tooltipres>image_tooltip_toolbargridleft</tooltipres>
+				</button>
+				<button>
+					<id>gridright</id>
+					<icon>tool_right_30</icon>
+					<tooltipres>image_tooltip_toolbargridright</tooltipres>
+				</button>
+				<button>
+					<id>gridup</id>
+					<icon>tool_up_30</icon>
+					<tooltipres>image_tooltip_toolbargridup</tooltipres>
+				</button>
+				<button>
+					<id>griddown</id>
+					<icon>tool_down_30</icon>
+					<tooltipres>image_tooltip_toolbargriddown</tooltipres>
+				</button>
+				<button>
+					<id>gridplus</id>
+					<icon>tool_plus_30</icon>
+					<tooltipres>image_tooltip_toolbargridplus</tooltipres>
+				</button>
+				<button>
+					<id>gridminus</id>
+					<icon>tool_minus_30</icon>
+					<tooltipres>image_tooltip_toolbargridminus</tooltipres>
+				</button>
+				<script>
+					function onButtonPress(sID)
+						local image = window.getImage();
+						
+						local gridsize = image.getGridSize();
+						local ox, oy = image.getGridOffset();
+						
+						if (sID == "gridleft") then
+							ox = ox - 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "gridright") then
+							ox = ox + 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "gridup") then
+							oy = oy - 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "griddown") then
+							oy = oy + 1;
+							image.setGridOffset(ox, oy);
+						elseif (sID == "gridplus") then
+							gridsize = gridsize + 1;
+							image.setGridSize(gridsize);
+						elseif (sID == "gridminus") then
+							gridsize = gridsize - 1;
+							image.setGridSize(gridsize);
+						end
+					end
+				</script>
+			</toolbar_30>
+			<buttoncontrol name="toggle_grid">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<state icon="tool_grid_30" color="60A0A0A0" />
+				<state icon="tool_grid_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="image_tooltip_toolbargrid" />
+				<invisible />
+				<script>
+					function onValueChanged()
+						window.parentcontrol.window.updateDisplay();
+					end
+				</script>
+			</buttoncontrol>
+			<genericcontrol name="h2">
+				<anchored to="toolbar_anchor" width="5" height="34">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<invisible />
+			</genericcontrol>
+			<toolbar_30 name="toolbar_draw">
+				<anchored to="toolbar_anchor">
+					<top />
+					<right anchor="left" relation="relative" />
+				</anchored>
+				<button>
+					<id>unmask</id>
+					<icon>tool_mask_30</icon>
+					<tooltipres>image_tooltip_toolbarmask</tooltipres>
+				</button>
+				<button>
+					<id>paint</id>
+					<icon>tool_paint_30</icon>
+					<tooltipres>image_tooltip_toolbardraw</tooltipres>
+				</button>
+				<button>
+					<id>erase</id>
+					<icon>tool_erase_30</icon>
+					<tooltipres>image_tooltip_toolbarerase</tooltipres>
+				</button>
+				<toggle />
+				<invisible />
+				<script>
+					function onValueChanged()
+						local sTool = window.getImage().getCursorMode();
+						if sTool == "unmask" then
+							setActive("unmask");
+						elseif sTool == "draw" then
+							setActive("paint");
+						elseif sTool == "erase" then
+							setActive("erase");
+						else
+							setActive("");
+						end
+					end
+					
+					function onButtonPress(id)
+						local image = window.getImage();
+						
+						if id == "paint" then
+							if image.getCursorMode() ~= "draw" then
+								image.setCursorMode("draw");
+							else
+								image.setCursorMode("");
+							end
+						elseif id == "erase" then
+							if image.getCursorMode() ~= "erase" then
+								image.setCursorMode("erase");
+							else
+								image.setCursorMode("");
+							end
+						elseif id == "unmask" then
+							if image.getCursorMode() ~= "unmask" then
+								image.setMaskEnabled(true);
+								image.setCursorMode("unmask");
+							else
+								image.setCursorMode("");
+							end
+						end
+					end
+				</script>
+			</toolbar_30>
+		</sheetdata>
+	</windowclass>
+</root>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+	'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
+	The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
+-->
+
+<!--
+	Custom Modifications Copyright (C) 2018 Ken L.
+	Licensed under the GPL Version 3 license.
+	http://www.gnu.org/licenses/gpl.html
+	This script is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This script is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+-->
+
+<root>
+	<!-- STRINGS -->
+	<string name="tooltip_saves_clear_toolbar">Clear saves</string>
+	<!-- ICONS -->
+	<!-- Assume 24x24 for toolbar_30 icons, and 16x16 for toolbar_20 button icons -->
+    <icon name="tool_toggle_30" file="graphics/toolbar/tool_toggle_30.png" />
+
+    <icon name="tool_select_30" file="graphics/toolbar/tool_select_30.png" />
+
+    <icon name="tool_paint_30" file="graphics/toolbar/tool_paint_30.png" />
+    <icon name="tool_paint_disabled_30" file="graphics/toolbar/tool_paint_disabled_30.png" />
+    <icon name="tool_erase_30" file="graphics/toolbar/tool_erase_30.png" />
+    <icon name="tool_erase_disabled_30" file="graphics/toolbar/tool_erase_disabled_30.png" />
+    <icon name="tool_mask_30" file="graphics/toolbar/tool_mask_30.png" />
+    <icon name="tool_mask_disabled_30" file="graphics/toolbar/tool_mask_disabled_30.png" />
+
+    <icon name="tool_grid_30" file="graphics/toolbar/tool_grid_30.png" />
+
+    <icon name="tool_left_30" file="graphics/toolbar/tool_arrow_left_30.png" />
+    <icon name="tool_right_30" file="graphics/toolbar/tool_arrow_right_30.png" />
+    <icon name="tool_up_30" file="graphics/toolbar/tool_arrow_up_30.png" />
+    <icon name="tool_down_30" file="graphics/toolbar/tool_arrow_down_30.png" />
+    <icon name="tool_plus_30" file="graphics/toolbar/tool_plus_30.png" />
+    <icon name="tool_minus_30" file="graphics/toolbar/tool_minus_30.png" />
+    
+    <icon name="tool_target_select_30" file="graphics/toolbar/tool_target_select_30.png" />
+    <icon name="tool_target_clear_30" file="graphics/toolbar/tool_target_clear_30.png" />
+    <icon name="tool_target_enemies_30" file="graphics/toolbar/tool_target_enemies_30.png" />
+    <icon name="tool_target_allies_30" file="graphics/toolbar/tool_target_allies_30.png" />
+    
+	<icon name="tool_paint_20" file="graphics/toolbar/tool_paint_20.png" />
+	<icon name="tool_paint_disabled_20" file="graphics/toolbar/tool_paint_disabled_20.png" />
+    <icon name="tool_erase_20" file="graphics/toolbar/tool_erase_20.png" />
+    <icon name="tool_erase_disabled_20" file="graphics/toolbar/tool_erase_disabled_20.png" />
+    <icon name="tool_mask_20" file="graphics/toolbar/tool_mask_20.png" />
+    <icon name="tool_mask_disabled_20" file="graphics/toolbar/tool_mask_disabled_20.png" />
+
+    <icon name="tool_unmask_20" file="graphics/toolbar/tool_unmask_20.png" />
+
+    <icon name="tool_clear_saves_30" file="graphics/toolbar/tool_clear_saves_30.png" />
+
+
+	<!-- FRAMES -->
+	<framedef name="toolbar_20">
+		<bitmap file="graphics/toolbar/toolbar_20.png"/>
+		<topleft rect="0,0,2,2" />
+		<top rect="2,0,21,2" />
+		<topright rect="41,0,2,2" />
+		<left rect="0,2,2,18" />
+		<middle rect="2,2,21,18" />
+		<right rect="41,2,2,18" />
+		<bottomleft rect="0,20,2,2" />
+		<bottom rect="2,20,21,2" />
+		<bottomright rect="41,20,2,2" />
+	</framedef>
+
+	<framedef name="toolbar_30">
+		<bitmap file="graphics/toolbar/toolbar_30.png"/>
+		<topleft rect="0,0,4,3" />
+		<top rect="4,0,32,3" />
+		<topright rect="62,0,4,3" />
+		<left rect="0,3,4,28" />
+		<middle rect="4,3,32,28" />
+		<right rect="62,3,4,28" />
+		<bottomleft rect="0,31,4,3" />
+		<bottom rect="4,31,32,3" />
+		<bottomright rect="62,31,4,3" />
+	</framedef>
+	
+	<framedef name="toolbar_back">
+		<bitmap file="graphics/toolbar/toolbar_back.png"/>
+		<middle rect="0,0,128,128" />
+	</framedef>
+
+    <!-- TEMPLATES -->
+    <template name="toolbar_button">
+		<buttoncontrol>
+			<anchored position="insidetopleft" />
+			<invisible/>
+			<script file="common/scripts/toolbar_button.lua" />
+		</buttoncontrol>
+    </template>
+
+	<template name="toolbar_30">
+		<genericcontrol>
+			<parameters>
+				<horzmargin>2</horzmargin>
+				<vertmargin>2</vertmargin>
+				<buttonsize>30</buttonsize>
+			</parameters>
+			<frame name="toolbar_30" />
+			<button mergerule="resetandadd" />
+			<script file="common/scripts/toolbar.lua" />
+		</genericcontrol>
+	</template>
+	
+	<template name="toolbar_20">
+		<genericcontrol>
+			<parameters>
+				<horzmargin>1</horzmargin>
+				<vertmargin>1</vertmargin>
+				<buttonsize>20</buttonsize>
+			</parameters>
+			<frame name="toolbar_20" />
+			<button mergerule="resetandadd" />
+			<script file="common/scripts/toolbar.lua" />
+		</genericcontrol>
+	</template>
+</root>

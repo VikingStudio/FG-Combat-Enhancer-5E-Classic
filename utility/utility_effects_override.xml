@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+	'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
+	The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
+-->
+
+<!--
+	Custom Modifications Copyright (C) 2018 Ken L.
+	Licensed under the GPL Version 3 license.
+	http://www.gnu.org/licenses/gpl.html
+	This script is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This script is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+-->
+
+<root>
+
+	<windowclass name="effectsmall" merge="join">
+		<script file="utility/scripts/effect.lua" merge="replace"/>
+	</windowclass>
+
+	<template name="button_effect">
+		<buttoncontrol>
+			<anchored to="buttonanchor" width="80" height="15">
+				<top anchor="bottom" relation="current" offset="10" />
+				<left />
+			</anchored>
+			<state frame="buttonup" frameoffset="5,5,5,5" text="Custom" font="button-white" />
+			<pressed frame="buttondown" frameoffset="5,5,5,5" offset="1,1" />
+			<script file="utility/scripts/button_effect_extra.lua" merge="replace"/>
+		</buttoncontrol>
+	</template>
+
+<!-- CUSTOM MINI EFFECT HERE -->
+
+	<windowclass name="minieffects">
+		<frame>fielddark</frame>
+		<placement>
+			<size width="230" height="200" />
+		</placement>
+		<sizelimits>
+			<minimum width="230" height="200" />
+			<maximum width="230" height="200" />
+		</sizelimits>
+		<playercontrol />
+		<nodelete />
+		<tooltip textres="library_recordtype_label_effect" />
+<!-- We call it a 'header' but it's just 2 dynamic buttons at the base window-->
+		<script file="utility/scripts/minieffects_header.lua" />
+		<sheetdata>
+			<subwindow name="button_list">
+				<bounds>0,43,217,150</bounds>
+				<class>minieffects_sub</class>
+				<fastinit/>
+				<activate/>
+			</subwindow>
+
+			<scrollbar>
+				<anchored to="button_list"/>
+				<target>button_list</target>
+			</scrollbar>
+
+			<close_utilitybox3 />
+		</sheetdata>
+	</windowclass>
+
+<!-- sub minieffect window to allow scrolling... -->
+	<windowclass name="minieffects_sub">
+		<!-- <frame>fieldfocus</frame>-->
+		<placement>
+			<size>
+				<width>250</width>
+				<height>440</height>
+			</size>
+		</placement>
+		<sizelimits>
+			<minimum width="250" height="440" />
+			<maximum width="250" height="440" />
+		</sizelimits>
+		<playercontrol />
+		<nodelete />
+		<tooltip textres="library_recordtype_label_effect" />
+		<script file="utility/scripts/minieffects.lua" />
+		<sheetdata>
+
+		</sheetdata>
+	</windowclass>
+
+<!-- Our custom filter for the mini-effects -->
+	<template name="filter_mini_effect">
+		<filter>
+			<anchored to="contentanchor">
+				<top anchor="bottom" relation="relative" offset="20" />
+				<left offset="0" />
+				<right offset="0" />
+				<bottom parent="" offset="0" />
+			</anchored>
+			<script>
+				function onValueChanged()
+					super.onValueChanged();
+					window.list.applyFilter();
+				end
+			</script>
+		</filter>
+	</template>
+
+	<template name="button_icon_effect">
+		<buttoncontrol>
+			<bounds>0,0,30,30</bounds>
+			<!--<icon normal="cond_prone"/>-->
+
+			<pressed>
+				<frame>buttondown</frame>
+				<frameoffset>5,5,5,5</frameoffset>
+				<icon>cond_cover</icon>
+			</pressed>
+			<state>
+				<frame>buttonup</frame>
+				<frameoffset>5,5,5,5</frameoffset>
+				<icon>cond_cover</icon>
+			</state>
+
+			<script file="utility/scripts/button_mini_effect_extra.lua" />
+		</buttoncontrol>
+	</template>
+
+	<template name="button_toggle_effect">
+		<buttoncontrol>
+			<bounds>0,0,30,30</bounds>
+			<!--<icon normal="cond_prone"/>-->
+
+			<pressed>
+				<frame>buttondown</frame>
+				<frameoffset>5,5,5,5</frameoffset>
+				<text>Custom</text>
+				<font>button-white</font>
+			</pressed>
+			<state>
+				<frame>buttonup</frame>
+				<frameoffset>5,5,5,5</frameoffset>
+				<text>Custom</text>
+				<font>button-white</font>
+			</state>
+			<script>
+				function onButtonPress()
+					window.setActive(self.getName()); 
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+
+	<template name="mini_list_effects">
+		<windowlist>
+			<anchored to="contentanchor">
+				<top anchor="bottom" relation="relative" offset="20" />
+				<left offset="0" />
+				<right offset="0" />
+				<bottom parent="" offset="0" />
+			</anchored>
+
+			<child mergerule="resetandadd"></child>
+			<child><backcolor>1A40301E</backcolor></child>
+			<sortby><control>label</control></sortby>
+			<frame name="groupbox" offset="15,15,20,15" />
+			<datasource>.</datasource>
+			<class>mini_effectsmall</class>
+			<script file="utility/scripts/mini_list_effects.lua" />
+		</windowlist>
+	</template>
+
+	<windowclass name="mini_effectsmall">
+		<margins control="0,0,0,2" />
+		<script file="utility/scripts/mini_effect.lua" />
+		<sheetdata>
+			<anchor_effect_left name="leftanchor" />
+			<button_effect_activate name="activate" />
+
+			<anchor_effect_right name="rightanchor" />
+			<number_effect_duration name="duration" />
+
+			<mini_string_effect name="label" />
+		</sheetdata>
+	</windowclass>
+
+	<template name="mini_string_effect">
+		<string_textlistitem name="label">
+			<anchored height="20">
+				<top parent="leftanchor" />
+				<left parent="leftanchor" anchor="right" relation="relative" offset="5" />
+				<right parent="rightanchor" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<script>
+				function onDragStart(button, x, y, draginfo)
+					return window.actionDrag(draginfo);
+				end
+
+				function onDoubleClick(x, y)
+					return window.action();
+				end
+			</script>
+			<readonly />
+		</string_textlistitem>
+	</template>
+
+	<template name="anchor_minieffect">
+		<genericcontrol>
+			<bounds>0,0,1,1</bounds>
+			<disabled />
+		</genericcontrol>
+	</template>
+
+</root>

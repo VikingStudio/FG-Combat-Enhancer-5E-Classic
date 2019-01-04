@@ -1,0 +1,98 @@
+
+RESOURCES:
+
+Dead/Dying : Red Hook Studios
+Punisher Logo : Marvel Studios
+Blood Clipart : Public Domain
+Treasure : Public Domain
+
+ICONS:
+Sword : Eliricon, FI 
+Arrow : Hassan ali, PK 
+satanism : parkjisun
+Map : Delwar Hossain
+recycle : sagit milshtein
+ak-47: Stalinlasar
+Up : ImageCatalog
+Tombstone : Ralf Schmitzer
+Thought : Gregor Cresnar
+Owl : Georgiana Ionescu
+Cat : corpus delicti
+Touch : Adrien Coquet
+Flame : Ian Shoobridge
+Healer : Melissa Schmitt
+Heart heal : Chameleon Design
+Flag : Vladyslav Severyn
+Ability : Rflor
+Hacking skills : sachin modgekar
+D20 : Rafaël Massé
+Spartan : abdul wahhab
+Sword : Nociconist
+Rose : Oksana Latysheva
+Motivation : HeadsOfBirds
+Book : Setyo Ari Wibowo
+Health care : Ramesha
+Strength : Sergey Krivoy
+Up Universal Icons
+Skull : Kervin Markle
+Weight : Universal Icons
+Beer : Helen Tseng
+Rope : Icons8
+Bacteria : Oksana Latysheva
+Target : Alexander Skowalsky
+Swirl : lexander Skowalsky
+Global : HLD
+Premium : Gregor Cresnar
+Broken bone : Veysel Kara
+Rook : Andrea Mazzini
+More : icontrack
+Lifesaver : Carlos Salgado
+Crane : Aleksandr Vector
+Bandage : Agni
+Healthc care : alvianwijaya
+Explosion : Marek Polakovic
+Wall : Creative Stall
+Star : Milan Gladiš
+Climbing : National Park Service
+Poison skull : Peter van Driel
+Wing : prasong tadoungsorn
+Run : Vladimir Belochkin
+Stretching : Adrien Coquet
+Sitting : Adrien Coquet
+Rush in : Andrejs Kirma
+Box : Andrejs Kirma
+Medical : Gregor Cresnar
+Alarm Daouna Jeong
+Ghost : indra anis
+Shaking : Hea Poh Lin
+Broken glass : b farias
+Cross : Guilherme Furtado
+Swirling Star: unknown
+Night : aybige
+Magic rune : Ben Davis
+Hour glass : Laura Beggs
+Shield : gregor cresnar
+Shield : Kimmi Studio
+Shield : jeff
+Scolding : Gan Khoon Lay
+down : LAFS
+Pin : Gregor Cresnar
+stone : AFY Studio
+Chain : Misha
+Exclamation Mark : James Cottell
+Exit : Desbenoit
+Blood : KEN MURRAY
+Boots : João Filipe F. Rocha
+Pill : Andreas Wikström
+Medicine : Creative Stall
+Heart with arrow : Jason Gray
+Sleepy Eye : unknown
+Sleep : Alexander Skowalsky
+Spiderweb : Muhamad Ulum
+Mute : Matthias Smit
+Sparkles : Darrin Loeliger
+Spiral : Kayla Anderson
+Heart : Michael Bundscherer
+Question : Andrew Doane
+Thief : André Renault
+Blind : Dmitry Baranovskiy

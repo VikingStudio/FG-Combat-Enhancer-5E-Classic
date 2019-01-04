@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+	'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
+	The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
+-->
+
+<!--
+	Custom Modifications Copyright (C) 2018 Ken L.
+	Licensed under the GPL Version 3 license.
+	http://www.gnu.org/licenses/gpl.html
+	This script is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This script is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+-->
+
+
+<root>
+
+	<template name="token_ctentry" merge="join">
+		<token_ctentry_base merge="join">
+			<script file="ct/scripts/ct_token.lua" merge="replace"/>
+		</token_ctentry_base>
+	</template>
+
+	<template name="token_clientct" merge="join">
+		<token_ctentry_base merge="join">
+			<script file="ct/scripts/ct_tokenclient.lua" merge="add"/>
+			<nodrag merge="add"/>
+			<nodrop merge="add"/>
+		</token_ctentry_base>
+	</template>
+
+	<template name="widget_ctentry_onmap">
+		<genericcontrol>
+			<anchored to="token" position="lefthigh" offset="-6,0" width="12" height="12" />
+			<tooltip text="Token placed on a map"/>
+			<icon>onmap_icon</icon>
+			<invisible/>
+		</genericcontrol>
+	</template>
+
+
+</root>
