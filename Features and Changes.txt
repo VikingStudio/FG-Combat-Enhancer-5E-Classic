@@ -39,7 +39,7 @@ v1.3.0 (January 13th, 2019) (major features)
 x known bug
 
 NOW FULLY COMPATABLE WITH FG 3.3.7.
-[BOLD OR IN GREEN LETTER OR SOMETHING TO MAKE IT STAND OUT]- Compatability added for FG 3.3.7 background image options. 
+- Compatability added for FG 3.3.7 background image options. 
 - Layers support for background images. Updated project with new code from Enhanced Images extension, https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG. [campaign/record_image.xml]
     [campaign/scripts/manager_maptoken.lua] modified code to support background image panels and to work with updated Enchaned Images code
     [campaign/record_image.xml] overwritten with code from Enhcanced Images: campaign/updated_record_image.xml
