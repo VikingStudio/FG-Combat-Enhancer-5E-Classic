@@ -61,7 +61,7 @@ function onClickRelease(button, x, y)
 		local vpx, vpy, vpz = getViewpoint();
 		x = x / vpz;
 		y = y / vpz;
-
+					
 		PingManager.doPing(x,y,self); 
 	end
 
@@ -187,7 +187,7 @@ end
 
 function onClickDown(button, x, y)
     -- Determine if middle mouse button is clicked
-	if button==2 then
+	if button==2 then		
 	    -- update last x, y position with current coordinates
 		last.x = x;
 		last.y = y;
@@ -216,7 +216,7 @@ end
 
 function onDrag(button, x, y, draginfo)
 	-- Determine if middle mouse button is clicked
-	if button == 2 then
+	if button == 2 then		
 		-- Determine drag distance since initial click
 		local dx = x - (last.x or 0);
 		local dy = y - (last.y or 0);

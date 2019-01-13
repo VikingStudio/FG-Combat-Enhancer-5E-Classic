@@ -121,7 +121,7 @@ function updateNPCID(nodeField)
 	local nodeCT = nodeField.getParent();
 	local tokenCT = CombatManager.getTokenFromCT(nodeCT);
 	if tokenCT then
-		Debug.console('UPDATING OVERLAY ID Change>> ' .. tokenCT.getName()); 
+		--Debug.console('UPDATING OVERLAY ID Change>> ' .. tokenCT.getName()); 
 		tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 		updateTooltip(tokenCT,nodeCT); 
 
@@ -156,7 +156,7 @@ function updateStatus(nodeField)
 	local tokenCT = CombatManager.getTokenFromCT(nodeCT);
 	local sStatus = nodeField.getValue(); 
 	if tokenCT then
-		Debug.console('UPDATING OVERLAY StatusChange>> ' .. tokenCT.getName()); 
+		--Debug.console('UPDATING OVERLAY StatusChange>> ' .. tokenCT.getName()); 
 		tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 		updateEffectsHelper(tokenCT, nodeCT);
 		updateTooltip(tokenCT,nodeCT); 
@@ -220,11 +220,11 @@ end
 
 
 function onScaleChanged(tokenCT, nodeCT)
-	Debug.console("+++onScaleChanged"); 
+	--Debug.console("+++onScaleChanged"); 
 	tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 	updateHealthBarScale(tokenCT, nodeCT);
 	updateEffectsHelper(tokenCT, nodeCT);
-	Debug.console("---onScaleChanged"); 
+	--Debug.console("---onScaleChanged"); 
 end
 
 function onHover(tokenCT, nodeCT, bOver)
@@ -265,7 +265,7 @@ function updateHeight(nodeField)
 end
 
 function updateAttributesHelper(tokenCT, nodeCT)
-	Debug.console("+++updateAttributeHelper"); 
+	--Debug.console("+++updateAttributeHelper"); 
 	tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 
 	-- nodename must also be valid
@@ -293,7 +293,7 @@ function updateAttributesHelper(tokenCT, nodeCT)
 			CombatSnap.customTurnStart(nodeCT); 
 		end
 	end
-	Debug.console("---updateAttributeHelper"); 
+	--Debug.console("---updateAttributeHelper"); 
 	-- Force the client to update if the host updated
 	if User.isHost() then
 		-- if we're updating attributes, then the token is on the map
@@ -347,11 +347,11 @@ function updateHealth(nodeField)
 	local nodeCT = nodeField.getParent();
 	local tokenCT = CombatManager.getTokenFromCT(nodeCT);
 	if tokenCT then
-		Debug.console("+++updateHealth"); 
+		--Debug.console("+++updateHealth"); 
 		tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 		updateHealthHelper(tokenCT, nodeCT);
 		updateTooltip(tokenCT, nodeCT);
-		Debug.console("---updateHealth"); 
+		--Debug.console("---updateHealth"); 
 	end
 end
 
@@ -447,11 +447,11 @@ function updateEffects(nodeEffectField)
 	local nodeCT = nodeEffect.getChild("...");
 	local tokenCT = CombatManager.getTokenFromCT(nodeCT);
 	if tokenCT then
-		Debug.console("+++updateEffects"); 
+		--Debug.console("+++updateEffects"); 
 		tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 		updateEffectsHelper(tokenCT, nodeCT);
 		updateTooltip(tokenCT, nodeCT);
-		Debug.console("---updateEffects"); 
+		--Debug.console("---updateEffects"); 
 	end
 end
 
@@ -460,11 +460,11 @@ function updateEffectsList(nodeEffectsList, bListChanged)
 		local nodeCT = nodeEffectsList.getParent();
 		local tokenCT = CombatManager.getTokenFromCT(nodeCT);
 		if tokenCT then
-			Debug.console("+++updateEffectsList"); 
+			--Debug.console("+++updateEffectsList"); 
 			tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
 			updateEffectsHelper(tokenCT, nodeCT);
 			updateTooltip(tokenCT, nodeCT);
-			Debug.console("---updateEffectsList"); 
+			--console("---updateEffectsList"); 
 		end
 	end
 end
@@ -638,7 +638,7 @@ function updateStatusOverlayWidget(tokenCT,nodeCT)
 	-- next get the image from the CT node,
 	-- get the parent image
 
-	Debug.console(tokenCT.getName() .. ' status: ' .. sStatus); 
+	--Debug.console(tokenCT.getName() .. ' status: ' .. sStatus); 
 
 	if (sStatus == "Dead" or
 	sStatus:match("Dying")) and
@@ -647,7 +647,7 @@ function updateStatusOverlayWidget(tokenCT,nodeCT)
 		-- if we're Dead/Dying then make a splatter too!
 		if (sStatus:match("Dying") or 
 		sStatus == "Dead") and
-		User.isHost() then
+		User.isHost() then			
 			createSplatter(tokenCT,nodeCT,'image');
 		end
 	elseif (sStatus == "Critical" or
@@ -738,12 +738,17 @@ function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)
 	local imgCtlBackground,imgCtlFeature,imgCtlPlay; 
 	local imgParentContainer = tokenCT.getContainerNode().getParent(); 
 
-	--Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 
-	local w = Interface.findWindow("imagewindow", imgParentContainer)
+	--Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 			
+	--local w = Interface.findWindow("imagewindow", imgParentContainer)	
+	
+	-- v1.3.0, wndImage returns the value for all image panel version, regular and background
+	local ctrlImage, wndImage, bWindowOpened = ImageManager.getImageControl(tokenCT, false);		
+	w = wndImage;
+
 	if w then
 		--Debug.console("Found imagewindow " .. tokenCT.getName()); 
 		wc = w.getControls();
-		for k,v in pairs(wc) do
+		for k,v in pairs(wc) do					
 			--Debug.console("WINDOW INSTANCE >> " .. tostring(k) .. ' -- ' .. tostring(v.getName())); 
 			if v.getName() == "image" then
 				imgCtlBackground = v; 	
@@ -753,6 +758,14 @@ function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)
 				imgCtlPlay = v; 	
 			end
 		end
+		
+
+	--Debug.chat('ctrlImage', ctrlImage);
+	--if w then		
+		--imgCtlBackground = ctrlImage;
+		--imgCtlFeature = ctrlImage;
+		--imgCtlPlay = ctrlImage;
+		
 		local tokenproto = tokenCT.getPrototype(); 
 		local posX, posY, scale; 
 		posX, posY = tokenCT.getPosition(); 
@@ -760,12 +773,14 @@ function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)
 
 		local ctwnd = Interface.findWindow("combattracker_host", "combattracker");
 		local ctEntry = nil; 
+		--Debug.chat('ctwnd', ctwnd);
 		if ctwnd then
 			for k,v in pairs(ctwnd.list.getWindows()) do
 				if DB.getPath(v.getDatabaseNode()) == DB.getPath(nodeCT) then
 					ctEntry = v; 
 				end
 			end
+			--Debug.chat('ctEntry', ctEntry);
 			if ctEntry then
 				local tokenMap; 
 				if targetLayer == "features_image" then
@@ -800,11 +815,11 @@ function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)
 	else
 		--Debug.console("Could not open window " .. tokenCT.getName()); 
 	end
-
+	
 	return tokenCT; 
 end
 
-function replaceToken(nodeCT,newTokenInstance,oldTokenInstance)
+function replaceToken(nodeCT,newTokenInstance,oldTokenInstance)	
 	-- Link the token without checking the old
 	TokenManager.linkToken(nodeCT, newTokenInstance);
 	TokenManager.updateVisibility(nodeCT);
@@ -912,21 +927,59 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 	}; 
 
 
-	--Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 
-	local w = Interface.findWindow("imagewindow", imgParentContainer)
-	if w then
+	--Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 	
+	local ctrlImage, wndImage, bWindowOpened = ImageManager.getImageControl(tokenCT, false);
+	--imgCtlBackground, imgCtlFeature, imgCtlPlay = ctrlImage;
+	--Debug.chat('ctrlImage', ctrlImage, 'wndImage', wndImage, 'bWindowOpened', bWindowOpened);	
+
+	--[[
+	For the floating windows, you can get an exact image window by using:
+	Interface.findWindow("imagewindow", path);
+
+	For the background panels, you will need to look up the value of the subwindow within each background panel (if the subwindow exists).
+	* Use "wBackPanel = Interface.findWindow("imagebackpanel", "")" and "wFullPanel = Interface.findWindow("imagefullpanel", "")" to get each top level panel window.
+	* If the panel is not nil, then use "sClass, sRecord = wBackPanel.getValue()" to get the contained windows class and path information.
+	* You don't need the class information, but then you can use the path information to see which image record value that the subwindow is pointing to.
+	]]--
+
+
+	-- removed in v1.3.0 as ctrlImage returns same value
+	-- get the windowclass from either usual image dialogue, background image panel, full screen background image panel
+	--[[
+	local w = Interface.findWindow("imagewindow", imgParentContainer);
+	Debug.chat('w window', w);
+	if not w then 
+		w = Interface.findWindow("imagebackpanel", imgParentContainer);
+		Debug.chat('w backpanel', w);
+	end
+	if not w then
+		w = Interface.findWindow("imagefullpanel", imgParentContainer);
+		Debug.chat('w fullpanel', w);
+	end			
+	--]]
+
+	if ctrlImage then	
+	-- removed in v1.3.0 as ctrlImage returns same value		
+	--if w then
 		--Debug.console("Found imagewindow " .. tokenCT.getName()); 
+		--[[
 		wc = w.getControls();
 		for k,v in pairs(wc) do
 			--Debug.console("WINDOW INSTANCE >> " .. tostring(k) .. ' -- ' .. tostring(v.getName())); 
 			if v.getName() == "image" then
-				imgCtlBackground = v; 	
+				imgCtlBackground = v; 					
 			elseif v.getName() == "features_image" then
-				imgCtlFeature = v; 	
+				imgCtlFeature = v; 					
 			elseif v.getName() == "play_image" then
-				imgCtlPlay = v; 	
+				imgCtlPlay = v; 					
 			end
-		end
+		end		
+		]]--
+		
+		imgCtlBackground = ctrlImage;
+		--imgCtlFeature = ctrlImage;
+		imgCtlPlay = ctrlImage;
+
 		-- get random number
 		local rand = math.random(#bloodPrototypes); 
 
@@ -934,13 +987,13 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 		local posX, posY, tokenMap; 
 		posX, posY = tokenCT.getPosition(); 
 		scale = bloodPrototypesScale[rand]; 
-		Debug.console("blood proto is : " .. tokenproto .. ' scale is ' .. scale); 
+		--Debug.chat("blood proto is : " .. tokenproto .. ' scale is ' .. scale); 
 
 		imgCtlBackground.setTokenScale(imgCtlPlay.getTokenScale()); 
 		tokenMap = imgCtlBackground.addToken(tokenproto, posX, posY);
-		-- we use the blood token's scale as it spawns within the grid + the image mod
+		-- we use the blood token's scale as it spawns within the grid + the image mod	
 
-		--Debug.console("token is now " .. tostring(tokenMap) .. ' maptoken scale is ' .. tokenMap.getScale()); 
+		--Debug.chat("token is now " .. tostring(tokenMap) .. ' maptoken scale is ' .. tokenMap.getScale()); 
 		if tokenMap then
 			local Ss,Is,Id;
 			posX, posY = tokenCT.getImageSize();

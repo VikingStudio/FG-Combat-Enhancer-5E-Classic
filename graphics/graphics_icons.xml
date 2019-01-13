@@ -243,13 +243,14 @@
 
 
 	<!-- Image panel resize -->
+	<!-- 
 	<icon name="button_sizeup" file="graphics/buttons/button_sizeup.png" />
 	<icon name="button_sizeup_down" file="graphics/buttons/button_sizeup_down.png" />
 	<icon name="button_sizeup_hover" file="graphics/buttons/button_sizeup_hover.png" />
 	<icon name="button_sizedown" file="graphics/buttons/button_sizedown.png" />
 	<icon name="button_sizedown_down" file="graphics/buttons/button_sizedown_down.png" />
 	<icon name="button_sizedown_hover" file="graphics/buttons/button_sizedown_hover.png" />	
-
+-->
 	<!-- Combat Tracker -->
 	<icon name="button_effect" file="graphics/buttons/button_effect.png" />
 	<icon name="button_effect_down" file="graphics/buttons/button_effect_down.png" />	

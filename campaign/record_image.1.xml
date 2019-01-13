@@ -11,15 +11,15 @@
 		<sheetdata>
 			<image_record name="image">
 				<default snap="on" drawingsize="200,200" />
-				<script file="campaign/scripts/image.lua" />									
+				<script file="campaign/scripts/updated_image.lua" />									
 			</image_record>
 			<image_record name="features_image" insertbefore="scroller_image">
 				<default snap="on" drawingsize="200,200" />
-				<script file="campaign/scripts/image.lua" />
+				<script file="campaign/scripts/updated_image.lua" />
 			</image_record>
 			<image_record name="play_image" insertbefore="scroller_image">
 				<default snap="on" drawingsize="200,200" />
-				<script file="campaign/scripts/image.lua" />
+				<script file="campaign/scripts/updated_image.lua" />
 			</image_record>
 		</sheetdata>		
 	</windowclass>
@@ -32,13 +32,13 @@
 			<sub_record_toolbar_imagepanel name="toolbar" />
 			
 			<imagepanel_record name="image">
-				<script file="campaign/scripts/image.lua" />
+				<script file="campaign/scripts/updated_image.lua" />
 			</imagepanel_record>
 			<imagepanel_record name="features_image" insertbefore="scroller_image">
-				<script file="campaign/scripts/image.lua" />
+				<script file="campaign/scripts/updated_image.lua" />
 			</imagepanel_record>
 			<imagepanel_record name="play_image" insertbefore="scroller_image">
-				<script file="campaign/scripts/image.lua" />
+				<script file="campaign/scripts/updated_image.lua" />
 			</imagepanel_record>			
 <!--			<scrollercontrol name="scroller_image">
 				<anchored to="image" position="insidebottomright" offset="3,3" width="40" height="38" />

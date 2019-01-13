@@ -259,7 +259,7 @@ function onHover(tokenMap, bOver)
 				end
 			end
 		end
-		
+					
 		if User.isHost() then
 			hilightHover(tokenMap, bOver); 
 		end

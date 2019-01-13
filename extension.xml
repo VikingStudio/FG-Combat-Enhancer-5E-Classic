@@ -21,7 +21,7 @@
 
 	<properties>
 		<name>5e Combat Enhancer</name>
-		<version>1.1.0</version>
+		<version>1.3.0</version>
 		
 		<author>Styrmir</author>
 		<description>5e Combat Enhancer</description>
@@ -36,9 +36,9 @@
 	</properties>
     
 
-	<base>
-		<!-- Custom modifications and additions to the base extension -->
-		<script name="Modifications" file="scripts/modifications.lua" />
+	<base>		
+		<script name="Modifications" file="scripts/modifications.lua" />        <!-- Custom modifications and additions to the base extension -->
+		<!-- <script name="PointerToolkit" file="scripts/pointer_toolkit.lua" /> -->     <!-- Used for drawing custom shapes on map, ping function -->
     	
 		<!-- Status icons -->
 		<icon name="ak_icon" file="icon.png" />
@@ -76,15 +76,15 @@
 			<imagecontrol name="image">
 				<indicators availability="image_sent" locked="image_locked" loading="image_loading" zoom="image_zoom" shortcuts="image_shortcuts" />
 				<default snap="on" drawingsize="200,200" />
-				<script file="campaign/scripts/image.lua" />
-			</imagecontrol>
+				<script file="campaign/scripts/image.lua" />				
+			</imagecontrol>						
 		</template>
 				
 		<includefile source="graphics/graphics_layers.xml" />		
 		<includefile source="common/template_toolbar.xml" /> 
-		<includefile source="campaign/record_image.xml" />  <!-- <<< this is the file that breaks images as backgrounds in 3.3.7 -->
+		<includefile source="campaign/record_image.xml" /> 
 		<!-- <includefile source="campaign/record_image_resize.xml" /> -->
-		<includefile source="campaign/record_encounter.xml" />
+		<includefile source="campaign/record_encounter.xml" />		
 
 		<script name="CombatManager" file="scripts/manager_combat.lua" />
 		<script name="TargetingManager" file="scripts/manager_targeting.lua" />
@@ -116,13 +116,28 @@
 
 
 
-		<!-- Change appearance of frames -->
-		<!-- Black background for images / battlemaps -->
+		<!-- Images -->
+		<!-- 
+			Change appearance of image frames/panels.
+			Black background for images / battlemaps mask (fog of war) 
+		-->
 		<framedef name="imagebox">
 			<bitmap file="graphics/frames/imagebox v1.png" />
 			<offset>150,135,150,150</offset>
 			<insideoffset>0,0,18,22</insideoffset>
 		</framedef>
+		<!--
+		<framedef name="imagebox_header">
+			<bitmap file="graphics/frames/imagebox_header.png" />
+			<offset>0,0,0,0</offset>
+		</framedef>	-->	
+		<!-- v1.3.0 -->			
+		<framedef name="imagepanel">
+			<bitmap file="graphics/frames/imagepanel v2.png" />
+			<offset>16,16,16,16</offset>
+		</framedef>	
+
+
 		<!--
 		<framedef name="imagebox_header">
 			<bitmap file="graphics/frames/imagebox_header v1.png" />
@@ -137,6 +152,7 @@
 
 
 		<!-- Settings Menu items -->
+		<!-- 
 		<script name="5eCombatEnhancerMenuSettings">
 			function onInit()
                 OptionsManager.addOptionValue("5eCombatEnhancer", "option_val_5eCombatEnhancer_custom1", "5eCombatEnhancer_custom1", true);
@@ -156,7 +172,7 @@
 			<MC4C type="string">2C</MC4C>
 			<TBOX type="string">on</TBOX>
 			<TNAM type="string">tooltip</TNAM>
-		</options>
+		</options>-->
 	</base>
 	
 	<announcement text="5e Combat Enhancer" font="emotefont" icon="ak_icon" />

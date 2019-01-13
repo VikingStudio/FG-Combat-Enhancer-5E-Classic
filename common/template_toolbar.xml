@@ -25,6 +25,7 @@
 	<string name="tooltip_saves_clear_toolbar">Clear saves</string>
 	<!-- ICONS -->
 	<!-- Assume 24x24 for toolbar_30 icons, and 16x16 for toolbar_20 button icons -->
+	
     <icon name="tool_toggle_30" file="graphics/toolbar/tool_toggle_30.png" />
 
     <icon name="tool_select_30" file="graphics/toolbar/tool_select_30.png" />
@@ -35,7 +36,8 @@
     <icon name="tool_erase_disabled_30" file="graphics/toolbar/tool_erase_disabled_30.png" />
     <icon name="tool_mask_30" file="graphics/toolbar/tool_mask_30.png" />
     <icon name="tool_mask_disabled_30" file="graphics/toolbar/tool_mask_disabled_30.png" />
-
+	
+	<!-- 
     <icon name="tool_grid_30" file="graphics/toolbar/tool_grid_30.png" />
 
     <icon name="tool_left_30" file="graphics/toolbar/tool_arrow_left_30.png" />
@@ -44,7 +46,8 @@
     <icon name="tool_down_30" file="graphics/toolbar/tool_arrow_down_30.png" />
     <icon name="tool_plus_30" file="graphics/toolbar/tool_plus_30.png" />
     <icon name="tool_minus_30" file="graphics/toolbar/tool_minus_30.png" />
-    
+    -->
+
     <icon name="tool_target_select_30" file="graphics/toolbar/tool_target_select_30.png" />
     <icon name="tool_target_clear_30" file="graphics/toolbar/tool_target_clear_30.png" />
     <icon name="tool_target_enemies_30" file="graphics/toolbar/tool_target_enemies_30.png" />
