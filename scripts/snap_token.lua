@@ -1,17 +1,4 @@
---[[
-	Copyright (C) 2018 Ken L.
-	Licensed under the GPL Version 3 license.
-	http://www.gnu.org/licenses/gpl.html
-	This script is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This script is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-]]--
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 local wLastSnapToken = nil; 
 
@@ -103,6 +90,11 @@ function onClickRelease(target, button, image)
 		doHighlightEntry(wTokenCTEntry,false); 
 		wLastSnapToken = nil; 
 		-- Debug.console("nope, can't find the entry for the token!"); 
+	end
+
+	-- open token information window (both for pc and npc) on control + left-click
+	if Input.isControlPressed() == true then
+		CombatEnhancer.openTokenInformationWindow(target, image)	
 	end
 end
 
@@ -428,7 +420,7 @@ function customTurnStart(nodeCT)
 				end
 
 				--Debug.console('space is ' .. space); 
-				tokenCT.addUnderlay(space, Modifications.TOKENUNDERLAYCOLOR_1); 
+				tokenCT.addUnderlay(space, CombatEnhancer.TOKENUNDERLAYCOLOR_1); 
 			end
 		end
 	end

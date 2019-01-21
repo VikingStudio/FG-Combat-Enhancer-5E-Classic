@@ -1,19 +1,4 @@
---[[
-	Copyright (C) 2018 Ken L.
-	Licensed under the GPL Version 3 license.
-	http://www.gnu.org/licenses/gpl.html
-	This script is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This script is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-]]--
-
-
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 --[[
 	Handles a majority of the map token functions (ideally)
@@ -252,7 +237,7 @@ function prepMapToken(x,y,mapTokenNode,imgCtl)
 				npcTokenElem.setValue(mapTokenNode.getNodeName()); 
 				setupMapTokenMenu(newMapToken); 
 				-- add an underlay to denote that this is a 'map' token and not on the CT yet
-				newMapToken.addUnderlay(space/5/2, Modifications.TOKENUNDERLAYCOLOR_2); 
+				newMapToken.addUnderlay(space/5/2, CombatEnhancer.TOKENUNDERLAYCOLOR_2); 
 				-- add double click handler to open the NPC entry
 				newMapToken.onDoubleClick = onMapTokenDoubleClick; 
 				-- initial state is invisible
@@ -438,7 +423,7 @@ function initMapTokens(imgCtl)
 					-- we need to find the NPC node again to get the space
 					local space, reach = CombatManager.getNPCSpaceReach(npcDataNode); 
 					token.removeAllUnderlays(); 
-					token.addUnderlay(space/5/2, Modifications.TOKENUNDERLAYCOLOR_2); 
+					token.addUnderlay(space/5/2, CombatEnhancer.TOKENUNDERLAYCOLOR_2); 
 					-- add double click handler to open the NPC entry
 					token.onDoubleClick = onMapTokenDoubleClick; 
 					-- flag them as unmodifiable
@@ -476,7 +461,7 @@ function initSingleToken(token)
 				-- we need to find the NPC node again to get the space
 				local space, reach = CombatManager.getNPCSpaceReach(npcDataNode); 
 				token.removeAllUnderlays(); 
-				token.addUnderlay(space/5/2, Modifications.TOKENUNDERLAYCOLOR_2); 
+				token.addUnderlay(space/5/2, CombatEnhancer.TOKENUNDERLAYCOLOR_2); 
 				-- add double click handler to open the NPC entry
 				token.onDoubleClick = onMapTokenDoubleClick; 
 				-- flag them as unmodifiable
@@ -704,7 +689,7 @@ function onCTMenuSelection(target, ...)
 							npcTokenElem.setValue(sRecord); 
 							setupMapTokenMenu(newMapToken); 
 							-- add an underlay to denote that this is a 'map' token and not on the CT yet
-							newMapToken.addUnderlay(space/5/2, Modifications.TOKENUNDERLAYCOLOR_2); 
+							newMapToken.addUnderlay(space/5/2, CombatEnhancer.TOKENUNDERLAYCOLOR_2); 
 							-- add double click handler to open the NPC entry
 							newMapToken.onDoubleClick = onMapTokenDoubleClick; 
 							-- initial state is the CT's visibility
@@ -750,7 +735,7 @@ function onCTMenuSelection(target, ...)
 								npcTokenElem.setValue(sRecord); 
 								setupMapTokenMenu(newMapToken); 
 								-- add an underlay to denote that this is a 'map' token and not on the CT yet
-								newMapToken.addUnderlay(space/5/2, Modifications.TOKENUNDERLAYCOLOR_2); 
+								newMapToken.addUnderlay(space/5/2, CombatEnhancer.TOKENUNDERLAYCOLOR_2); 
 								-- add double click handler to open the NPC entry
 								newMapToken.onDoubleClick = onMapTokenDoubleClick; 
 								-- initial state is the CT's visibility

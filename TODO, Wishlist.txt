@@ -1,0 +1,40 @@
+PROJECT PATH:
+
+All items in this section are under consideration and due to be looked at for future patches or releases. Their order in the list does not signify any priorities.
+The list may not be up to date.
+
+
+>>>>>> TODO Immediate.
+* In full screen backround mode bring and keep chat and dice modifiers on top as menu option. Not possible? error: 'bringToFront: Panel display order can not be changed'
+* Scale conditions ratio wise to token size similar to what I did with the horizontal health bars and health indicator balls. 
+    manager_token2 > updateEffectsHelper(tokenCT, nodeCT)
+* only draw direction lines and move token which represents own character (might not be possible due to core code)
+* compare updated_imagewindow.lua with imagewindow.lua and import changes to imageindow.lua, and after testing remove updated_imagewindow.lua
+
+
+>>> Wishlist long term, large tasks.
+* Dynamic shadow in grids.
+    modifications.lua > function dynamicShadows( token, mouseButton, x, y, dragdata )
+* Automated ranged weapon disadvantage when outside range (missing from 5e ruleset, but used in SW, can look there for ideas). Have to have target set, distances between pointers used, look up weapon range, compare, apply disadvantage if applicable.
+    Ranged modifiers to attacks work testing started. Adds disadvantage if targeted token is outside of short range. Autofail if outside max range. [ 5e_combat_enhancer.lua > applyRangedWeaponModifiers() ; manager_token2.lua > function getDistance(nodeAttacker, nodeTarget) ; function getTokenDistance(ctrlImage, tokenTargeter, tokenTarget) ]
+    Use range finding math from height calculation range function. [Height Manager > scripts/manager_height.lua]
+//////////////////////////////////////////
+
+ABANDONED AS NOT POSSIBLE IN AN FG extension
+(usually due to behaviour, limitations or lack of API to do so, in the core code):
+
+*Enable players to plan out path for their tokens as normal when locked, then press middle mouse button to move the tokens themselves. Maket this a true or false option in the menues.
+*Change color of mouse default mouse pointer when it can interact, instead of a hand icon (which makes it hard to find where the actual interaction point is).
+    - Do some photoshop work and add customer graphics to extension for this.
+    See: http://www.fantasygrounds.com/wiki/index.php/Custom_Pointers_Coding_Toolkit
+    https://www.fantasygrounds.com/forums/showthread.php?47108-Trying-to-create-an-extension-to-change-appearance-of-the-mouse-cursor
+* Check blood splatter scaling issues. (Mac issue, only 12.5% of user base, unable to test as only have PC)
+* Get rid of : Script Warning: onZoom: Recursive control event or call terminated (imagecontrol:play_image)
+    Quote for that Script Error in the thread from the original AK extension:
+    Is present due to FG's hard cap on recursive events, even if it only recurses 1 depth level (no further). It's a needed setting making sure all 3 layers have their grids synchronized; else when you zoomed the grids would have a 'herky-jerky' movement. Note that each layer has a 'grid' hence why with AK or base Enhanced Layers, the grid looks 'thicker'.    
+* Simulate roll20 ping, ctrl click on map, timed function that draws circles ever larger appearing as animation, while deleting previous, to indicate a pinged location.
+    A common need is to pause (sleep) a program for a certain number of seconds, preferably without busy waiting.
+    This function to do this without busy waiting does not exist in ANSI C, so it does not exist in stock Lua. However, there are extension libraries and calls to external programs that can do this. 
+
+
+/////////////////////////////////////////

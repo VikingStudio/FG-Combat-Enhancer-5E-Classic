@@ -1,11 +1,5 @@
---[[
-	'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
-	The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
-]]--
-
---[[
-	Custom modifications Copyright Zeus from FG, unknown license
-]]--
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
+--  Custom modifications Copyright Zeus from FG, unknown license.
 
 -- Enhanced layer extension - layer token manager function.
 -- toolkit to show token "shadows" on lower layers to aid in feature token placement and masking

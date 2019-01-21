@@ -1,7 +1,4 @@
--- 
--- Please see the license.html file included with this distribution for 
--- attribution and copyright information.
---
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 function onInit()
 	EffectManager.registerEffectVar("sUnits", { sDBType = "string", sDBField = "unit", bSkipAdd = true });

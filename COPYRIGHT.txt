@@ -1,5 +1,26 @@
+Code sections in this extension from the CoreRPG fall under the following tradermark:
 
-RESOURCES:
+'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
+The CoreRPG ruleset and all included (code) and files (from the CoreRPG ruleset) are copyright 2004-2013, Smiteworks USA LLC.
+
+
+The 5e Combat Enhancer extension itself is released under the GNU General Public License Version 3:
+
+5e Combat Enhancer builds on top and modifies the GNU GPL code of the Advanced Kombat (5e) Fantasy Grounds extension by Ken L.
+5e Combat Enhancer was started and released by Styrmir in December of 2018 and is relased under GNU GPL as seen below. 
+See 'Changelog (versions).txt' for most of the updates.
+
+Licensed under the GNU GPL Version 3 license.
+http://www.gnu.org/licenses/gpl.html (this link contains the up to date license details, the LICENSE.txt contains a copy of this text, though it may not be 100% up to date)
+
+This script is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.	
+
+
+====================================
+
+
+ART RESOURCES:
 
 Dead/Dying : Red Hook Studios
 Punisher Logo : Marvel Studios

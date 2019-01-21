@@ -1,22 +1,4 @@
--- 'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
--- The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
-
---[[
-	Custom modifications Copyright (C) 2018 Ken L., Original Work.	
-	Custom modifications Copyright (C) December 2018 onwards Styrmir, code and graphics modified by Styrmir from Original Work and other sources. Changelog available in Features and Changes document.	
-
-	Licensed under the GPL Version 3 license.
-	http://www.gnu.org/licenses/gpl.html
-	This script is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This script is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.	
-]]--
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 local OOB_MSGTYPE_FORCETOKENUPDATE = "FORCE_TOKEN_UPDATE";
 
@@ -33,7 +15,7 @@ function onInit()
 	-- TokenManager to get distance
 	TokenManager.getDistance = getDistance;
 	local distance, badjacent = TokenManager.getDistance();
-	Debug.chat(distance);
+	--Debug.chat(distance);
 
 	--Debug.console('LOADED CUSTOM TOKENMANAGER2'); 
 	DB.addHandler("combattracker.list.*.hp", "onUpdate", updateHealth);
@@ -370,7 +352,7 @@ function updateHealthHelper(tokenCT, nodeCT)
 			vWidget.destroy();
 		end
 	else
-		local sColor, nPercentWounded, sStatus = ActorManager2.getWoundBarColor("ct", nodeCT);	
+		local sColor, nPercentWounded, sStatus = ActorManager2.getWoundBarColor("ct", nodeCT);			
 		if sOptTH == "bar" or sOptTH == "barhover" then
 			local w, h = tokenCT.getSize();
 		
@@ -542,8 +524,10 @@ function updateEffectsHelper(tokenCT, nodeCT)
 		while i <= nMaxLoop do
 			local w = aWidgets["effect" .. i];
 			if not w then
-				w = tokenCT.addBitmapWidget();
+				w = tokenCT.addBitmapWidget();				
 				--w.setPosition("bottomleft", TOKEN_EFFECT_OFFSETX + ((TOKEN_EFFECT_WIDTH + TOKEN_EFFECT_MARGIN) * (i - 1)), TOKEN_EFFECT_OFFSETY);
+				--wToken = 0.5;
+				--hToken = 0.5;
 				updateEffectWidgetPosition(w,wToken,hToken,i);
 				w.setName("effect" .. i);
 			end
@@ -640,6 +624,10 @@ function updateStatusOverlayWidget(tokenCT,nodeCT)
 
 	--Debug.console(tokenCT.getName() .. ' status: ' .. sStatus); 
 
+	--Get related menu option Settings
+	local drawSkullOnDeath = OptionsManager.getOption('CE_DSOD');	
+	local drawBloodOnToken = OptionsManager.getOption('CE_DBOT');		
+
 	if (sStatus == "Dead" or
 	sStatus:match("Dying")) and
 	imgContainer.getName() == 'play_image' then
@@ -670,7 +658,7 @@ function updateStatusOverlayWidget(tokenCT,nodeCT)
 		local w = aoWidgets[k]; 
 		w.destroy(); 
 	end
-
+	
 
 	if sStatus:match("Dying") or 
 	sStatus == "Dead" or
@@ -688,31 +676,43 @@ function updateStatusOverlayWidget(tokenCT,nodeCT)
 				if sFaction == 'friend' then
 					widgetStatus.setBitmap("overlay_dying_ally_stable"); 
 				else
-					widgetStatus.setBitmap("overlay_dying_stable"); 
+					if drawSkullOnDeath == 'on' then
+						widgetStatus.setBitmap("overlay_dying_stable"); 
+					end;
 				end
 			else
 				if sFaction == 'friend' then
 					widgetStatus.setBitmap("overlay_dying_ally"); 
 				else
-					widgetStatus.setBitmap("overlay_dying"); 
+					if drawSkullOnDeath == 'on' then
+						widgetStatus.setBitmap("overlay_dying"); 
+					end
 				end
 			end
 			widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
 		elseif sStatus == 'Dead' then
-			widgetStatus.setBitmap("overlay_dead"); 
-			widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			if drawSkullOnDeath == 'on' then
+				widgetStatus.setBitmap("overlay_dead"); 
+				widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			end
 		elseif sStatus == 'Unconscious' then
 			widgetStatus.setBitmap("overlay_ko"); 
 			widgetStatus.setSize(math.floor(wToken*1.5), math.floor(hToken*1.5)); 
 		elseif sStatus == 'Moderate' then
-			widgetStatus.setBitmap("overlay_moderate"); 
-			widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			if drawBloodOnToken == 'on' then
+				widgetStatus.setBitmap("overlay_moderate"); 
+				widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			end				
 		elseif sStatus == 'Heavy' then
-			widgetStatus.setBitmap("overlay_heavy"); 
-			widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			if drawBloodOnToken == 'on' then
+				widgetStatus.setBitmap("overlay_heavy"); 
+				widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			end
 		elseif sStatus == 'Critical' then
-			widgetStatus.setBitmap("overlay_critical"); 
-			widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			if drawBloodOnToken == 'on' then
+				widgetStatus.setBitmap("overlay_critical"); 
+				widgetStatus.setSize(math.floor(wToken*1), math.floor(hToken*1)); 
+			end				
 		else
 			Debug.console("BAD STATUS!!"); 
 			aoWidgets = getWidgetList(tokenCT, "overlay"); 
@@ -897,8 +897,15 @@ end
 -- Creates a splatter using local files that are assumed to be loaded by FG.
 -- WARN if these files are gone, it effectively breaks this script!
 function createSplatter(tokenCT,nodeCT,targetLayer)
+	
 	local imgCtlBackground,imgCtlFeature,imgCtlPlay; 
 	local imgParentContainer = tokenCT.getContainerNode().getParent(); 
+
+	-- check menu settings to see if these are turned off, if so exit function
+	if (OptionsManager.getOption('CE_RBS') ) == 'off' then
+		Debug.console('Blood splatters turned off in menu Settings, function exited.')
+		return;
+	end	
 
 	local bloodPrototypes = {
 		'tokens/host/items/blood.png',
@@ -926,8 +933,7 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 		1.5
 	}; 
 
-
-	--Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 	
+	Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 	
 	local ctrlImage, wndImage, bWindowOpened = ImageManager.getImageControl(tokenCT, false);
 	--imgCtlBackground, imgCtlFeature, imgCtlPlay = ctrlImage;
 	--Debug.chat('ctrlImage', ctrlImage, 'wndImage', wndImage, 'bWindowOpened', bWindowOpened);	
@@ -987,13 +993,13 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 		local posX, posY, tokenMap; 
 		posX, posY = tokenCT.getPosition(); 
 		scale = bloodPrototypesScale[rand]; 
-		--Debug.chat("blood proto is : " .. tokenproto .. ' scale is ' .. scale); 
+		Debug.console("blood proto is : " .. tokenproto .. ' scale is ' .. scale); 
 
 		imgCtlBackground.setTokenScale(imgCtlPlay.getTokenScale()); 
 		tokenMap = imgCtlBackground.addToken(tokenproto, posX, posY);
 		-- we use the blood token's scale as it spawns within the grid + the image mod	
-
-		--Debug.chat("token is now " .. tostring(tokenMap) .. ' maptoken scale is ' .. tokenMap.getScale()); 
+		
+		Debug.console("token is now " .. tostring(tokenMap) .. ' maptoken scale is ' .. tokenMap.getScale()); 
 		if tokenMap then
 			local Ss,Is,Id;
 			posX, posY = tokenCT.getImageSize();
@@ -1002,8 +1008,43 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 			Is = math.max(posX,posY); 
 			posX, posY = tokenMap.getImageSize();
 			Id = math.max(posX,posY); 
+			
 			-- get the scale factor as function of the source token scale NOTE: off by 2x?
-			tokenMap.setScale(((Ss*Is)/Id)*scale); 
+
+			-- Check to see if the extension menu Settings are configured to override the inbuilt 'Auto-scale to grid'. 
+			-- If so set the token scale to ignore that setting otherwise scale as per the setting.
+			--local optionTokenAutoScale = OptionsManager.getOption('TASG'); -- Settings > Token(GM) > Auto-scale to grid. { labels = "option_val_scale80|option_val_scale100", values = "80|100", baselabel = "option_val_off", baseval = "off", default = "80" });
+			local optionBloodSplatterScaling = OptionsManager.getOption('CE_BSS'); -- Settings > 5e Combat Enhancer > Blood splatter scaling						
+
+			if optionBloodSplatterScaling == 'default' then
+				tokenMap.setScale(((Ss*Is)/Id)*scale); 
+				Debug.console('auto-scale blood splatter, default token scale')				
+			end							
+			if 	optionBloodSplatterScaling == 'default_1' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*1.25); 				
+				Debug.console('blood splatter scaling, token scale x 1.25')	
+			end		
+			if 	optionBloodSplatterScaling == 'default_2' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*1.5); 				
+				Debug.console('blood splatter scaling, token scale x 1.5')	
+			end		
+			if 	optionBloodSplatterScaling == 'default_3' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*1.75); 				
+				Debug.console('blood splatter scaling, token scale x 1.75')	
+			end		
+			if 	optionBloodSplatterScaling == 'default_4' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*2); 				
+				Debug.console('blood splatter scaling, token scale x 2')	
+			end			
+			if 	optionBloodSplatterScaling == 'default_5' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*2.5); 				
+				Debug.console('blood splatter scaling, token scale x 2.5')	
+			end						
+			if 	optionBloodSplatterScaling == 'default_6' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*3); 				
+				Debug.console('blood splatter scaling, token scale x 3')	
+			end																	
+
 			tokenMap.setOrientation(math.random(0,7)); 
 			--[[
 			tokenMap.onDragStart = onSplatterDragStart; 
@@ -1264,7 +1305,7 @@ function getDistance(nodeAttacker, nodeTarget)
 					local nDistance, _, bAdjacent = getTokenDistance(ctrlImage, tokenAttacker, tokenTarget)
 					if bWindowOpened then
 						winImage.close()
-					end
+					end					
 					return nDistance, bAdjacent
 				end
 			end
@@ -1314,3 +1355,25 @@ function getTokenDistance(ctrlImage, tokenTargeter, tokenTarget)
 		end
 	end
 end
+
+
+-- calling getDistance in SW ruleset
+--[[
+
+	local getDistance = function(nodeAttacker, nodeTarget)
+		if OptionsManager.isOption("AARP", "on") then
+			local nDistance, bAdjacent = TokenManager.getDistance(nodeAttacker, nodeTarget)
+			return nDistance, bAdjacent
+		end
+	end
+
+local sAttackerType, nodeAttacker = ActorManager.getTypeAndNode(rSource)
+local sTargetType, nodeTarget = ActorManager.getTypeAndNode(rTarget)
+
+for _,rTarget in pairs(vTargets or {}) do
+		local nScore = rRollResult.nTotalScore
+		
+		local sTargetType, nodeTarget = ActorManager.getTypeAndNode(rTarget)
+		local aAgainstTargetModifiers = EffectManager.getEffectAgainstMe(sTargetType, nodeTarget)
+		local nDistance, bAdjacent = getDistance(nodeAttacker, nodeTarget)
+]]--

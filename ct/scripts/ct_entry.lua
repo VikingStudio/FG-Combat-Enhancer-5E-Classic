@@ -1,22 +1,4 @@
--- 'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
--- The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
-
---[[
-	Custom modifications Copyright (C) 2018 Ken L., Original Work.	
-	Custom modifications Copyright (C) December 2018 onwards Styrmir, code and graphics modified by Styrmir from Original Work and other sources. Changelog available in Features and Changes document.	
-
-	Licensed under the GPL Version 3 license.
-	http://www.gnu.org/licenses/gpl.html
-	This script is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This script is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-]]--
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 function onInit()
 	-- Set the displays to what should be shown
@@ -105,9 +87,7 @@ end
 function updateDisplay()
 	local sFaction = friendfoe.getStringValue();
 	local nPercentWounded, sStatus = ActorManager2.getPercentWounded2("ct", self.getDatabaseNode());
-	--Debug.console("UPDATE DISPLAY (ct entry) " .. sStatus); 
-
-
+	--Debug.console("UPDATE DISPLAY (ct entry) " .. sStatus); 	
 
 	if DB.getValue(getDatabaseNode(), "active", 0) == 1 then
 		name.setFont("sheetlabel");
@@ -132,9 +112,11 @@ function updateDisplay()
 			else
 				setFrame("ctentrybox_neutral_active");
 			end
-		elseif sFaction == "foe" then
-			if sStatus:match("Dying") or sStatus == "Dead" then
-				setFrame("ctentrybox_foe_active_dark");
+		elseif sFaction == "foe" then			
+			if sStatus:match("Dying") or sStatus == "Dead" then								
+				if (OptionsManager.getOption('CE_CTFNPC') == 'on') then				
+					setFrame("ctentrybox_foe_active_dark");
+				end
 			elseif sStatus == "Unconscious" then
 				setFrame("ctentrybox_foe_active_uncon");
 			else
@@ -174,8 +156,10 @@ function updateDisplay()
 				setFrame("ctentrybox_neutral");
 			end
 		elseif sFaction == "foe" then
-			if sStatus:match("Dying") or sStatus == "Dead" then
-				setFrame("ctentrybox_foe_dark");
+			if sStatus:match("Dying") or sStatus == "Dead" then				
+				if (OptionsManager.getOption('CE_CTFNPC') == 'on') then
+					setFrame("ctentrybox_foe_dark");
+				end					
 			elseif sStatus == "Unconscious" then
 				setFrame("ctentrybox_foe_uncon");
 			else
@@ -315,7 +299,7 @@ function activeHighlight(active)
 					--Debug.console('k: ' .. k .. ' v: ' .. tostring(v)); 	
 				end
 				--Debug.console('space is ' .. space); 
-				tokenCT.addUnderlay(space, Modifications.TOKENUNDERLAYCOLOR_1); 
+				tokenCT.addUnderlay(space, CombatEnhancer.TOKENUNDERLAYCOLOR_1); 
 			end
 		elseif nodeCT then
 			local tokenCT = CombatManager.getTokenFromCT(nodeCT);

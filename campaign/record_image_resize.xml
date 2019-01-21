@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 
-<!-- 
-  Please see the license.html file included with this distribution for 
-  attribution and copyright information.
--->
+<!-- Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information. -->
 
 <root>
 	<windowclass name="imagewindow" version="&gt;=4">
@@ -17,7 +14,7 @@
 		<nodelete />
 		<tooltip field="name" />
 		<minimize>minimized_image</minimize>
-		<script file="campaign/scripts/imagewindow.lua" />
+		<script file="campaign/scripts/updated_imagewindow.lua" />
 		<sheetdata>
 			<sub_record_header_image name="header" />
 			<sub_record_toolbar_image name="toolbar" />
@@ -48,7 +45,7 @@
 		<nodelete />
 		<tooltip field="name" />
 		<minimize>minimized_image</minimize>
-		<script file="campaign/scripts/imagewindow.lua" />
+		<script file="campaign/scripts/updated_imagewindow.lua" />
 		<sheetdata>
 			<sub_record_header_image name="header" />
 			<sub_record_toolbar_image name="toolbar" />
@@ -70,7 +67,7 @@
 	<windowclass name="imagepanelwindow">
 		<sharable shareas="imagewindow" />
 		<frame>imagepanel</frame>
-		<script file="campaign/scripts/imagewindow.lua" />
+		<script file="campaign/scripts/updated_imagewindow.lua" />
 		<sheetdata>
 			<sub_record_toolbar_imagepanel name="toolbar" />
 			
@@ -562,7 +559,8 @@
 							image.setCursorMode();
 						else
 							image.setCursorMode("select");
-						end
+						end
+
 					end
 					
 					function updateDisplay()

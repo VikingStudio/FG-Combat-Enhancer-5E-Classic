@@ -1,7 +1,4 @@
---[[
-	'Fantasy Grounds' is a trademark of SmiteWorks USA, LLC. 'Fantasy Grounds' is Copyright 2004-2014 SmiteWorks USA LLC.
-	The CoreRPG ruleset and all included files are copyright 2004-2013, Smiteworks USA LLC.
-]]--
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 
 local MIN_WIDTH = 200;

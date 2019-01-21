@@ -1,3 +1,5 @@
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
+
 --[[
 -- Check the version and inform of incompatibility
 ]]--

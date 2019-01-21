@@ -1,19 +1,4 @@
---[[
-	Custom modifications Copyright (C) 2018 Ken L., Original Work.	
-	Custom modifications Copyright (C) December 2018 onwards Styrmir, code and graphics modified by Styrmir from Original Work and other sources. Changelog available in Features and Changes document.	
-
-	Licensed under the GPL Version 3 license.
-	http://www.gnu.org/licenses/gpl.html
-	This script is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This script is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-]]--
+--  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
 local BUTTON_SIZE = 25; 
 local BUTTON_MARGIN = 5; 
