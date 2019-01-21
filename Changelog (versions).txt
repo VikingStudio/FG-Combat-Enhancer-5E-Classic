@@ -65,8 +65,14 @@ v1.4.0 (January 21st, 2019) (major features)
     Turn on or off drawing of skull on death. [scripts/manager_token2.lua > updateStatusOverlayWidget(tokenCT,nodeCT)]
     Turn on or off blood splatter rendering on death. [scripts/manager_token2.lua > createSplatter(tokenCT,nodeCT,targetLayer)]
     Turn on or off to show NPC death clearly in the CT by fading the entry. [ct/scripts/clientct_entry.lua > updateDisplay(), ct/scripts/ct_entry.lua > updateDisplay()]
+    Turn on or off to show NPC death by fading effects icons on top of token. 
     Scaling options for blood splatters on token death, default x1 - x3. [scripts/manager_token2.lua > createSplatter(tokenCT,nodeCT,targetLayer)]        
-- Clear saves button only appears if there are tokens on the battle map.    
+- Clear saves button only appears if there are tokens on the battle map. [campaign/record_image.xml]   
 - Clear saves button was to close to the edge. Fixed. [campaign/record_image.xml]
 - Moved double-click to open token information window (PC or NPC) to ctrl + left-click. This was done to enable the window to open up on top of the CT, due to the way the code is layed out. [scripts/5e_combat_enhancer > openTokenInformationWindow(tokenMap, vImage), scripts/snap_token.lua > onClickRelease(target, button, image)]
 - Pressing masking button will do the following now: If not on background (image) layer, switch to background (image) layer and enable masking tool. If on background layer, disable masking tool and switch to top (play) layer. [campaign/record_image.xml > toolbar_draw > function onButtonPress(id) ; for both instances of toolbar_draw, one for floating image, one for background image]
+
+v1.4.1 (January 21st, 2019) (patch)
+- Removed 'Chat and modifiers on top (full screen)' menu item, as only part of development testing, not intended for public release. [scripts/5e_combat_enhancer.lua > registerMenuItems()]
+- Menu item added: Turn on or off token condition icon color fade on death. [scripts/5e_combat_enhancer.lua > registerMenuItems(), scripts/manager_token2.lua > updateEffectsHelper(tokenCT, nodeCT)]
+- Moved ctrl-click to open token information window (PC or NPC) to shift + left-click, due to overlapping functionality for selecting target with ctrl + left-click. [scripts/snap_token.lua > onClickRelease(target, button, image)]

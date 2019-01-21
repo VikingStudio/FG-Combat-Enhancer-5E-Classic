@@ -567,7 +567,10 @@ function updateEffectsHelper(tokenCT, nodeCT)
 			if w then
 				if sStatus:match('Dying') or 
 				sStatus == "Unconscious" then
-					w.setColor('00555555'); 
+					-- check if 'Change NPC token effect icons on death' Settings menu item is on or off
+					if OptionsManager.getOption("CE_CFNPC") == 'on' then
+						w.setColor('00555555'); 
+					end										
 				elseif sStatus == "Dead" then
 					w.destroy(); 
 				else

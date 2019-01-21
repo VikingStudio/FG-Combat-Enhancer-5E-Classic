@@ -93,7 +93,7 @@ function onClickRelease(target, button, image)
 	end
 
 	-- open token information window (both for pc and npc) on control + left-click
-	if Input.isControlPressed() == true then
+	if Input.isShiftPressed() == true then
 		CombatEnhancer.openTokenInformationWindow(target, image)	
 	end
 end

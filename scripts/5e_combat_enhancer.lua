@@ -117,10 +117,12 @@ function registerMenuItems()
 		{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })
 	OptionsManager.registerOption2("CE_CTFNPC", false, "option_header_5ecombatenhancer", "option_fade_ct_npc_on_death", "option_entry_cycler",
 		{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })		
-	OptionsManager.registerOption2("CE_BFSITF", false, "option_header_5ecombatenhancer", "option_bring_full_screen_interface_to_front", "option_entry_cycler",
-		{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })			
+	OptionsManager.registerOption2("CE_CFNPC", false, "option_header_5ecombatenhancer", "option_fade_npc_effect_icons_on_death", "option_entry_cycler",
+		{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })					
 	OptionsManager.registerOption2("CE_BSS", false, "option_header_5ecombatenhancer", "option_blood_splatter_scaling", "option_entry_cycler",
 		{ labels = "default|default x 1.25|default x 1.5|default x 1.75|default x 2|default x 2.5|default x 3", values = "default|default_1|default_2|default_3|default_4|default_5|default_6", default = "default_1" })
+	--OptionsManager.registerOption2("CE_BFSITF", false, "option_header_5ecombatenhancer", "option_bring_full_screen_interface_to_front", "option_entry_cycler",
+	--	{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })				
 end
 
 
