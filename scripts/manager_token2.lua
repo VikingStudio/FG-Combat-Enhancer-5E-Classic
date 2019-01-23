@@ -2,9 +2,9 @@
 
 local OOB_MSGTYPE_FORCETOKENUPDATE = "FORCE_TOKEN_UPDATE";
 
-local TOKEN_MAX_EFFECTS = 20;
+local totalMaxEffects = 20;
 local TOKEN_MAX_OVERLAY = 2;
-local TOKEN_EFFECT_WIDTH = 58;
+local tokenEffectWidth = 58;
 local TOKEN_EFFECT_MARGIN = 2;
 local TOKEN_EFFECT_OFFSETX = 6;
 local TOKEN_EFFECT_OFFSETY = -6;
@@ -228,7 +228,7 @@ function onHover(tokenCT, nodeCT, bOver)
 		aWidgets["healthdot"] = tokenCT.findWidget("healthdot");
 	end
 	if sOptEffects == "hover" or sOptEffects == "markhover" then
-		for i = 1, TOKEN_MAX_EFFECTS do
+		for i = 1, totalMaxEffects do
 			aWidgets["effect" .. i] = tokenCT.findWidget("effect" .. i);
 		end
 	end
@@ -454,6 +454,8 @@ end
 
 function updateEffectsHelper(tokenCT, nodeCT)
 	local sOptTE;	
+	totalMaxEffects = CombatEnhancer.getMaxTokenEffects();
+
 	if DB.getValue(nodeCT, "friendfoe", "") == "friend" then
 		sOptTE = OptionsManager.getOption("TPCE");
 	else
@@ -487,14 +489,14 @@ function updateEffectsHelper(tokenCT, nodeCT)
 				w.setVisible(bWidgetsVisible);
 				w.setTooltipText(table.concat(aTooltip, "\r"));
 			end
-			for i = 2, TOKEN_MAX_EFFECTS do
+			for i = 2, totalMaxEffects do
 				local w = aWidgets["effect" .. i];
 				if w then
 					w.destroy();
 				end
 			end
 		else
-			for i = 1, TOKEN_MAX_EFFECTS do
+			for i = 1, totalMaxEffects do
 				local w = aWidgets["effect" .. i];
 				if w then
 					w.destroy();
@@ -508,15 +510,19 @@ function updateEffectsHelper(tokenCT, nodeCT)
 		local nConds = #aCondList;
 		local wToken, hToken = tokenCT.getSize();
         --Debug.console("token size is" .. wToken .. ' - ' .. hToken);
-		--local nMaxToken = math.floor(((wToken - TOKEN_HEALTH_WIDTH - TOKEN_EFFECT_MARGIN) / (TOKEN_EFFECT_WIDTH + TOKEN_EFFECT_MARGIN)) + 0.5);
-        local nMaxToken = math.floor(wToken/TOKEN_EFFECT_WIDTH);
+		--local nMaxToken = math.floor(((wToken - TOKEN_HEALTH_WIDTH - TOKEN_EFFECT_MARGIN) / (tokenEffectWidth + TOKEN_EFFECT_MARGIN)) + 0.5);
+		tokenEffectWidth = CombatEnhancer.getTokenEffectWidth();
+		--wToken = tokenEffectWidth;
+		--hToken = tokenEffectWidth;
+		--tokenCT.setSize(tokenEffectWidth, tokenEffectWidth);
+        local nMaxToken = math.floor(wToken/tokenEffectWidth);
 
 
 		if nMaxToken < 1 then
 			nMaxToken = 1;
 		end
-		--local nMaxShown = math.min(nMaxToken, TOKEN_MAX_EFFECTS);
-		local nMaxShown = math.min(nMaxToken*nMaxToken,TOKEN_MAX_EFFECTS); 
+		--local nMaxShown = math.min(nMaxToken, totalMaxEffects);
+		local nMaxShown = math.min(nMaxToken*nMaxToken,totalMaxEffects); 
 		
 		local i = 1;
 		local nMaxLoop = math.min(nConds, nMaxShown);
@@ -524,8 +530,9 @@ function updateEffectsHelper(tokenCT, nodeCT)
 		while i <= nMaxLoop do
 			local w = aWidgets["effect" .. i];
 			if not w then
-				w = tokenCT.addBitmapWidget();				
-				--w.setPosition("bottomleft", TOKEN_EFFECT_OFFSETX + ((TOKEN_EFFECT_WIDTH + TOKEN_EFFECT_MARGIN) * (i - 1)), TOKEN_EFFECT_OFFSETY);
+				w = tokenCT.addBitmapWidget();	
+				w.setSize(tokenEffectWidth, tokenEffectWidth);			
+				--w.setPosition("bottomleft", TOKEN_EFFECT_OFFSETX + ((tokenEffectWidth + TOKEN_EFFECT_MARGIN) * (i - 1)), TOKEN_EFFECT_OFFSETY);
 				--wToken = 0.5;
 				--hToken = 0.5;
 				updateEffectWidgetPosition(w,wToken,hToken,i);
@@ -551,7 +558,7 @@ function updateEffectsHelper(tokenCT, nodeCT)
 		end
 
 		-- get rid of extra widgets from prior to when we added
-		while i <= TOKEN_MAX_EFFECTS do
+		while i <= totalMaxEffects do
 			local w = aWidgets["effect" .. i];
 			if w then
 				w.destroy();
@@ -1070,29 +1077,30 @@ end
 -- Note nMaxToken is max effects per column/row
 function updateEffectWidgetPosition(widget,wToken,hToken,numEffects)
 	local row, column, x, y; 
+	tokenEffectWidth = CombatEnhancer.getTokenEffectWidth();
 
-	e = math.floor(wToken/TOKEN_EFFECT_WIDTH); 
+	e = math.floor(wToken/tokenEffectWidth); 
 
 	row = math.floor(numEffects/e);
 	column = numEffects%e; 
 
-	x = 0-math.floor(wToken/2) + math.floor(TOKEN_EFFECT_WIDTH/2) + (numEffects%e-1)*TOKEN_EFFECT_WIDTH; 
-	y = math.floor(hToken/2) - math.floor(TOKEN_EFFECT_WIDTH/2) - math.floor(numEffects/e)*TOKEN_EFFECT_WIDTH; 
+	x = 0-math.floor(wToken/2) + math.floor(tokenEffectWidth/2) + (numEffects%e-1)*tokenEffectWidth; 
+	y = math.floor(hToken/2) - math.floor(tokenEffectWidth/2) - math.floor(numEffects/e)*tokenEffectWidth; 
 
 	if column == 0 then
-		x = 0-math.floor(wToken/2) + math.floor(TOKEN_EFFECT_WIDTH/2) + TOKEN_EFFECT_WIDTH*(e-1); 
+		x = 0-math.floor(wToken/2) + math.floor(tokenEffectWidth/2) + tokenEffectWidth*(e-1); 
 		--Debug.console("0 column x is " .. x); 
 	end
 	if numEffects%e == 0 then
-		y = math.floor(hToken/2) - math.floor(TOKEN_EFFECT_WIDTH/2) - TOKEN_EFFECT_WIDTH*(row-1); 
+		y = math.floor(hToken/2) - math.floor(tokenEffectWidth/2) - tokenEffectWidth*(row-1); 
 		--Debug.console("0 row y is " .. y); 
 	end
 	
 
 	widget.setPosition("center",x,y); 
 
-    --widget.setPosition("center", 0-math.floor(wToken/2)+(TOKEN_EFFECT_WIDTH + TOKEN_EFFECT_MARGIN)*(numEffects-1) + math.floor(TOKEN_EFFECT_WIDTH/2),
-		--math.floor(hToken/2)-math.floor(TOKEN_EFFECT_WIDTH/2));
+    --widget.setPosition("center", 0-math.floor(wToken/2)+(tokenEffectWidth + TOKEN_EFFECT_MARGIN)*(numEffects-1) + math.floor(tokenEffectWidth/2),
+		--math.floor(hToken/2)-math.floor(tokenEffectWidth/2));
 end
 
 
@@ -1268,7 +1276,7 @@ function getWidgetList(tokenCT, sSubset)
 		end
 	end
 	if not sSubset or sSubset == "effect" then
-		for i = 1, TOKEN_MAX_EFFECTS do
+		for i = 1, totalMaxEffects do
 			w = tokenCT.findWidget("effect" .. i);
 			if w then
 				aWidgets["effect" .. i] = w;
@@ -1277,7 +1285,7 @@ function getWidgetList(tokenCT, sSubset)
 	end
 	-- subset overlay
 	if not sSubset or sSubset == "overlay" then
-		for i = 1, TOKEN_MAX_EFFECTS do
+		for i = 1, totalMaxEffects do
 			w = tokenCT.findWidget("overlay" .. i);
 			if w then
 				aWidgets["overlay" .. i] = w;

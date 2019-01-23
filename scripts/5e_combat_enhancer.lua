@@ -121,6 +121,11 @@ function registerMenuItems()
 		{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })					
 	OptionsManager.registerOption2("CE_BSS", false, "option_header_5ecombatenhancer", "option_blood_splatter_scaling", "option_entry_cycler",
 		{ labels = "default|default x 1.25|default x 1.5|default x 1.75|default x 2|default x 2.5|default x 3", values = "default|default_1|default_2|default_3|default_4|default_5|default_6", default = "default_1" })
+	OptionsManager.registerOption2("CE_TES", false, "option_header_5ecombatenhancer", "option_token_effect_size", "option_entry_cycler",
+		{ labels = "tiny|small|medium", values = "option_tiny|option_small|option_medium", default = "option_medium" })
+		-- { labels = "tiny|small|medium|large|huge|gargantuan", values = "option_tiny|option_small|option_medium|option_large|option_huge|option_gargantuan", default = "option_medium" })
+	OptionsManager.registerOption2("CE_TEMN", false, "option_header_5ecombatenhancer", "option_token_effects_max_number", "option_entry_cycler",
+		{ labels = "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20", values = "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20", default = "20" })		
 	--OptionsManager.registerOption2("CE_BFSITF", false, "option_header_5ecombatenhancer", "option_bring_full_screen_interface_to_front", "option_entry_cycler",
 	--	{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })				
 end
@@ -278,3 +283,36 @@ function applyRangedWeaponModifiers()
 		local nDistance, bAdjacent = TokenManager2.getDistance( token, nodeTarget ); --function getDistance(nodeAttacker, nodeTarget)		
 		Debug.chat('nDistance', nDistance, 'bAdjacent', bAdjacent);				
 end
+
+
+-- return integer width of token condition tokens, depending on the Settings menu item selected
+function getTokenEffectWidth()
+	local tokenWidth = 58; -- default original condition icon width, can't go above this unless I increase size of graphics
+	local tokenSizeSelection = OptionsManager.getOption("CE_TES"); --option_tiny|option_small|option_medium|option_large|option_huge
+	
+	if tokenSizeSelection == 'option_tiny' then
+		tokenWidth = 20;
+	elseif tokenSizeSelection == 'option_small' then
+		tokenWidth = 32;
+	elseif tokenSizeSelection == 'option_medium' then
+		tokenWidth = 58;
+	elseif tokenSizeSelection == 'option_large' then
+		tokenWidth = 70;
+	elseif tokenSizeSelection == 'option_huge' then
+		tokenWidth = 100;
+	elseif tokenSizeSelection == 'option_gargantuan' then
+		tokenWidth = 150;		
+	end		
+
+	return tokenWidth;
+end
+
+
+-- return integer of the maximum number of token effects, depending on the Settings menu item selected
+function getMaxTokenEffects()
+	local tokenEffectsMax = 20; -- default original number of effects
+	tokenEffectsMax = OptionsManager.getOption("CE_TEMN"); -- options 1 - 20
+	
+	return tonumber(tokenEffectsMax);
+end
+

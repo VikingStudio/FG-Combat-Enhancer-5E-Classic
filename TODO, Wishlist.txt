@@ -6,8 +6,6 @@ The list may not be up to date.
 
 >>>>>> TODO Immediate.
 * In full screen backround mode bring and keep chat and dice modifiers on top as menu option. Not possible? error: 'bringToFront: Panel display order can not be changed'
-* Scale conditions ratio wise to token size similar to what I did with the horizontal health bars and health indicator balls. 
-    manager_token2 > updateEffectsHelper(tokenCT, nodeCT)
 * only draw direction lines and move token which represents own character (might not be possible due to core code)
 * compare updated_imagewindow.lua with imagewindow.lua and import changes to imageindow.lua, and after testing remove updated_imagewindow.lua
 
