@@ -89,7 +89,6 @@ Changelog
 //////////////////////////////////////////
 
 Changelog / Added / Modified:
-(Most of these can be reverted by commenting out the modification you don't want to use)
 Versioning: v(Major.Minor.Patch) https://en.wikipedia.org/wiki/Software_versioning
 
 v1.1.0 (December 26th, 2018) (major features) [80 ish downloads]
