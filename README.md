@@ -92,7 +92,7 @@ Changelog / Added / Modified:
 (Most of these can be reverted by commenting out the modification you don't want to use)
 Versioning: v(Major.Minor.Patch) https://en.wikipedia.org/wiki/Software_versioning
 
-v1.1.0 (December 26th, 2018) (major features)
+v1.1.0 (December 26th, 2018) (major features) [80ish downloads]
 - Created new loading icon.
 - Version checking. Changed to check for version 3.3.7 as core of module is working for that version. [scripts/manager_versionchk.lua]
     Currently only works with regular image view panel, not the background versions added in 3.3.7, as it relies on layers support by https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG).
@@ -106,12 +106,12 @@ v1.1.0 (December 26th, 2018) (major features)
     Deletes token from combat map and combat tracker for host, if left-clicked while Alt + Control keys are held down.
     ps. note that dead tokens are on the second layer, and blood splatter is on the third.        
 
-v1.2.0 (December 27th, 2018) (major features)
+v1.2.0 (December 27th, 2018) (major features) [90ish downloads]
 - Horizontal health bars, slightly less than token width when full health, appear above token. Larger and more easily readable. Resize and relocate ratio wise to account for different grid and resolutions sizes. Light transparency added to health bar. [ new horizontal health bar graphics, graphics/graphics_icons.xml, manager_token2.lua : updateHealthBarScale(tokenCT, nodeCT) ; updateHealthHelper(tokenCT, nodeCT) ]
     Health bars dissapear when no health left (incapacitated/dead).            
 - Dot health indicators roughly doubled in size for better readability. Resize and relocate ratio wise to account for different grid and resolutions sizes. [ updated graphics for health dot, relocated dot to align due to increased dimensions, manager_token2.lua : updateHealthHelper(tokenCT, nodeCT) ]
 
-v1.2.1 (January 1st, 2019)(patch)
+v1.2.1 (January 1st, 2019)(patch)  [129 downloads] 
 - Blood Splatter and Pointer Graphics to Copy.zip. Fixed directory instructions for "Where to place to work.txt". Set to default of "Fantasy Grounds Data/tokens/".
 - Token highlight underlays made more transparent (20%), so the effect is softer and less visually distracting. Thanks to AlphaDecay for the suggestion. [11 instances of token.addUnderlay() in: scripts\modifications.lua, scripts\manager_token.lua (two spots in hilightHover, scripts\manager_maptoken.lua (one in prepMapToken, one in initMapTokens, one in initSingleToken, two in onCTMenuSelection), scripts\snap_token.lua (one in customTurnStart), ct\scripts\ct_token.lua (two in onHover), ct\scripts\ct_entry.lua (one in activeHighlight)]
     Constant colors used are set in scripts/modifications.lua (TOKENUNDERLAYCOLOR_1, TOKENUNDERLAYCOLOR_2, TOKENUNDERLAYCOLOR_3). You can change them there and they will be changed over the whole extension in the appropriate places after save and reload.
@@ -119,7 +119,7 @@ v1.2.1 (January 1st, 2019)(patch)
     First two numbers/letters refer to the alpha channel or transparency levels. Alpha channel (ranging from 0-255) in hex, opacity at 40% = 66, 30% = 4D , 20% = 33, 10% = 1A    
 - Incorrect console message on version checking. Referred to Advanced Kombat, fixed to refer to 5e Combat Enhancer. [manager_versionchk.lua]
 
-v1.3.0 (January 13th, 2019) (major features)
+v1.3.0 (January 13th, 2019) (major features) [82 downloads]
 NOW FULLY COMPATABLE WITH FG 3.3.7.
 - Compatability added for FG 3.3.7 background image options. 
 - Layers support for background images. Updated project with new code from Enhanced Images extension, https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG. [campaign/record_image.xml]
@@ -138,7 +138,7 @@ NOW FULLY COMPATABLE WITH FG 3.3.7.
 - Shift+left mouse click, ping and move view for players to gm focus now working with backgound images as well. [campaign/record_image.xml] 
 - Double-clicking Token on battlemap, now opens up character or NPC dialogue window, similarly to the default behaviour in FG. [scripts/modifications.lua : function onInit(), function onDoubleClick(tokenMap, vImage)]
 
-v1.4.0 (January 21st, 2019) (major features)
+v1.4.0 (January 21st, 2019) (major features) [- downloads]
 - Updates to COPYRIGHT.txt. Copyright text updates across project to point to the COPYRIGHT.txt file for details as applicable.
 - Features and patches split into: 'Changelog (versions).txt' and 'TODO, Wishlist.txt'. 
 - Refractoring:
@@ -158,12 +158,12 @@ v1.4.0 (January 21st, 2019) (major features)
 - Moved double-click to open token information window (PC or NPC) to ctrl + left-click. This was done to enable the window to open up on top of the CT, due to the way the code is layed out. [scripts/5e_combat_enhancer : openTokenInformationWindow(tokenMap, vImage), scripts/snap_token.lua : onClickRelease(target, button, image)]
 - Pressing masking button will do the following now: If not on background (image) layer, switch to background (image) layer and enable masking tool. If on background layer, disable masking tool and switch to top (play) layer. [campaign/record_image.xml : toolbar_draw : function onButtonPress(id) ; for both instances of toolbar_draw, one for floating image, one for background image]
 
-v1.4.1 (January 21st, 2019) (patch)
+v1.4.1 (January 21st, 2019) (patch) [24 downloads]
 - Removed 'Chat and modifiers on top (full screen)' menu item, as only part of development testing, not intended for public release. [scripts/5e_combat_enhancer.lua : registerMenuItems()]
 - Menu item added: Turn on or off token condition icon color fade on death. [scripts/5e_combat_enhancer.lua : registerMenuItems(), scripts/manager_token2.lua : updateEffectsHelper(tokenCT, nodeCT)]
 - Moved ctrl-click to open token information window (PC or NPC) to shift + left-click, due to overlapping functionality for selecting target with ctrl + left-click. [scripts/snap_token.lua : onClickRelease(target, button, image)]
 
-v1.4.2 (January 23rd, 2019) (patch)
+v1.4.2 (January 23rd, 2019) (patch) [155 downloads]
 - Menu items: 
     Change token condition icon size (tiny/small/medium). [scripts/5e_combat_enhancer : getTokenEffectWidth(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
     Change token max condition icon number (1-20). [scripts/5e_combat_enhancer : getMaxTokenEffects(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
