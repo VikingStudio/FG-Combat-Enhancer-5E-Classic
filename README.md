@@ -92,7 +92,7 @@ Changelog / Added / Modified:
 (Most of these can be reverted by commenting out the modification you don't want to use)
 Versioning: v(Major.Minor.Patch) https://en.wikipedia.org/wiki/Software_versioning
 
-v1.1.0 (December 26th, 2018) (major features) [80ish downloads]
+v1.1.0 (December 26th, 2018) (major features) [80 ish downloads]
 - Created new loading icon.
 - Version checking. Changed to check for version 3.3.7 as core of module is working for that version. [scripts/manager_versionchk.lua]
     Currently only works with regular image view panel, not the background versions added in 3.3.7, as it relies on layers support by https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG).
