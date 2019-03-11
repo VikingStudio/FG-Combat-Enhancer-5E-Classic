@@ -1,0 +1,55 @@
+Extension file: "5e-Combat-Enhancer v?_?_?.ext" 
+
+Includes: 
+	This is the actual extension, it includes the compressed codebase and a number of graphics.
+	Use the latest version number available in this folder, the earlier versions are there for backup purposes.
+
+Where to place:
+	Copy this file to your extension folder (example: Fantasy Grounds\Data\extensions\ [place file here] ).
+
+How to use:
+	When running a D&D 5e game in Fantasy Grounds, the GM can select this extension in the extension list for that campaign. 
+	It is named '5e Combat Enhancer' in that list.
+
+
+=======
+
+
+Graphics folder: "Combat Enhancer" folder.
+
+Includes:
+	Blood splatter graphics on npc/pc death.
+	Fog of War graphics.
+	Map focus graphics (when GM shift + left-click's map).
+
+
+Where to place:
+	Copy and paste this folder 'Combat Enhancer' into the tokens\host folder. 
+	
+	Your path should look something like this if you installed your data folder with the default name:
+	[Some drive, C: for example]\[any sub directory path if any]\Fantasy Grounds Data\tokens\host\Combat Enhancer
+
+	You can also find this path by opening up your game. Clicking on Tokens -> GM.
+
+How to use:
+	As long as the folder with all of it's contents is placed correctly these graphics (including blood splatters)
+	will be used by the extension automatically.
+
+
+=======
+
+
+Other files:
+
+Original extension file: advanced_kombat_5e-master.ext
+
+This file is merely here for backup purposes, do not use this extension file along side the main extension.
+This is the original retired extension that this extension has built upon and improved.
+
+5e Combat Enhancer has been greatly updated for compatability of new core Fantasy Grounds features and functionality, and a lot of new features and improvements have been added as can be seen by the changelogs. 
+This means there are hundreds of lines of new code that have been added and similarly a lot of updates and improvements that have been made to the code of the original extension.
+
+
+Image file: Functionality screenshot example.jpg
+
+A screenshot that demonstrates a number of the core functionalities of this extension.

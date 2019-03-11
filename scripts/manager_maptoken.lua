@@ -25,50 +25,6 @@ function onInit()
 	end
 end
 
--- get the image control that contains this target
-function getImgCtl(token)		
-	local ctrlImage, wndImage, bWindowOpened;
-
-	if token then
-		local nodeImgCtl = token.getContainerNode(); 
-		local nodeImg = nodeImgCtl.getParent(); 
-
-		-- v1.3.0 adding support for background image
-		-- Search for different image windows that host the image (normal or background)
-		-- CoreRPG.Pak/Scripts/manager_image.lua handles background image code, called using ImageManager.
-		-- ImageManager.function getImageControl(tokeninstance, bOpen) | Returns ctrlImage, winImage, bWindowOpened		
-
-		ctrlImage, wndImage, bWindowOpened = ImageManager.getImageControl(token, false);			
-		--Debug.chat('ctrlImage', ctrlImage, 'wndImage', wndImage, 'bWindowOpened', bWindowOpened);
-		
-		--local imageWindow = Interface.findWindow("imagewindow",nodeImg);		
-				
-		-- Creates a standard image window if none is available.
-		if not wndImg then
-			wndImg = Interface.openWindow("imagewindow",nodeImg); 			
-		end		
-
-		-- removed in 1.3.0, as it attempts to return same value as new varible ctrlImage to return at the end of the function (retval here)
-		--[[
-		if wndImg then			
-			local tWndCtls = wndImg.getControls();			
-			for k,v in pairs(tWndCtls) do
-				if v.getDatabaseNode() then
-					if v.getDatabaseNode().getPath() == nodeImgCtl.getPath() then
-						Debug.chat('v', v);
-						retval = v; 
-						break; 
-					end
-				end
-			end
-		end		
-		]]--
-
-	end
-
-	return ctrlImage; 	
-end
-
 --[[
 	Add our additional token actions
 ]]--
@@ -86,7 +42,7 @@ end
 ]]--
 function onExtendedTokenSelection(target, ...)
 	local topSelection = arg[1];	
-	local selectedTokens = getImgCtl(target).getSelectedTokens(); 
+	local selectedTokens = TokenHelper.getControlImageByToken(target).getSelectedTokens(); 
 	
 
 	--Debug.console('EXTENDED SELECTION'); 
@@ -254,7 +210,7 @@ end
 function getMapTokenIndex(token,imgCtl)
 	local imgCtlNode; 
 	if not imgCtl then 		
-		imgCtlNode = getImgCtl(token).getDatabaseNode(); 
+		imgCtlNode = TokenHelper.getControlImageByToken(token).getDatabaseNode(); 
 	else
 		imgCtlNode = imgCtl.getDatabaseNode(); 
 	end
@@ -549,7 +505,7 @@ end
 ]]--
 function onNpcMenuSelection(target, ...)
 	local topSelection = arg[1]; 
-	local imgCtl = getImgCtl(target); 
+	local imgCtl = TokenHelper.getControlImageByToken(target); 
 	--Debug.console("selected an item! NPC " .. tostring(topSelection)); 
 	if topSelection == 3 then
 		--Debug.console("in item! " .. tostring(topSelection)); 
@@ -655,7 +611,7 @@ end
 ]]--
 function onCTMenuSelection(target, ...)
 	local topSelection = arg[1]; 
-	local imgCtl = getImgCtl(target); 
+	local imgCtl = TokenHelper.getControlImageByToken(target); 
 	--Debug.console("selected an item COMBAT!! " .. tostring(topSelection)); 
 
 	if topSelection == 3 then

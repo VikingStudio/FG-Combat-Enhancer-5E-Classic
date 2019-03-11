@@ -710,7 +710,9 @@ function nextActor(bSkipBell, bNoRoundAdvance)
 	
 	-- Check the skip hidden NPC option
 	local bSkipHidden = OptionsManager.isOption("CTSH", "on");
-	
+	-- Check the ship for actors that haven't rolled initiative
+	local bSkipNonInitiativedActors = OptionsManager.isOption("CE_SNIA", "on");	
+
 	-- Determine the next actor
 	local nodeNext = nil;
 	local aEntries = getSortedCombatantList();
@@ -723,15 +725,31 @@ function nextActor(bSkipBell, bNoRoundAdvance)
 				end
 			end
 		end
-		if bSkipHidden then
+		if bSkipHidden or bSkipNonInitiativedActors then			
 			local nIndexNext = 0;
 			for i = nIndexActive + 1, #aEntries do
 				if DB.getValue(aEntries[i], "friendfoe", "") == "friend" then
 					nIndexNext = i;
-					break;
+
+					-- check if initiative is 0 value (default in db if no entry). if so set index to 1 (first actor) and exit function, as all non-iniatived actors will be piled at the bottom of the CT				
+					local initiative = DB.getValue(aEntries[i], 'initresult');					
+					if initiative == 0 then
+						nIndexActive = 0;
+						Debug.console('CT actor has no rolled initiative');						
+					end						
+
+					break;					
 				else
 					if not isCTHidden(aEntries[i]) then
 						nIndexNext = i;
+
+						-- check if initiative is 0 value (default in db if no entry). if so set index to 1 (first actor) and exit function, as all non-iniatived actors will be piled at the bottom of the CT				
+						local initiative = DB.getValue(aEntries[i], 'initresult');						
+						if initiative == 0 then
+							nIndexNext = 0;
+							Debug.console('CT actor has no rolled initiative');						
+						end							
+
 						break;
 					end
 				end
@@ -773,10 +791,10 @@ function nextActor(bSkipBell, bNoRoundAdvance)
 		requestActivation(nodeNext, bSkipBell);
 		onTurnStartEvent(nodeNext);
 	elseif not bNoRoundAdvance then
-		if bSkipHidden then
+		if (bSkipHidden == true) or (bSkipNonInitiativedActors == true) then			
 			for i = nIndexActive + 1, #aEntries do
 				showTurnMessage(aEntries[i], false);
-			end
+			end			
 		end
 		nextRound(1);
 	end

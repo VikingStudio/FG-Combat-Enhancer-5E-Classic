@@ -14,7 +14,7 @@ function onInit()
 end
 
 function doPing(x,y,imgctl)
-	local tokenproto = "tokens/host/items/ping_target.png";	
+	local tokenproto = "tokens/host/5e Combat Enhancer/ping_target.png";	
 	-- check parent for our image control siblings, if we
 	-- have an 'image sibling' get that window and place
 	-- our marker there else nothing
@@ -53,7 +53,7 @@ function doPing(x,y,imgctl)
 		end
 	end
 	-- Create the token
-	if Input.isShiftPressed() and imgctlPing then
+	if Input.isShiftPressed() and Input.isControlPressed() and imgctlPing then
 		local tokenMap = imgctlPing.addToken(tokenproto, x, y);
 		if tokenMap then
 			tokenMap.setVisible(true); 

@@ -202,9 +202,15 @@ end
 
 
 function onScaleChanged(tokenCT, nodeCT)
+	local bHorizontalHealthBars = OptionsManager.getOption('CE_HHB');
 	--Debug.console("+++onScaleChanged"); 
 	tokenCT = updateStatusOverlayWidget(tokenCT,nodeCT); 
-	updateHealthBarScale(tokenCT, nodeCT);
+	-- scale for wide horizontal health bars if menu setting on, otherwise use default slim vertical health bars
+	if bHorizontalHealthBars == "on" then				
+		updateHealthBarScaleHorizontal(tokenCT, nodeCT);
+	else
+		updateHealthBarScaleDefault(tokenCT, nodeCT);
+	end				
 	updateEffectsHelper(tokenCT, nodeCT);
 	--Debug.console("---onScaleChanged"); 
 end
@@ -338,14 +344,15 @@ function updateHealth(nodeField)
 end
 
 function updateHealthHelper(tokenCT, nodeCT)
+	local bHorizontalHealthBars = OptionsManager.getOption('CE_HHB');
+	local aWidgets = getWidgetList(tokenCT, "health");
 	local sOptTH;
+
 	if DB.getValue(nodeCT, "friendfoe", "") == "friend" then
 		sOptTH = OptionsManager.getOption("TPCH");
 	else
 		sOptTH = OptionsManager.getOption("TNPCH");
-	end
-	
-	local aWidgets = getWidgetList(tokenCT, "health");
+	end		
 	
 	if sOptTH == "off" or sOptTH == "tooltip" then
 		for _, vWidget in pairs(aWidgets) do
@@ -359,7 +366,14 @@ function updateHealthHelper(tokenCT, nodeCT)
 			if h >= TOKEN_HEALTH_MINBAR then
 				local widgetHealthBar = aWidgets["healthbar"];
 				if not widgetHealthBar then
-					widgetHealthBar = tokenCT.addBitmapWidget("healthbar");
+
+					-- horizontal health bars if menu setting on, otherwise use default slim vertical health bars										
+					if bHorizontalHealthBars == "on" then 											
+						widgetHealthBar = tokenCT.addBitmapWidget('healthbar_horizontal');												
+					else												
+						widgetHealthBar = tokenCT.addBitmapWidget('healthbar_original');						
+					end
+										
 					widgetHealthBar.sendToBack();
 					widgetHealthBar.setName("healthbar");
 				end
@@ -369,7 +383,13 @@ function updateHealthHelper(tokenCT, nodeCT)
 					widgetHealthBar.setVisible(sOptTH == "bar");
 				end
 			end
-			updateHealthBarScale(tokenCT, nodeCT);
+
+			-- scale for wide horizontal health bars if menu setting on, otherwise use default slim vertical health bars
+			if bHorizontalHealthBars == "on" then				
+				updateHealthBarScaleHorizontal(tokenCT, nodeCT);
+			else
+				updateHealthBarScaleDefault(tokenCT, nodeCT);
+			end						
 			
 			if aWidgets["healthdot"] then
 				aWidgets["healthdot"].destroy();
@@ -399,8 +419,8 @@ function updateHealthHelper(tokenCT, nodeCT)
 	end
 end
 
--- Changed health bar to appear above token, full token width when health 100%, horizontal health bar, above token, (v 1.2.0)
-function updateHealthBarScale(tokenCT, nodeCT)		
+-- Horizontal health bar: Changed health bar to appear above token, full token width when health 100%, horizontal health bar, above token
+function updateHealthBarScaleHorizontal(tokenCT, nodeCT)		
 	local widgetHealthBar = tokenCT.findWidget("healthbar");
 	if widgetHealthBar then
 		local nPercentWounded = ActorManager2.getPercentWounded2("ct", nodeCT);
@@ -416,11 +436,35 @@ function updateHealthBarScale(tokenCT, nodeCT)
 			barw = (math.max(1.0 - nPercentWounded, 0) * (math.min(w, barw) - token_health_minbar)) + token_health_minbar;
 		else
 			barw = token_health_minbar;
-		end		
+		end				
 
-		-- making health bars wider and taller, appearing on top, resize and place ratio wise due to different mat grids and resolution sizes (v 1.2.0)
+		-- making health bars wider and taller, appearing on top, resize and place ratio wise due to different mat grids and resolution sizes
 		widgetHealthBar.setSize(barw - math.floor(barw / 90), math.floor(barh / 10), "left");
-		widgetHealthBar.setPosition("left", (barw / 2), - math.floor(h / 1.7) ); 
+		widgetHealthBar.setPosition("left", (barw / 2), - math.floor(h / 1.7) ); 		
+	end
+end
+
+-- Default vertical health bar
+function updateHealthBarScaleDefault(tokenCT, nodeCT)
+	local widgetHealthBar = tokenCT.findWidget("healthbar");
+	if widgetHealthBar then
+		local nPercentWounded = ActorManager2.getPercentWounded2("ct", nodeCT);
+		
+		local w, h = tokenCT.getSize();
+		h = h + 4;
+
+		widgetHealthBar.setSize();
+		local barw, barh = widgetHealthBar.getSize();
+		
+		-- Resize bar to match health percentage, but preserve bulb portion of bar graphic
+		if h >= TOKEN_HEALTH_MINBAR then
+			barh = (math.max(1.0 - nPercentWounded, 0) * (math.min(h, barh) - TOKEN_HEALTH_MINBAR)) + TOKEN_HEALTH_MINBAR;
+		else
+			barh = TOKEN_HEALTH_MINBAR;
+		end
+
+		widgetHealthBar.setSize(barw, barh, "bottom");
+		widgetHealthBar.setPosition("bottomright", -4, -(barh / 2) + 4);		
 	end
 end
 
@@ -918,22 +962,22 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 	end	
 
 	local bloodPrototypes = {
-		'tokens/host/items/blood.png',
-		'tokens/host/items/blood_3.png',
-		'tokens/host/items/blood_5.png',
-		'tokens/host/items/blood_7.png',
-		'tokens/host/items/blood_10.png',
-		'tokens/host/items/blood_8.png',
-		'tokens/host/items/blood_9.png',
-		'tokens/host/items/blood_11.png',
-		'tokens/host/items/blood_12.png',
-		'tokens/host/items/blood_13.png'
+		'tokens/host/Combat Enhancer/blood.png',
+		'tokens/host/Combat Enhancer/blood_3.png',
+		'tokens/host/Combat Enhancer/blood_5.png',
+		'tokens/host/Combat Enhancer/blood_7.png',
+		'tokens/host/Combat Enhancer/blood_10.png',
+		'tokens/host/Combat Enhancer/blood_8.png',
+		'tokens/host/Combat Enhancer/blood_9.png',
+		'tokens/host/Combat Enhancer/blood_11.png',
+		'tokens/host/Combat Enhancer/blood_12.png',
+		'tokens/host/Combat Enhancer/blood_13.png'
 	}; 
 
 	local bloodPrototypesScale = {
 		1.5,
 		2,
-		4,
+		3,
 		1.5,
 		2,
 		2,

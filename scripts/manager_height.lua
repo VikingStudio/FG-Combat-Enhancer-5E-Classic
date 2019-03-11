@@ -26,9 +26,10 @@ function onWheel(target, notches)
 			end
 		end
 	elseif Input.isControlPressed() then
-		-- spiny spinny!
+		-- rotate token
 		target.setOrientation((target.getOrientation()+notches)%8); 
 	elseif Input.isAltPressed() then
+		-- resize token
 		local scale = target.getScale();
 		scale = scale + notches/10; 
 		if scale <= 0.1 then scale = 0.1 end
@@ -51,7 +52,16 @@ function createHeightWidget(token)
 	--Debug.console("creating height widget for token: " .. token.getId()); 
 	if hasCT(token) then
 		height = getCTHeight(token); 
-		wdg = token.addTextWidget("height",height .. ' ft'); 
+		--height_large, height_medium, height_small
+		local fontSize = OptionsManager.getOption("CE_HFS");
+		if fontSize == 'option_small' then
+			wdg = token.addTextWidget("height_small",height .. ' ft'); 
+		elseif fontSize == 'option_medium' then
+			wdg = token.addTextWidget("height_medium",height .. ' ft'); 
+		else 
+			wdg = token.addTextWidget("height_large",height .. ' ft'); 
+		end
+		
 		if wdg then
 			if height == 0 then
 				wdg.setVisible(false);

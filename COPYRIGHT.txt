@@ -7,8 +7,7 @@ The CoreRPG ruleset and all included (code) and files (from the CoreRPG ruleset)
 The 5e Combat Enhancer extension itself is released under the GNU General Public License Version 3:
 
 5e Combat Enhancer builds on top and modifies the GNU GPL code of the Advanced Kombat (5e) Fantasy Grounds extension by Ken L.
-5e Combat Enhancer was started and released by Styrmir in December of 2018 and is relased under GNU GPL as seen below. 
-See 'Changelog (versions).txt' for most of the updates.
+5e Combat Enhancer was started and released by Styrmir T. in December of 2018 and is relased under GNU GPL as seen below. See 'Changelog (versions).txt' for most of the updates by Styrmir T.
 
 Licensed under the GNU GPL Version 3 license.
 http://www.gnu.org/licenses/gpl.html (this link contains the up to date license details, the LICENSE.txt contains a copy of this text, though it may not be 100% up to date)
@@ -117,3 +116,5 @@ Heart : Michael Bundscherer
 Question : Andrew Doane
 Thief : André Renault
 Blind : Dmitry Baranovskiy
+
+Fog of War : (Air Fog Free Icon) https://pngtree.com/free-icon/air-fog_444370

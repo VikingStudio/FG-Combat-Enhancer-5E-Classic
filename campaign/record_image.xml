@@ -76,8 +76,9 @@
 			end
 			function update()
 				super.update()
-				if User.isHost() then
-					h4.setVisible(true)
+				if User.isHost() then								
+					h4.setVisible(true)	
+					toggle_layers_quick.setVisible(true)				
 					toggle_layers.setVisible(true)
 					local bShowLayersToggle = false
 					if toggle_layers.getValue() &gt; 0 then
@@ -184,6 +185,31 @@
 				</script>
 			</toolbar_30>
 
+			<!-- Fog of War section -->
+			<!-- 
+			<buttoncontrol name="toolbar_fow" insertbefore="h4">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<invisible/>
+				<state icon="tool_fow_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="tooltip_fow_toolbar" />
+				<script>
+					function onButtonPress()
+						Debug.console("pressed fow button!"); 
+						FOW.fow();
+					end
+					
+					function updateDisplay()
+					end
+				</script>
+			</buttoncontrol>
+			-->
+
+
+
 			<!-- Layers section -->
 			<genericcontrol name="h4" insertbefore="h2">
 				<anchored to="toolbar_anchor" width="5" height="34">
@@ -192,6 +218,33 @@
 				</anchored>
 				<invisible />
 			</genericcontrol>
+			<!-- Toggle play and background layer button -->
+			<buttoncontrol name="toggle_layers_quick" insertbefore="h2">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<left anchor="right" relation="relative" />
+				</anchored>
+				<state icon="tool_layers_toggle_30" color="60A0A0A0" />
+				<state icon="tool_layers_toggle_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="tooltip_toggle_layers_quick" />
+				<invisible />
+				<script>
+					function onButtonPress()
+						local activelayer = window.parentcontrol.window.layerEnabled();
+						image = window.getImage()
+						if activelayer == "play_image" then							
+							window.toolbar_layers.setActive('layer_background');
+							window.parentcontrol.window.showLayer("background")
+							image.setCursorMode("")
+						else
+							window.toolbar_layers.setActive('layer_play');
+							window.parentcontrol.window.showLayer("play")
+							image.setCursorMode("")
+						end
+					end
+				</script>
+			</buttoncontrol>			
 			<buttoncontrol name="toggle_layers" insertbefore="h2">
 				<anchored to="toolbar_anchor" width="34" height="34">
 					<top />
@@ -330,6 +383,7 @@
 					toolbar_draw.setVisibility(true);
 					h2.setVisible(true);
 					
+					toggle_layers_quick.setVisible(true)	
 					toggle_layers.setVisible(true)
 					local bShowLayersToggle = false
 					if toggle_layers.getValue() &gt; 0 then
@@ -669,6 +723,33 @@
 				</anchored>
 				<invisible />
 			</genericcontrol>
+			<!-- Toggle play and background layer button -->
+			<buttoncontrol name="toggle_layers_quick" insertbefore="toolbar_targeting">
+				<anchored to="toolbar_anchor" width="34" height="34">
+					<top />
+					<left anchor="left" relation="relative" />
+				</anchored>
+				<state icon="tool_layers_toggle_30" color="60A0A0A0" />
+				<state icon="tool_layers_toggle_30" />
+				<frame name="toolbar_30" />
+				<tooltip textres="tooltip_toggle_layers_quick" />
+				<invisible />
+				<script>
+					function onButtonPress()
+						local activelayer = window.parentcontrol.window.layerEnabled();
+						image = window.getImage()
+						if activelayer == "play_image" then							
+							window.toolbar_layers.setActive('layer_background');
+							window.parentcontrol.window.showLayer("background")
+							image.setCursorMode("")
+						else
+							window.toolbar_layers.setActive('layer_play');
+							window.parentcontrol.window.showLayer("play")
+							image.setCursorMode("")
+						end
+					end
+				</script>
+			</buttoncontrol>				
 			<buttoncontrol name="toggle_layers" insertbefore="h4">
 				<anchored to="toolbar_anchor" width="34" height="34">
 					<top />

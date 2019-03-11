@@ -1,6 +1,0 @@
-Copy and paste this folder into the tokens\host folder. That will display bloodsplatters on npc/pc death and the display of the Shift+Left-Click map focus graphics.
-
-Your path should look something like this if you installed your data folder with the default name:
-[Some drive, C: for example]\[any sub directory path if any]\Fantasy Grounds Data\tokens\host\items
-
-You can also find this path by opening up your game. Clicking on Tokens -> GM.

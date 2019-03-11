@@ -10,7 +10,7 @@ function onInit()
 	if User.isHost() then
 		local nMajor,nMinor,nSub = Interface.getVersion(); 
 		local sVersion =  tostring(nMajor) .. '.' .. tostring(nMinor) .. '.' .. tostring(nSub); 
-		local extInfo = Extension.getExtensionInfo("advanced_kombat_pf"); 
+		local extInfo = Extension.getExtensionInfo("5e Combat Enhancer"); 
 		nExtVer = 'UNKNOWN'; 
 
 		-- For some reason FG cannot get the extension for some people?

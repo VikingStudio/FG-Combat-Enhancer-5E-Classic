@@ -6,19 +6,32 @@ The list may not be up to date.
 
 >>>>>> TODO Immediate.
 * In full screen backround mode bring and keep chat and dice modifiers on top as menu option. Not possible? error: 'bringToFront: Panel display order can not be changed'
+    coreprg scripts/manager_image.lua
 * only draw direction lines and move token which represents own character (might not be possible due to core code)
 * compare updated_imagewindow.lua with imagewindow.lua and import changes to imageindow.lua, and after testing remove updated_imagewindow.lua
-
+* on NPC death, don't move token to middle layer option
+* lowest automatic damage to NPC 1 hp option
+* change PC unconscious, 0 hp graphic options (tringle to big for one), and make new more sleek and less obtrusive graphics    
+* Change weapon list loops to while not nil return, instead of for loops, this would then also work for spell lists (if i do those)
+* crossbow expert, no disadvantage when opponnent within 5', works for all weapons and spells
+* refractor 5e combat enhancer, change copyright for that file to myself and smiteworks: split into different files, each handling a particular aspect, getting muddled
+* update horizontal health bar to be even longer, long enough to cover gargantuan tokens (400x400). (current 850x38) why is this not covering the full width of the target? code change needed?
+* height changes don't work when larger or above creatures change their altitude
+    It does not update when targets above the size of medium change their altitude, but it will update when the actor changes their altitude in relation to any target regardless of targets size or actors size. 
+* Change image from effects icon, to a notification one for TokenHelper.postChatMessage(sMessage)
+* Increased crit range for individual PC (19-20, instead of only on 20 for example). Effect on character in CT, if added change crit range.
+    Check for that effect on CT on action.
+    If so edit : local nCritThreshold = 20; scripts/manager_action_attack.lua, line 348
+* Increase opacity for shadow tokens on lower levels of tokens on top layer.
+* Lock combat tracker in place. Trace locking code from menu for Chat window to see if it's possible to see example.
+    From Moon Wizard: You’d have to convert the combat tracker to a panel to get it to lock. As a byproduct, it will always be open. Though, you’ll probably want to remove the combat tracker button too, so you don’t close the panel when you don’t want to.
 
 >>> Wishlist long term, large tasks.
-* Dynamic shadow in grids.
-    modifications.lua > function dynamicShadows( token, mouseButton, x, y, dragdata )
-* Automated ranged weapon disadvantage when outside range (missing from 5e ruleset, but used in SW, can look there for ideas). Have to have target set, distances between pointers used, look up weapon range, compare, apply disadvantage if applicable.
-    Ranged modifiers to attacks work testing started. Adds disadvantage if targeted token is outside of short range. Autofail if outside max range. [ 5e_combat_enhancer.lua > applyRangedWeaponModifiers() ; manager_token2.lua > function getDistance(nodeAttacker, nodeTarget) ; function getTokenDistance(ctrlImage, tokenTargeter, tokenTarget) ]
-    Use range finding math from height calculation range function. [Height Manager > scripts/manager_height.lua]
+
+    
 //////////////////////////////////////////
 
-ABANDONED AS NOT POSSIBLE IN AN FG extension
+ABANDONED AS NOT POSSIBLE/FEASIBLE IN AN FG extension
 (usually due to behaviour, limitations or lack of API to do so, in the core code):
 
 *Enable players to plan out path for their tokens as normal when locked, then press middle mouse button to move the tokens themselves. Maket this a true or false option in the menues.
@@ -33,6 +46,15 @@ ABANDONED AS NOT POSSIBLE IN AN FG extension
 * Simulate roll20 ping, ctrl click on map, timed function that draws circles ever larger appearing as animation, while deleting previous, to indicate a pinged location.
     A common need is to pause (sleep) a program for a certain number of seconds, preferably without busy waiting.
     This function to do this without busy waiting does not exist in ANSI C, so it does not exist in stock Lua. However, there are extension libraries and calls to external programs that can do this. 
-
-
+* Fog of War (Dynamic shadows). [scripts/fow.lua] As only able to create dynamic lighting on a hex by hex basis, with maps that don't have a hex between each wall section (castles, houses, ruins etc.) this would not work. 
+    So it's to limited given the amount of work needed to get it functional. And with FGU's dynamic lighting on the way, it's not going to be worthwhile of an time investment.
+    scripts/fow.lua
+    campaign/scripts/image.lua onClickRelease(button, x, y)  > FOW.toggleFOW(x,y,self);
+    campaign/record_image.xml > <buttoncontrol name="toolbar_fow" insertbefore="h4">
+* BUG: Weird blood splatter bug, making it huge. "It seems map dependent. The original issue was on the DotMM level 1 map. 
+        I reverted it to original and that seemed to have fixed the problem. Or maybe I messed with token scale (releasing and resetting, adding and removing tokens). 
+        Not sure. But it did end up working on that map at some point."
+        Map dependent, module maps.
+    Posted by Trenloe: "I'm making an educated guess that the large blood spatter tokens are related to the image level token scaling factor - something that the GM can't directly change, short of releasing token scaling and re-adding tokens. Which in most cases will make it better but sometimes not..."
+    My reply: They are indeed. They are scaled ratio wise in connection to the token scaling returned via the FG API. So might be out of our hands in the end coding wise. Did some more testing today and found the same, that it was indeed very map dependent. Particularly if using modules where I can't set it to my regular range of about 50x50 pixels without changing the map from what it was intended to be.        
 /////////////////////////////////////////

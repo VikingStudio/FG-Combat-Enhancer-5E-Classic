@@ -9,10 +9,11 @@
 	<icon name="cond_bonus" file="graphics/token/token_cond_bonus.png" />
 	<icon name="cond_penalty" file="graphics/token/token_cond_penalty.png" />
 
-	<!-- Tokens - Health -->
-	<icon name="healthbar" file="graphics/token/token_healthbar_horizontal.png" />	
-	<!--<icon name="healthbarempty" file="graphics/token/token_healthbar_horizontal_empty.png" />-->
+	<!-- Tokens - Health -->	
+	<icon name="healthbar_horizontal" file="graphics/token/token_healthbar_horizontal.png" />
+	<icon name="healthbar_original" file="graphics/token/token_healthbar_original.png" />	
 	<icon name="healthdot" file="graphics/token/token_healthdot.png" />
+	<!--<icon name="healthbarempty" file="graphics/token/token_healthbar_horizontal_empty.png" />-->
 	
 	<!-- Tokens - Tactical states -->
 	<icon name="cond_cover" file="graphics/token/token_cond_cover.png" />

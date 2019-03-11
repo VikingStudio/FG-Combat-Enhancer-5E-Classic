@@ -8,7 +8,9 @@
 	<icon name="tool_layers_background_30" file="graphics/toolbar/tool_layers_background_30.png" />
 	<icon name="tool_layers_features_30" file="graphics/toolbar/tool_layers_features_30.png" />
 	<icon name="tool_layers_play_30" file="graphics/toolbar/tool_layers_play_30.png" />
-	<icon name="tool_xycoord_30" file="graphics/toolbar/tool_xycoord_30.png" />
+	<icon name="tool_layers_toggle_30" file="graphics/toolbar/tool_layers_toggle_play_and_background_30.png" /> 
+	<icon name="tool_xycoord_30" file="graphics/toolbar/tool_xycoord_30.png" />	
+	
 	<!-- <icon name="addct_radial" file="graphics/radial/icon_addct.png" /> -->
 
 	<!--  turn icons -->

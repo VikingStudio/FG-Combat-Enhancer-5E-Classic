@@ -21,9 +21,9 @@
 
 	<properties>
 		<name>5e Combat Enhancer</name>
-		<version>1.4.2</version>
+		<version>1.5.0</version>
 		
-		<author>Styrmir</author>
+		<author>Styrmir T.</author>
 		<description>5e Combat Enhancer</description>
 		
 		<ruleset>
@@ -36,10 +36,14 @@
 	</properties>
     
 
-	<base>		
-		<script name="CombatEnhancer" file="scripts/5e_combat_enhancer.lua" />        <!-- Custom modifications and additions to the base extension -->
+	<base>									
+		<!-- Custom .lua code files for 5e Combat Enhancer -->
+		<script name="CombatEnhancer" file="scripts/5e_combat_enhancer.lua" />        <!-- Custom modifications and additions to the base extension -->		
+		<script name="ActionAttack" file="scripts/manager_action_attack.lua" />			  <!-- Imported from 5e Ruleset, modified to handle range modifiers for ranged attacks -->		
+		<script name="ActionsManager" file="scripts/manager_actions.lua" />				<!-- Imported from CoreRPG, modified to handle range modifiers for ranged attacks -->								
 		<!-- <script name="PointerToolkit" file="scripts/pointer_toolkit.lua" /> -->     <!-- Used for drawing custom shapes on map, ping function -->
-    	
+    
+		
 		<!-- Menu items for 5e Combat Enhancer -->
 		<string name="option_header_5ecombatenhancer">5e Combat Enhancer</string>
 		<string name="option_gm_underlay">Token underlay opacity (GM only)</string>
@@ -52,9 +56,16 @@
 		<string name="option_blood_splatter_scaling">Blood splatter scaling</string>
 		<string name="option_token_effect_size">Token effect icon size</string>
 		<string name="option_token_effects_max_number">Token max effects icon number</string>
+		<string name="option_height_font_size">Height font size</string>
+		<string name="option_automatic_ranged_modifiers">Automatic ranged modifiers</string>
+		<string name="option_skip_non_initiatived_actor">Skip CT actors that haven't rolled intitiative</string>
+		<string name="option_flanking_rules">Use flanking rules (for medium sizes and smaller only)</string>
+		<string name="option_horizontal_health_bars">Horizontal health bars (re-add tokens or reload)</string>
+		<string name="option_ranged_melee_modifier">Ranged in melee modifier (for medium sizes and smaller only)</string>
+
 
 		<!-- Status icons -->
-		<icon name="ak_icon" file="icon.png" />
+		<icon name="ec_icon" file="icon.png" />		
 		<script name="VersionCheck" file="scripts/manager_versionchk.lua" />
         <script name="TokenManager2" file="scripts/manager_token2.lua" />
         <script name="CombatManager2" file="scripts/manager_combat2.lua" />
@@ -84,6 +95,7 @@
 		<includefile source="ct/template_ct.xml" />
 
 
+		<!-- <script name="ImageRange" file="campaign/scripts/image.lua" /> --> <!-- create reference so possible to call for actor to target range update -->
 		<!-- Layers -->				
 		<template name="image_record_step">
 			<imagecontrol name="image">
@@ -186,7 +198,9 @@
 			<TBOX type="string">on</TBOX>
 			<TNAM type="string">tooltip</TNAM>
 		</options>-->
-	</base>
-	
-	<announcement text="5e Combat Enhancer" font="emotefont" icon="ak_icon" />
+
+		
+	</base>		
+
+	<announcement text="5e Combat Enhancer" font="emotefont" icon="ec_icon" />	
 </root>

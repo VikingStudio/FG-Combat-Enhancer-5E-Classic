@@ -5,6 +5,9 @@
 <root>
 	<!-- STRINGS -->
 	<string name="tooltip_saves_clear_toolbar">Clear saves</string>
+	<string name="tooltip_toggle_layers_quick">Toggle between top and bottom layer</string>
+	<string name="tooltip_fow_toolbar">Manipulate the Fog of War</string>
+
 	<!-- ICONS -->
 	<!-- Assume 24x24 for toolbar_30 icons, and 16x16 for toolbar_20 button icons -->
 	
@@ -45,6 +48,8 @@
     <icon name="tool_unmask_20" file="graphics/toolbar/tool_unmask_20.png" />
 
     <icon name="tool_clear_saves_30" file="graphics/toolbar/tool_clear_saves_30.png" />
+	<icon name="tool_fow_30" file="graphics/toolbar/tool_fow_30.png" />
+	<icon name="tool_fow_disabled_30" file="graphics/toolbar/tool_fow_disabled_30.png" />
 
 
 	<!-- FRAMES -->

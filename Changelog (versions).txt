@@ -3,10 +3,9 @@
 //////////////////////////////////////////
 
 Changelog / Added / Modified:
-(Most of these can be reverted by commenting out the modification you don't want to use)
 Versioning: v(Major.Minor.Patch) https://en.wikipedia.org/wiki/Software_versioning
 
-v1.1.0 (December 26th, 2018) (major features)
+v1.1.0 (December 26th, 2018) (major features) [80 downloads]
 - Created new loading icon.
 - Version checking. Changed to check for version 3.3.7 as core of module is working for that version. [scripts/manager_versionchk.lua]
     Currently only works with regular image view panel, not the background versions added in 3.3.7, as it relies on layers support by https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG).
@@ -20,12 +19,12 @@ v1.1.0 (December 26th, 2018) (major features)
     Deletes token from combat map and combat tracker for host, if left-clicked while Alt + Control keys are held down.
     ps. note that dead tokens are on the second layer, and blood splatter is on the third.        
 
-v1.2.0 (December 27th, 2018) (major features)
-- Horizontal health bars, slightly less than token width when full health, appear above token. Larger and more easily readable. Resize and relocate ratio wise to account for different grid and resolutions sizes. Light transparency added to health bar. [ new horizontal health bar graphics, graphics/graphics_icons.xml, manager_token2.lua > function updateHealthBarScale(tokenCT, nodeCT) ; function updateHealthHelper(tokenCT, nodeCT) ]
+v1.2.0 (December 27th, 2018) (major features) [90 downloads]
+- Horizontal health bars, slightly less than token width when full health, appear above token. Larger and more easily readable. Resize and relocate ratio wise to account for different grid and resolutions sizes. Light transparency added to health bar. [ new horizontal health bar graphics, graphics/graphics_icons.xml, manager_token2.lua : updateHealthBarScale(tokenCT, nodeCT) ; updateHealthHelper(tokenCT, nodeCT) ]
     Health bars dissapear when no health left (incapacitated/dead).            
-- Dot health indicators roughly doubled in size for better readability. Resize and relocate ratio wise to account for different grid and resolutions sizes. [ updated graphics for health dot, relocated dot to align due to increased dimensions, manager_token2.lua > updateHealthHelper(tokenCT, nodeCT) ]
+- Dot health indicators roughly doubled in size for better readability. Resize and relocate ratio wise to account for different grid and resolutions sizes. [ updated graphics for health dot, relocated dot to align due to increased dimensions, manager_token2.lua : updateHealthHelper(tokenCT, nodeCT) ]
 
-v1.2.1 (January 1st, 2019)(patch)
+v1.2.1 (January 1st, 2019)(patch) [129 downloads]
 - Blood Splatter and Pointer Graphics to Copy.zip. Fixed directory instructions for "Where to place to work.txt". Set to default of "Fantasy Grounds Data/tokens/".
 - Token highlight underlays made more transparent (20%), so the effect is softer and less visually distracting. Thanks to AlphaDecay for the suggestion. [11 instances of token.addUnderlay() in: scripts\modifications.lua, scripts\manager_token.lua (two spots in hilightHover, scripts\manager_maptoken.lua (one in prepMapToken, one in initMapTokens, one in initSingleToken, two in onCTMenuSelection), scripts\snap_token.lua (one in customTurnStart), ct\scripts\ct_token.lua (two in onHover), ct\scripts\ct_entry.lua (one in activeHighlight)]
     Constant colors used are set in scripts/modifications.lua (TOKENUNDERLAYCOLOR_1, TOKENUNDERLAYCOLOR_2, TOKENUNDERLAYCOLOR_3). You can change them there and they will be changed over the whole extension in the appropriate places after save and reload.
@@ -33,7 +32,7 @@ v1.2.1 (January 1st, 2019)(patch)
     First two numbers/letters refer to the alpha channel or transparency levels. Alpha channel (ranging from 0-255) in hex, opacity at 40% = 66, 30% = 4D , 20% = 33, 10% = 1A    
 - Incorrect console message on version checking. Referred to Advanced Kombat, fixed to refer to 5e Combat Enhancer. [manager_versionchk.lua]
 
-v1.3.0 (January 13th, 2019) (major features)
+v1.3.0 (January 13th, 2019) (major features) [82 downloads]
 NOW FULLY COMPATABLE WITH FG 3.3.7.
 - Compatability added for FG 3.3.7 background image options. 
 - Layers support for background images. Updated project with new code from Enhanced Images extension, https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG. [campaign/record_image.xml]
@@ -48,36 +47,72 @@ NOW FULLY COMPATABLE WITH FG 3.3.7.
 - Changed background image buttons from Test version to smaller Live version editions by removing prior image refernces in xml, defaulting to default. [graphics/icons.xml]
 - Changed image grid menu item buttons to the smaller default graphics. For better readbility and distinction from layers button graphics. [template_toolbar.xml]
 - Removed a number of unneeded console outputs that happened during runtime.
-- Blood splatter code changed to work with backgound image layers as well. [scripts/manager_token2.lua > function createSplatter(tokenCT,nodeCT,targetLayer), function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)]    
+- Blood splatter code changed to work with backgound image layers as well. [scripts/manager_token2.lua : function createSplatter(tokenCT,nodeCT,targetLayer), function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)]    
 - Shift+left mouse click, ping and move view for players to gm focus now working with backgound images as well. [campaign/record_image.xml] 
-- Double-clicking Token on battlemap, now opens up character or NPC dialogue window, similarly to the default behaviour in FG. [scripts/modifications.lua > function onInit(), function onDoubleClick(tokenMap, vImage)]
+- Double-clicking Token on battlemap, now opens up character or NPC dialogue window, similarly to the default behaviour in FG. [scripts/modifications.lua : function onInit(), function onDoubleClick(tokenMap, vImage)]
 
-v1.4.0 (January 21st, 2019) (major features)
+v1.4.0 (January 21st, 2019) (major features) [- downloads]
 - Updates to COPYRIGHT.txt. Copyright text updates across project to point to the COPYRIGHT.txt file for details as applicable.
 - Features and patches split into: 'Changelog (versions).txt' and 'TODO, Wishlist.txt'. 
 - Refractoring:
     'scripts/modifications.lua' renamed to '5e_combat_enhancer.lua', name changed to 'CombatEnhancer', references in code fixed to point to renamed script and name. 
     'updated_image.lua' from Enhanced layers extension deleted, as all code updates have been updated to image.lua which includes a lot of additional code for this extension. 
     'campaign/scripts/toolbar_draw.lua' deleted as I've written updated code to switch between layers when masking button used in 'campaign/record_image.xml'.
-- Menu items added under new menu heading of '5e Combat Enhancer' with various functionality: [extension.xml, script/5e_combat_enhancer > registerMenuItems(), onInit()]
-    Change the opacity of GM token underlays colors, ranging from 100%-10%. 20% recommended for best appearance. [scripts/5e_combat_enhancer > updateUnderlayOpacity(), onInit()]            
-    Turn on of off drawing blood on tokens as they take damage. [scripts/manager_token2.lua > updateStatusOverlayWidget(tokenCT,nodeCT)]
-    Turn on or off drawing of skull on death. [scripts/manager_token2.lua > updateStatusOverlayWidget(tokenCT,nodeCT)]
-    Turn on or off blood splatter rendering on death. [scripts/manager_token2.lua > createSplatter(tokenCT,nodeCT,targetLayer)]
-    Turn on or off to show NPC death clearly in the CT by fading the entry. [ct/scripts/clientct_entry.lua > updateDisplay(), ct/scripts/ct_entry.lua > updateDisplay()]
+- Menu items added under new menu heading of '5e Combat Enhancer' with various functionality: [extension.xml, script/5e_combat_enhancer : registerMenuItems(), onInit()]
+    Change the opacity of GM token underlays colors, ranging from 100%-10%. 20% recommended for best appearance. [scripts/5e_combat_enhancer : updateUnderlayOpacity(), onInit()]            
+    Turn on of off drawing blood on tokens as they take damage. [scripts/manager_token2.lua : updateStatusOverlayWidget(tokenCT,nodeCT)]
+    Turn on or off drawing of skull on death. [scripts/manager_token2.lua : updateStatusOverlayWidget(tokenCT,nodeCT)]
+    Turn on or off blood splatter rendering on death. [scripts/manager_token2.lua : createSplatter(tokenCT,nodeCT,targetLayer)]
+    Turn on or off to show NPC death clearly in the CT by fading the entry. [ct/scripts/clientct_entry.lua : updateDisplay(), ct/scripts/ct_entry.lua : updateDisplay()]
     Turn on or off to show NPC death by fading effects icons on top of token. 
-    Scaling options for blood splatters on token death, default x1 - x3. [scripts/manager_token2.lua > createSplatter(tokenCT,nodeCT,targetLayer)]        
+    Scaling options for blood splatters on token death, default x1 - x3. [scripts/manager_token2.lua : createSplatter(tokenCT,nodeCT,targetLayer)]        
 - Clear saves button only appears if there are tokens on the battle map. [campaign/record_image.xml]   
 - Clear saves button was to close to the edge. Fixed. [campaign/record_image.xml]
-- Moved double-click to open token information window (PC or NPC) to ctrl + left-click. This was done to enable the window to open up on top of the CT, due to the way the code is layed out. [scripts/5e_combat_enhancer > openTokenInformationWindow(tokenMap, vImage), scripts/snap_token.lua > onClickRelease(target, button, image)]
-- Pressing masking button will do the following now: If not on background (image) layer, switch to background (image) layer and enable masking tool. If on background layer, disable masking tool and switch to top (play) layer. [campaign/record_image.xml > toolbar_draw > function onButtonPress(id) ; for both instances of toolbar_draw, one for floating image, one for background image]
+- Moved double-click to open token information window (PC or NPC) to ctrl + left-click. This was done to enable the window to open up on top of the CT, due to the way the code is layed out. [scripts/5e_combat_enhancer : openTokenInformationWindow(tokenMap, vImage), scripts/snap_token.lua : onClickRelease(target, button, image)]
+- Pressing masking button will do the following now: If not on background (image) layer, switch to background (image) layer and enable masking tool. If on background layer, disable masking tool and switch to top (play) layer. [campaign/record_image.xml : toolbar_draw : function onButtonPress(id) ; for both instances of toolbar_draw, one for floating image, one for background image]
 
-v1.4.1 (January 21st, 2019) (patch)
-- Removed 'Chat and modifiers on top (full screen)' menu item, as only part of development testing, not intended for public release. [scripts/5e_combat_enhancer.lua > registerMenuItems()]
-- Menu item added: Turn on or off token condition icon color fade on death. [scripts/5e_combat_enhancer.lua > registerMenuItems(), scripts/manager_token2.lua > updateEffectsHelper(tokenCT, nodeCT)]
-- Moved ctrl-click to open token information window (PC or NPC) to shift + left-click, due to overlapping functionality for selecting target with ctrl + left-click. [scripts/snap_token.lua > onClickRelease(target, button, image)]
+v1.4.1 (January 21st, 2019) (patch) [24 downloads]
+- Removed 'Chat and modifiers on top (full screen)' menu item, as only part of development testing, not intended for public release. [scripts/5e_combat_enhancer.lua : registerMenuItems()]
+- Menu item added: Turn on or off token condition icon color fade on death. [scripts/5e_combat_enhancer.lua : registerMenuItems(), scripts/manager_token2.lua : updateEffectsHelper(tokenCT, nodeCT)]
+- Moved ctrl-click to open token information window (PC or NPC) to shift + left-click, due to overlapping functionality for selecting target with ctrl + left-click. [scripts/snap_token.lua : onClickRelease(target, button, image)]
 
-v1.4.2 (January 23rd, 2019) (patch)
+v1.4.2 (January 23rd, 2019) (patch) [288 downloads]
 - Menu items: 
-    Change token condition icon size (tiny/small/medium). [scripts/5e_combat_enhancer > getTokenEffectWidth(), scripts/manager_token2 > updateEffectsHelper(tokenCT, nodeCT)]
-    Change token max condition icon number (1-20). [scripts/5e_combat_enhancer > getMaxTokenEffects(), scripts/manager_token2 > updateEffectsHelper(tokenCT, nodeCT)]
+    Change token condition icon size (tiny/small/medium). [scripts/5e_combat_enhancer : getTokenEffectWidth(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
+    Change token max condition icon number (1-20). [scripts/5e_combat_enhancer : getMaxTokenEffects(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
+
+v1.5.0 (March 11, 2019) (major features)    
+PROJECT DOWNLOADS AND UPDATES MOVED TO GitHub
+- Folder with install versions added to GitHub, including compressed .ext file for extension folder and extra graphics folder needed.
+- Added README.md file for GitHub.
+- Ping on map moved to ctrl + shift + left-click on map. [scripts/manager_ping.lua : doPing(x,y,imgctl)]
+- Restructure: Renamed folder containing blood splatter and other token graphics for the extension from 'items' to 'Combat Enhancer'.
+    Changed code references to the new folder name.
+- Refractoring, renaming, restructuring and removing of unused and active functions for future transparency in 5e_combat_enhancer.lua.    
+- Menu setting to modify the size of the font for showing token height. small/medium/large options. [extension.xml, graphics/graphics_fonts.xml, 5e_combat_enhancer : registerMenuItems(), scripts/manager_height.lua : createHeightWidget]
+- Menu setting to skip actors in CT that haven't rolled initiative. [extension.xml, 5e_combat_enhancer : registerMenuItems(), scripts/manager_combat : nextActor ]
+- Menu setting to switch between new horizontal health bars and the default vertical ones. [extension.xml, scripts/5e_combat_enhancer : registerMenuItems(); scripts/manager_token2.lua : updateHealthHelper, updateHealthBarScaleHorizontal, updateHealthBarScaleDefault; graphics/graphics_icons.xml ]
+- Bloodsplatter size scaling toned down a little. [scripts/manager_token2.lua : createSplatter -> local bloodPrototypesScale]-
+- Menu setting to enable using automated flanking rules (advantage on attack if conscious ally opposite of target). Currently only for medium sized actors and targets. 
+- Menu setting of automatic disadvantage if within melee range, while attacking with ranged weapon, if actor doesn't have the Crossbow Feat.
+- Menu Setting for automatic ranged attack modifiers with ranged weapons, against single a target for current Actor in CT.  
+    [scripts/5e_combat_enhancer: ]
+    [added scripts/manager_action_attack.lua from 5e Ruleset]
+    [scripts/manager_action_attack.lua: modAttack]
+    [campaign/scripts/image.lua: onMeasurePointer]   
+    - Menu item setting. [extension.xml, 5e_combat_enhancer: registerMenuItems(), scripts/manager_action_attack : getRoll] 
+    If attacking with a ranged weapon (for up to 10 weapon items list on Actions tab):
+    - If in melee, a disadvantage is automatically added. This checks for any enemies that are within melee reach (this could be 5' or 10' etc, depending the reach of the enemy) of the actor and not uncoscious, a message is displayed in the chat window.
+    - If between long and max range, a disadvantage is automatically added, a message is displayed in the chat window.
+    - If beyond max range, a message is displayed in the chat window.
+    - Exceptions included:
+        If target prone, disadvantage added. This is already part of FG core functionality when condition has been applied.
+        Feat: Crossbow Expert (for PC): Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls. Logic added.
+        Feat: Sharpshooter (for PC): Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls. Logic added.     
+- Shadow tokens added for player tokens while in background (mask) and middle layers for the GM. To make player token movements visible to the GM while on those layers.
+    These are updates made by Trenloe to his Enhanced Images Extension that I implemented over. (https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG)               
+    [campaign/scripts/updated_imagewindow.lua: showlayer, added setTokensPlayerLayerMoveHandler, added playLayerTokenMoved]
+- Button added to image menu to toggle between top (play) and bottom (background) layer. (saves going through two-click to see background notes and back)    
+    [campaign/record_image.xml, common/template_toolbar.xml, /graphics/toolbar/tool_layers_toggle_play_and_background_30.png]
+- Bug fix: Holding down alt while mouse wheel scrolling over token produced error (token resize). Fixed. [scripts/manager_token2.lua : onScaleChanged]
+- Bug fix: Height changes didn't update range correctly for actor when target changed altitude. Fixed. [scripts/manager_height.lua]

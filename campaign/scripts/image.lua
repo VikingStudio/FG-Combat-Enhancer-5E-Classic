@@ -42,7 +42,8 @@ function onClickRelease(button, x, y)
 		x = x / vpz;
 		y = y / vpz;
 					
-		PingManager.doPing(x,y,self); 
+		PingManager.doPing(x,y,self);
+		--FOW.toggleFOW(x,y,self);
 	end
 
 end
@@ -368,7 +369,9 @@ function onMeasurePointer(pixellength,pointertype,startx,starty,endx,endy)
 			distance = math.sqrt((baseDistance^2)+(heightDistance^2)); 
 			distance = math.floor((distance*10)+0.5)/10; 
 		end
-		releaseMeasureSemaphore(); 
+		releaseMeasureSemaphore(); 		
+
+		--Debug.chat('' .. (distance*5) .. ' ft');
 		return ('' .. (distance*5) .. ' ft'); 
 		--return ('' .. (distance*5) .. ' ft' .. ' SH: ' .. sh .. ' EH: ' .. eh); 
 		--return ('' .. distance .. ' units'); 

@@ -1,5 +1,9 @@
 --  Please see the COPYRIGHT.txt file included with this distribution for attribution and copyright information.
 
+-- Stores the token instances from the player layer when a lower layer is being viewed.
+-- Used to track onMove events to reposition lower layer token "shadows"
+local tokensPlayerLayer = nil;
+
 function onInit()
 	super.onInit()
 	
@@ -72,6 +76,41 @@ function onInit()
 	ImageManager.registerImage(features_image)
 	ImageManager.registerImage(play_image)
 end
+
+
+function setTokensPlayerLayerMoveHandler()
+	tokensPlayerLayer = self.play_image.getTokens();
+	if tokensPlayerLayer then
+		for k,v in pairs(tokensPlayerLayer) do
+			-- Only track moves for named tokens (more than likely tokens from combat tracker records).
+			if v.getName() ~= "" then
+				v.onMove = playLayerTokenMoved;
+			end
+		end
+	end
+end
+
+
+function playLayerTokenMoved(movedTokenInstance)
+	if movedTokenInstance and movedTokenInstance.getName() ~= "" then
+		local posX, posY = movedTokenInstance.getPosition();
+		local playLayerTokenName = "xPL " .. movedTokenInstance.getName();
+		local imageLayercontrol = self.image;
+		if layerEnabled() == "features_image" then
+			imageLayercontrol = self.features_image;
+		end
+		-- find token on lower layer
+		for k, v in pairs(imageLayercontrol.getTokens()) do
+			Debug.console("playLayerTokenMoved.  playLayerTokenName, imageLayerTokenName = ", playLayerTokenName, v.getName());
+			if v.getName() == playLayerTokenName then
+				v.setPosition(posX, posY);
+				break;
+			end
+		end
+		
+	end
+end
+
 
 function onClose()
 	ImageManager.unregisterImage(features_image)
@@ -148,6 +187,8 @@ function showLayer(layername)
 		LayerTokenManager.removeLayerTokens(self, "image")
 		-- Remove any token shadows on the feature layer
 		LayerTokenManager.removeLayerTokens(self, "features_image")
+		-- Clear token instances for play layer as we're back on that layer
+		tokensPlayerLayer = nil;		
 	elseif layername == "features" then
 		-- Disable and set invisible: play (top) image, Enable and set visible: features (middle) image, Disable and set visible: image (bottom) image
 		play_image.setEnabled(false)
@@ -160,6 +201,7 @@ function showLayer(layername)
 		-- Remove any token shadows set on the base layer
 		LayerTokenManager.removeLayerTokens(self, "image")
 		-- Add token shadows for this layer
+		setTokensPlayerLayerMoveHandler();
 		LayerTokenManager.showLayerTokens(self, "play_image", "features_image")
 	else
 		-- Disable and set invisible: play (top) and features (middle) images, Enable and set visible: image (bottom) image
@@ -173,6 +215,7 @@ function showLayer(layername)
 		-- Remove any token shadows on the feature layer
 		LayerTokenManager.removeLayerTokens(self, "features_image")
 		-- Show tokens from player layer - pass window instance (self) to toolkit function
+		setTokensPlayerLayerMoveHandler();
 		LayerTokenManager.showLayerTokens(self, "play_image", "image")
 		LayerTokenManager.showLayerTokens(self, "features_image", "image")
 	end
