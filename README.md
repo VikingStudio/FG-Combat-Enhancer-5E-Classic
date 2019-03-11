@@ -196,7 +196,7 @@ v1.4.1 (January 21st, 2019) (patch) [24 downloads]
 - Menu item added: Turn on or off token condition icon color fade on death. [scripts/5e_combat_enhancer.lua : registerMenuItems(), scripts/manager_token2.lua : updateEffectsHelper(tokenCT, nodeCT)]
 - Moved ctrl-click to open token information window (PC or NPC) to shift + left-click, due to overlapping functionality for selecting target with ctrl + left-click. [scripts/snap_token.lua : onClickRelease(target, button, image)]
 
-v1.4.2 (January 23rd, 2019) (patch) [155 downloads]
+v1.4.2 (January 23rd, 2019) (patch) [288 downloads]
 - Menu items: 
     Change token condition icon size (tiny/small/medium). [scripts/5e_combat_enhancer : getTokenEffectWidth(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
     Change token max condition icon number (1-20). [scripts/5e_combat_enhancer : getMaxTokenEffects(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
