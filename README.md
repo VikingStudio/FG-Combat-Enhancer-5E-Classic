@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -1098,3 +1099,173 @@ Change token max condition icon number (1-20). [scripts/5e_combat_enhancer : get
   </body>
 </html>
 
+=======
+# 5e-Combat-Enhancer
+A community extension I'm writing to improve 5e combat in Fantasy Grounds.
+
+Support thread: https://www.fantasygrounds.com/forums/showthread.php?47146-5e-Combat-Enhancer-(built-on-retired-GPL-Advanced-Kombat-extension)
+
+Github: https://github.com/StyrmirThorarins/5e-Combat-Enhancer
+
+
+Features Summary
+
+
+    This is a summary of the main features. I may miss a feature or two here, but it contains the majority of them. See Changelog for detailed updates and features.
+
+    5e Combat Enhancer is mainly a visual and quality of life improvement, for running combat in D&D 5e in FG. It includes things such as, layers to the maps, black mask (instead of pale grey) for default theme, new graphics to signify damage, blood splatter, condition graphics, chat graphics and text formatting etc.
+
+    Things such as being able to easily see what token refers to which entry in the CT (combat tracker), and wise versa due to highlighting.
+    Being able to add tokens directly onto the map and from there onto the CT as easily as vice versa, by right clicking the tokens. For the DM, dragging and dropping an NPC from the NPC list will automatically add the token hidden, if available (no need to open up entry and drag token image onto map).
+
+    Large clearly readable, semi-transparent, horizontal health bars and dot health bulbs. Larger than the default and scale automatically with the size of the tokens.
+
+    Semi-transparent easily customizable color and transparency highlight backgrounds.
+
+    The DM and players can both drag and drop conditions onto themselves (token or in CT). If the condition already exists on the target when dropped, it is removed instead.
+    Right-clicking tokens linked with the CT gives a new option, Effects. This opens up a custom, compact movable window that contains all the effects. You can drag and drop effects from this onto any CT linked token on the map as normal.
+
+    Check or cross mark graphics on top of tokens after making saving throw attack to graphically show the results. Clear again after save by using one of the new buttons on top of the map.
+
+    Also try interacting with the tokens AND map, while holding down shift, alt, ctrl keys, or a combination of those, while using the left and right mouse buttons and the scroll wheel to discover some special functionality.
+    - Shift + scroll while hovering over a token, gives you an altitude counter for example, and the distance to your target is actually calculated with the height in mind.
+    - Shift + left click on token. Opens tokens information dialogue window.
+    - Shift + left click on map, zooms and relocates the players view to that of the DM in their clients if they have that map/image open.
+    - Alt + left click on token. Deletes the token image from the map.
+    - Alt + ctrl + left click on token. Deletes the token image from the map and entry in CT.
+
+    - Middle mouse button held and mouse dragged on image / map. Drags image around similar to using golden button in lower right corner of image.
+
+    Add on top of that all the additions and changes from the changelog in the next post.
+
+
+    IMPORTANT
+
+    If you're trying to interact with a token, pin or image on your map and it doesn't seem to work. Then odds are it's on another layer than the one you currently have selected. Change layers on top of the image panel.
+    Only place player character tokens on the top layer. Otherwise they will not be able to interact with them. Same goes for NPC tokens, so the formatting of health bars and other graphics is done correctly.
+
+    When a player is at 0 hp's you have to apply your healing directly to the them on the combat tracker, rather than to their token on the combat map. As soon as they are at 1 hp or above their token is returned to the interactionable top layer again and you can interact with it as normal.
+
+    Make sure you go to your Settings > Combat (GM) > View : Wound Categories, and set them to 'Detailed'. This is so the code can accurately add wound graphics onto the tokens. 
+
+
+
+    Install
+    
+    Open the folder "- INSTALL VERSIONS (extension file and needed graphics folder)"
+      
+      Extension file: "5e-Combat-Enhancer v?_?_?.ext"
+
+      Includes: 
+        This is the actual extension, it includes the compressed codebase and a number of graphics.
+
+      Where to place:
+        Copy this file to your extension folder (example: Fantasy Grounds\Data\extensions\ [place file here] ).
+
+
+      =======
+
+
+      Graphics folder: "5e Combat Enhancer" folder.
+
+      Includes:
+        Fog of War graphics.
+        Blood splatter graphics on npc/pc death.
+        Map focus graphics (when GM shift + left-click's map).
+
+
+      Where to place:
+        Copy and paste this folder '5e Combat Enhancer' into the tokens\host folder. 
+
+        Your path should look something like this if you installed your data folder with the default name:
+        [Some drive, C: for example]\[any sub directory path if any]\Fantasy Grounds Data\tokens\host\5e Combat Enhancer
+
+        You can also find this path by opening up your game. Clicking on Tokens -> GM.
+
+
+
+Changelog
+
+5e Combat Enhancer Changelog
+
+//////////////////////////////////////////
+
+Changelog / Added / Modified:
+Versioning: v(Major.Minor.Patch) https://en.wikipedia.org/wiki/Software_versioning
+
+v1.1.0 (December 26th, 2018) (major features) [80 ish downloads]
+- Created new loading icon.
+- Version checking. Changed to check for version 3.3.7 as core of module is working for that version. [scripts/manager_versionchk.lua]
+    Currently only works with regular image view panel, not the background versions added in 3.3.7, as it relies on layers support by https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG).
+- Combat tracker. Effects icon change. [graphics/graphics_buttons.xlm]
+    Changed icon for effects in combat tracker to be the same as in the CoreRPG set (the little man/woman), and on the actions section of character sheets.
+    Edited image to make it fit better with the others in the CT. Removed most of the sheen around the image, enlarged it, added a tint of brown to the image.
+- Images in regular view given a black backround/mask color. Graphics based on default theme. [extension.xml]
+- Blood Splatter and Pointer Graphics to Copy. Folder added containing blood splatter and pointer graphics. Open the folder for directions where to copy to make it work in-game.
+- Fast deletion of Tokens. [scripts/modifications.lua]
+    Deletes token from combat map for host, if left-clicked  while Alt key is held down.
+    Deletes token from combat map and combat tracker for host, if left-clicked while Alt + Control keys are held down.
+    ps. note that dead tokens are on the second layer, and blood splatter is on the third.        
+
+v1.2.0 (December 27th, 2018) (major features) [90ish downloads]
+- Horizontal health bars, slightly less than token width when full health, appear above token. Larger and more easily readable. Resize and relocate ratio wise to account for different grid and resolutions sizes. Light transparency added to health bar. [ new horizontal health bar graphics, graphics/graphics_icons.xml, manager_token2.lua : updateHealthBarScale(tokenCT, nodeCT) ; updateHealthHelper(tokenCT, nodeCT) ]
+    Health bars dissapear when no health left (incapacitated/dead).            
+- Dot health indicators roughly doubled in size for better readability. Resize and relocate ratio wise to account for different grid and resolutions sizes. [ updated graphics for health dot, relocated dot to align due to increased dimensions, manager_token2.lua : updateHealthHelper(tokenCT, nodeCT) ]
+
+v1.2.1 (January 1st, 2019)(patch)  [129 downloads] 
+- Blood Splatter and Pointer Graphics to Copy.zip. Fixed directory instructions for "Where to place to work.txt". Set to default of "Fantasy Grounds Data/tokens/".
+- Token highlight underlays made more transparent (20%), so the effect is softer and less visually distracting. Thanks to AlphaDecay for the suggestion. [11 instances of token.addUnderlay() in: scripts\modifications.lua, scripts\manager_token.lua (two spots in hilightHover, scripts\manager_maptoken.lua (one in prepMapToken, one in initMapTokens, one in initSingleToken, two in onCTMenuSelection), scripts\snap_token.lua (one in customTurnStart), ct\scripts\ct_token.lua (two in onHover), ct\scripts\ct_entry.lua (one in activeHighlight)]
+    Constant colors used are set in scripts/modifications.lua (TOKENUNDERLAYCOLOR_1, TOKENUNDERLAYCOLOR_2, TOKENUNDERLAYCOLOR_3). You can change them there and they will be changed over the whole extension in the appropriate places after save and reload.
+    Replaced in files: AA00FF00 with 3300FF00, AAF9FF44 with 33F9FF44, AA0000FF with 330000FF.
+    First two numbers/letters refer to the alpha channel or transparency levels. Alpha channel (ranging from 0-255) in hex, opacity at 40% = 66, 30% = 4D , 20% = 33, 10% = 1A    
+- Incorrect console message on version checking. Referred to Advanced Kombat, fixed to refer to 5e Combat Enhancer. [manager_versionchk.lua]
+
+v1.3.0 (January 13th, 2019) (major features) [82 downloads]
+NOW FULLY COMPATABLE WITH FG 3.3.7.
+- Compatability added for FG 3.3.7 background image options. 
+- Layers support for background images. Updated project with new code from Enhanced Images extension, https://www.fantasygrounds.com/forums/showthread.php?20231-Enhanced-Images-(layers)-for-FG-3-0-CoreRPG-(and-rulesets-based-on-CoreRPG. [campaign/record_image.xml]
+    [campaign/scripts/manager_maptoken.lua] modified code to support background image panels and to work with updated Enhanced Images code
+    [campaign/scripts/image.lua] modified code to support background image panels and to work with updated Enhanced Images code
+    [campaign/record_image.xml] overwritten with code from Enhanced Images: campaign/updated_record_image.xml
+    [campaign/scripts/updated_image.lua] added
+    [campaign/scripts/updated_imagewindow.lua] added, replacing older imagewindow.lua, references updated to point to updated_imagewindow.lua
+- Added clear saves button to all image panel types (regular/background). [scripts/manager_maptoken.lua] [campaign/record_image.xml]       
+- Black mask (fog of war) for all image versions, regular and background. [extension.xml, graphics/frames/imagepanel v2.png]    
+- Added check for left-click only activation for alt and alt+ctrl mouse clicks on tokens [modifications.lua, onClickDown]
+- Changed background image buttons from Test version to smaller Live version editions by removing prior image refernces in xml, defaulting to default. [graphics/icons.xml]
+- Changed image grid menu item buttons to the smaller default graphics. For better readbility and distinction from layers button graphics. [template_toolbar.xml]
+- Removed a number of unneeded console outputs that happened during runtime.
+- Blood splatter code changed to work with backgound image layers as well. [scripts/manager_token2.lua : function createSplatter(tokenCT,nodeCT,targetLayer), function updateStatusOverlayWidgetHelper(tokenCT,nodeCT,targetLayer)]    
+- Shift+left mouse click, ping and move view for players to gm focus now working with backgound images as well. [campaign/record_image.xml] 
+- Double-clicking Token on battlemap, now opens up character or NPC dialogue window, similarly to the default behaviour in FG. [scripts/modifications.lua : function onInit(), function onDoubleClick(tokenMap, vImage)]
+
+v1.4.0 (January 21st, 2019) (major features) [- downloads]
+- Updates to COPYRIGHT.txt. Copyright text updates across project to point to the COPYRIGHT.txt file for details as applicable.
+- Features and patches split into: 'Changelog (versions).txt' and 'TODO, Wishlist.txt'. 
+- Refractoring:
+    'scripts/modifications.lua' renamed to '5e_combat_enhancer.lua', name changed to 'CombatEnhancer', references in code fixed to point to renamed script and name. 
+    'updated_image.lua' from Enhanced layers extension deleted, as all code updates have been updated to image.lua which includes a lot of additional code for this extension. 
+    'campaign/scripts/toolbar_draw.lua' deleted as I've written updated code to switch between layers when masking button used in 'campaign/record_image.xml'.
+- Menu items added under new menu heading of '5e Combat Enhancer' with various functionality: [extension.xml, script/5e_combat_enhancer : registerMenuItems(), onInit()]
+    Change the opacity of GM token underlays colors, ranging from 100%-10%. 20% recommended for best appearance. [scripts/5e_combat_enhancer : updateUnderlayOpacity(), onInit()]            
+    Turn on of off drawing blood on tokens as they take damage. [scripts/manager_token2.lua : updateStatusOverlayWidget(tokenCT,nodeCT)]
+    Turn on or off drawing of skull on death. [scripts/manager_token2.lua : updateStatusOverlayWidget(tokenCT,nodeCT)]
+    Turn on or off blood splatter rendering on death. [scripts/manager_token2.lua : createSplatter(tokenCT,nodeCT,targetLayer)]
+    Turn on or off to show NPC death clearly in the CT by fading the entry. [ct/scripts/clientct_entry.lua : updateDisplay(), ct/scripts/ct_entry.lua : updateDisplay()]
+    Turn on or off to show NPC death by fading effects icons on top of token. 
+    Scaling options for blood splatters on token death, default x1 - x3. [scripts/manager_token2.lua : createSplatter(tokenCT,nodeCT,targetLayer)]        
+- Clear saves button only appears if there are tokens on the battle map. [campaign/record_image.xml]   
+- Clear saves button was to close to the edge. Fixed. [campaign/record_image.xml]
+- Moved double-click to open token information window (PC or NPC) to ctrl + left-click. This was done to enable the window to open up on top of the CT, due to the way the code is layed out. [scripts/5e_combat_enhancer : openTokenInformationWindow(tokenMap, vImage), scripts/snap_token.lua : onClickRelease(target, button, image)]
+- Pressing masking button will do the following now: If not on background (image) layer, switch to background (image) layer and enable masking tool. If on background layer, disable masking tool and switch to top (play) layer. [campaign/record_image.xml : toolbar_draw : function onButtonPress(id) ; for both instances of toolbar_draw, one for floating image, one for background image]
+
+v1.4.1 (January 21st, 2019) (patch) [24 downloads]
+- Removed 'Chat and modifiers on top (full screen)' menu item, as only part of development testing, not intended for public release. [scripts/5e_combat_enhancer.lua : registerMenuItems()]
+- Menu item added: Turn on or off token condition icon color fade on death. [scripts/5e_combat_enhancer.lua : registerMenuItems(), scripts/manager_token2.lua : updateEffectsHelper(tokenCT, nodeCT)]
+- Moved ctrl-click to open token information window (PC or NPC) to shift + left-click, due to overlapping functionality for selecting target with ctrl + left-click. [scripts/snap_token.lua : onClickRelease(target, button, image)]
+
+v1.4.2 (January 23rd, 2019) (patch) [155 downloads]
+- Menu items: 
+    Change token condition icon size (tiny/small/medium). [scripts/5e_combat_enhancer : getTokenEffectWidth(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
+    Change token max condition icon number (1-20). [scripts/5e_combat_enhancer : getMaxTokenEffects(), scripts/manager_token2 : updateEffectsHelper(tokenCT, nodeCT)]
+>>>>>>> 00b6f8e1e69b72ac9461d0281a0831d8687dfbb9
