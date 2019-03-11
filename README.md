@@ -3,8 +3,7 @@ A community extension I'm writing to improve 5e combat in Fantasy Grounds.
 
 Support thread: https://www.fantasygrounds.com/forums/showthread.php?47146-5e-Combat-Enhancer-(built-on-retired-GPL-Advanced-Kombat-extension)
 
-Github: https://github.com/StyrmirThorarins/5e-Combat-Enhancer
-
+Dependency: The Core 'RPG Token Helper' extension is required for this extension to fully work. https://github.com/StyrmirThorarins/FG-Core-RPG-Token-Helper
 
 Features Summary
 
