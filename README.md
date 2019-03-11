@@ -31,12 +31,47 @@ Features Summary
     - Alt + left click on token. Deletes the token image from the map.
     - Alt + ctrl + left click on token. Deletes the token image from the map and entry in CT.
 
+    - Middle mouse button on player token to commit suggested movement path.
+
     - Middle mouse button held and mouse dragged on image / map. Drags image around similar to using golden button in lower right corner of image.
 
     Add on top of that all the additions and changes from the changelog in the next post.
 
+New Menu Options
 
-    IMPORTANT
+    Automatic ranged modifiers
+        Checks on ranged weapon range, applies disadvantage if not Displays messages with details of ranged attacks.
+    Blood splatter scaling
+        Scales the size of the bloodsplatter that appears on token death.
+    Change NPC background on death in CT
+        If on, the background of dead NPCs in the combat tracker changes, otherwise it remains unchanged on death.
+    Change NPC token effect icons on death
+        If on, the token effect icons on NPCs are greyed on NPC death. If off their remain unchanged on death.
+    Draw blood on token
+        Draws blood splatters on tokens when they take certain percentile amounts of damage.
+    Draw skull on death
+        Draw skull on token on death.
+    Height font size
+        Modifies the size of the height text that appears when middle mouse button is scrolled over token.
+    Horizontal health bars
+        When health bars are on, it displays them as larger partially opaque health horizontal bars on top of the tokens instead of the default.
+    Ranged in melee modifier
+        If a ranged attack is made, checks if an enemy is in melee range. If character has the Crossbow Expert feat, they are not effected. Displays a message.
+    Render blood splatter on death
+    Draw a blodd splatter under the token on token death.
+    Skip CT actors that haven't rolled initiative
+        Skips actors in the CT that don't have any initatives yet.
+    Token effect icon size
+        Scales the size of the effect icons.
+    Token max effect icon number
+        Sets the number of maximum effect icons to display.
+    Token underlay opacity (GM only)
+        Controls the opacity of the underlay layer graphics that highlights tokens on the combat map for the GM/DM.
+    Use flanking rules
+        Gives advantage if a flanking attack takes place. Also considers if actor, or ally are to far away from the target on the vertical plane.
+
+
+IMPORTANT
 
     If you're trying to interact with a token, pin or image on your map and it doesn't seem to work. Then odds are it's on another layer than the one you currently have selected. Change layers on top of the image panel.
     Only place player character tokens on the top layer. Otherwise they will not be able to interact with them. Same goes for NPC tokens, so the formatting of health bars and other graphics is done correctly.
@@ -47,7 +82,7 @@ Features Summary
 
 
 
-    Install
+Install
     
     Open the folder "- INSTALL VERSIONS (extension file and needed graphics folder)"
       
