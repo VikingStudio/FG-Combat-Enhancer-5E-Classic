@@ -40,7 +40,7 @@ function registerMenuItems()
 	OptionsManager.registerOption2("CE_CFNPC", false, "option_header_5ecombatenhancer", "option_fade_npc_effect_icons_on_death", "option_entry_cycler",
 		{ labels = "option_val_off", values = "off", baselabel = "option_val_on", baseval = "on", default = "on" })					
 	OptionsManager.registerOption2("CE_BSS", false, "option_header_5ecombatenhancer", "option_blood_splatter_scaling", "option_entry_cycler",
-		{ labels = "default|default x 1.25|default x 1.5|default x 1.75|default x 2|default x 2.5|default x 3", values = "default|default_1|default_2|default_3|default_4|default_5|default_6", default = "default_1" })
+		{ labels = "default|default x 0.5|default x 0.75|default x 1.25|default x 1.5|default x 1.75|default x 2", values = "default|default_1|default_2|default_3|default_4|default_5|default_6", default = "default" })
 	OptionsManager.registerOption2("CE_TES", false, "option_header_5ecombatenhancer", "option_token_effect_size", "option_entry_cycler",
 		{ labels = "tiny|small|medium", values = "option_tiny|option_small|option_medium", default = "option_medium" })
 		-- { labels = "tiny|small|medium|large|huge|gargantuan", values = "option_tiny|option_small|option_medium|option_large|option_huge|option_gargantuan", default = "option_medium" })
@@ -55,7 +55,7 @@ function registerMenuItems()
 	OptionsManager.registerOption2("CE_SNIA", false, "option_header_5ecombatenhancer", "option_skip_non_initiatived_actor", "option_entry_cycler",
 		{ labels = "option_val_on", values = "on", baselabel = "option_val_off", baseval = "off", default = "on" })		
 	OptionsManager.registerOption2("CE_FR", false, "option_header_5ecombatenhancer", "option_flanking_rules", "option_entry_cycler",
-		{ labels = "option_val_on", values = "on", baselabel = "option_val_off", baseval = "off", default = "off" })	
+		{ labels = "Advantage|+2|+5", values = "option_val_on|option_val_2|option_val_on_5", baselabel = "option_val_off", baseval = "option_val_off", default = "option_val_off" })	
 	OptionsManager.registerOption2("CE_HHB", false, "option_header_5ecombatenhancer", "option_horizontal_health_bars", "option_entry_cycler",
 		{ labels = "option_val_on", values = "on", baselabel = "option_val_off", baseval = "off", default = "on" })							
 	OptionsManager.registerOption2("CE_RMM", false, "option_header_5ecombatenhancer", "option_ranged_melee_modifier", "option_entry_cycler",

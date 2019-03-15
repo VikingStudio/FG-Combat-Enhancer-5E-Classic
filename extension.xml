@@ -21,7 +21,7 @@
 
 	<properties>
 		<name>5e Combat Enhancer</name>
-		<version>1.5.0</version>
+		<version>1.5.1</version>
 		
 		<author>Styrmir T.</author>
 		<description>5e Combat Enhancer</description>
@@ -63,6 +63,9 @@
 		<string name="option_horizontal_health_bars">Horizontal health bars (re-add tokens or reload)</string>
 		<string name="option_ranged_melee_modifier">Ranged in melee modifier (for medium sizes and smaller only)</string>
 
+		<!-- Radial menu -->
+		<icon name="spellshare" file="graphics/radial/icon_broadcast.png" />
+		<string name="spellshare">Post spell text into chat</string>
 
 		<!-- Status icons -->
 		<icon name="ec_icon" file="icon.png" />		

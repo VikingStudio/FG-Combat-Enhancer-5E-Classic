@@ -685,7 +685,7 @@ function updateStatusOverlayWidget(tokenCT,nodeCT)
 	if (sStatus == "Dead" or
 	sStatus:match("Dying")) and
 	imgContainer.getName() == 'play_image' then
-		tokenCT = updateStatusOverlayWidgetHelper(tokenCT,nodeCT,'features_image'); 
+		tokenCT = updateStatusOverlayWidgetHelper(tokenCT,nodeCT,'features_image'); 		
 		-- if we're Dead/Dying then make a splatter too!
 		if (sStatus:match("Dying") or 
 		sStatus == "Dead") and
@@ -977,7 +977,7 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 	local bloodPrototypesScale = {
 		1.5,
 		2,
-		3,
+		4,
 		1.5,
 		2,
 		2,
@@ -989,64 +989,16 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 
 	Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 	
 	local ctrlImage, wndImage, bWindowOpened = ImageManager.getImageControl(tokenCT, false);
-	--imgCtlBackground, imgCtlFeature, imgCtlPlay = ctrlImage;
-	--Debug.chat('ctrlImage', ctrlImage, 'wndImage', wndImage, 'bWindowOpened', bWindowOpened);	
-
-	--[[
-	For the floating windows, you can get an exact image window by using:
-	Interface.findWindow("imagewindow", path);
-
-	For the background panels, you will need to look up the value of the subwindow within each background panel (if the subwindow exists).
-	* Use "wBackPanel = Interface.findWindow("imagebackpanel", "")" and "wFullPanel = Interface.findWindow("imagefullpanel", "")" to get each top level panel window.
-	* If the panel is not nil, then use "sClass, sRecord = wBackPanel.getValue()" to get the contained windows class and path information.
-	* You don't need the class information, but then you can use the path information to see which image record value that the subwindow is pointing to.
-	]]--
-
-
-	-- removed in v1.3.0 as ctrlImage returns same value
-	-- get the windowclass from either usual image dialogue, background image panel, full screen background image panel
-	--[[
-	local w = Interface.findWindow("imagewindow", imgParentContainer);
-	Debug.chat('w window', w);
-	if not w then 
-		w = Interface.findWindow("imagebackpanel", imgParentContainer);
-		Debug.chat('w backpanel', w);
-	end
-	if not w then
-		w = Interface.findWindow("imagefullpanel", imgParentContainer);
-		Debug.chat('w fullpanel', w);
-	end			
-	--]]
 
 	if ctrlImage then	
-	-- removed in v1.3.0 as ctrlImage returns same value		
-	--if w then
-		--Debug.console("Found imagewindow " .. tokenCT.getName()); 
-		--[[
-		wc = w.getControls();
-		for k,v in pairs(wc) do
-			--Debug.console("WINDOW INSTANCE >> " .. tostring(k) .. ' -- ' .. tostring(v.getName())); 
-			if v.getName() == "image" then
-				imgCtlBackground = v; 					
-			elseif v.getName() == "features_image" then
-				imgCtlFeature = v; 					
-			elseif v.getName() == "play_image" then
-				imgCtlPlay = v; 					
-			end
-		end		
-		]]--
-		
-		imgCtlBackground = ctrlImage;
-		--imgCtlFeature = ctrlImage;
-		imgCtlPlay = ctrlImage;
+		imgCtlBackground = ctrlImage;		
+		imgCtlPlay = ctrlImage;		
 
-		-- get random number
-		local rand = math.random(#bloodPrototypes); 
-
-		local tokenproto = bloodPrototypes[rand]; 
 		local posX, posY, tokenMap; 
 		posX, posY = tokenCT.getPosition(); 
-		scale = bloodPrototypesScale[rand]; 
+		local rand = math.random(#bloodPrototypes); 
+		local tokenproto = bloodPrototypes[rand]; 			
+		local scale = bloodPrototypesScale[rand]; 		
 		Debug.console("blood proto is : " .. tokenproto .. ' scale is ' .. scale); 
 
 		imgCtlBackground.setTokenScale(imgCtlPlay.getTokenScale()); 
@@ -1063,6 +1015,13 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 			posX, posY = tokenMap.getImageSize();
 			Id = math.max(posX,posY); 
 			
+			-- find token scaling and image size in pixels
+			local tokenScale = tokenCT.getScale();
+			local sizeX, sizeY;
+			sizeX, sizeY = tokenMap.getImageSize();
+			--
+			local imageSizeMax = math.max(sizeX, sizeY);
+
 			-- get the scale factor as function of the source token scale NOTE: off by 2x?
 
 			-- Check to see if the extension menu Settings are configured to override the inbuilt 'Auto-scale to grid'. 
@@ -1075,29 +1034,29 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 				Debug.console('auto-scale blood splatter, default token scale')				
 			end							
 			if 	optionBloodSplatterScaling == 'default_1' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*0.5); 				
+				Debug.console('blood splatter scaling, token scale x 0.5')	
+			end		
+			if 	optionBloodSplatterScaling == 'default_2' then						
+				tokenMap.setScale(((Ss*Is)/Id)*scale*0.75); 				
+				Debug.console('blood splatter scaling, token scale x 0.75')	
+			end		
+			if 	optionBloodSplatterScaling == 'default_3' then						
 				tokenMap.setScale(((Ss*Is)/Id)*scale*1.25); 				
 				Debug.console('blood splatter scaling, token scale x 1.25')	
 			end		
-			if 	optionBloodSplatterScaling == 'default_2' then						
+			if 	optionBloodSplatterScaling == 'default_4' then						
 				tokenMap.setScale(((Ss*Is)/Id)*scale*1.5); 				
 				Debug.console('blood splatter scaling, token scale x 1.5')	
-			end		
-			if 	optionBloodSplatterScaling == 'default_3' then						
-				tokenMap.setScale(((Ss*Is)/Id)*scale*1.75); 				
-				Debug.console('blood splatter scaling, token scale x 1.75')	
-			end		
-			if 	optionBloodSplatterScaling == 'default_4' then						
-				tokenMap.setScale(((Ss*Is)/Id)*scale*2); 				
-				Debug.console('blood splatter scaling, token scale x 2')	
 			end			
 			if 	optionBloodSplatterScaling == 'default_5' then						
-				tokenMap.setScale(((Ss*Is)/Id)*scale*2.5); 				
-				Debug.console('blood splatter scaling, token scale x 2.5')	
+				tokenMap.setScale(((Ss*Is)/Id)*scale*1.75); 				
+				Debug.console('blood splatter scaling, token scale x 1.75')	
 			end						
 			if 	optionBloodSplatterScaling == 'default_6' then						
-				tokenMap.setScale(((Ss*Is)/Id)*scale*3); 				
-				Debug.console('blood splatter scaling, token scale x 3')	
-			end																	
+				tokenMap.setScale(((Ss*Is)/Id)*scale*2); 				
+				Debug.console('blood splatter scaling, token scale x 2')	
+			end													
 
 			tokenMap.setOrientation(math.random(0,7)); 
 			--[[

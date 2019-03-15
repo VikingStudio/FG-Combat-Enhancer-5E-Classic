@@ -236,3 +236,8 @@ PROJECT DOWNLOADS AND UPDATES MOVED TO GitHub
     [campaign/record_image.xml, common/template_toolbar.xml, /graphics/toolbar/tool_layers_toggle_play_and_background_30.png]
 - Bug fix: Holding down alt while mouse wheel scrolling over token produced error (token resize). Fixed. [scripts/manager_token2.lua : onScaleChanged]
 - Bug fix: Height changes didn't update range correctly for actor when target changed altitude. Fixed. [scripts/manager_height.lua]
+
+v1.5.1 (March 15th, 2019) (patch)
+- New flanking modifier options for menu. Off/Advantage/+2/+5. [5e_combat_enhancer: registerMenuItems, manager_action_attack: modAttack]
+- Bug fix: Pinging map didn't work. Fixed. [manager_ping.lua: doPing (fixed image path)]
+- Bug fix: Blood splatter size scaling issues. Fixed. Menu options changed to re-balance to changes. [scripts/manager_token2.lua: createSplatter, 5e_combat_enhancer.lua: registerMenuItems]

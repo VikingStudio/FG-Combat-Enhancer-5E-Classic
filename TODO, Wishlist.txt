@@ -25,6 +25,7 @@ The list may not be up to date.
 * Increase opacity for shadow tokens on lower levels of tokens on top layer.
 * Lock combat tracker in place. Trace locking code from menu for Chat window to see if it's possible to see example.
     From Moon Wizard: You’d have to convert the combat tracker to a panel to get it to lock. As a byproduct, it will always be open. Though, you’ll probably want to remove the combat tracker button too, so you don’t close the panel when you don’t want to.
+* Delete all spell splatter with key-combination or button on top of window.
 
 >>> Wishlist long term, large tasks.
 

@@ -16,7 +16,7 @@ function onInit()
 	onNameUpdated();
 
 	updateDisplay();
-
+	
 	if not User.isHost() then
 		DB.addHandler(DB.getPath(getDatabaseNode(), "locked"), "onUpdate", onLockChanged);
 	end

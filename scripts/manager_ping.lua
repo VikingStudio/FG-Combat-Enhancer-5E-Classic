@@ -14,7 +14,7 @@ function onInit()
 end
 
 function doPing(x,y,imgctl)
-	local tokenproto = "tokens/host/5e Combat Enhancer/ping_target.png";	
+	local tokenproto = "tokens/host/Combat Enhancer/ping_target.png";	
 	-- check parent for our image control siblings, if we
 	-- have an 'image sibling' get that window and place
 	-- our marker there else nothing

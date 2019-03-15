@@ -253,34 +253,38 @@ function modAttack(rSource, rTarget, rRoll)
 			--local sAttackType = rRoll.sDesc:match("%[ATTACK.*%((%w+)%)%]");			
 			--sWeaponName = rRoll.sDesc:match("%[ATTACK.*%w+%)].(%.*%)%.[");
 			--Debug.chat('modAttackweapon', rSource, rTarget, sAttackType, sWeaponName)
-			bRanged, bInRange, bDIS, sMessage = RangedAttack.getRangeModifier5e(rSource, rTarget, sAttackType, sWeaponName);
-			TokenHelper.postChatMessage(sMessage);		
+			
+			-- only get range modifiers if we have a source and target (no target if rolling from CT NPC without target or dropping on target for example, same for PC sheets)
+			if (rSource ~= nil and rTarget ~= nil) then
+				bRanged, bInRange, bDIS, sMessage = RangedAttack.getRangeModifier5e(rSource, rTarget, sAttackType, sWeaponName);			
+				TokenHelper.postChatMessage(sMessage);		
+			end
 		end		
-
-		-- Check if within melee range while using ranged weapon modifier is activated, if so apply
-		--[[
-		local bRangedMeeleModifier = OptionsManager.getOption("CE_RMM"); 
-		if (bRangedMeeleModifier == 'on') then
-			local bMeleeModifier = false;
-			local ctrlImg = TokenHelper.getControlImageByActor(rSource);
-			bMeleeModifier = RangedAttack.isEnemyInMeleeRange5e(ctrlImg, rSource);
-			if bMeleeModifier == true then 				
-				TokenHelper.postChatMessage("Ranged attack with conscious enemies in melee range."); 
-				bDIS = true;
-			end		
-		end
-		--]]
 
 		-- Check if flanking if setting is enabled in menu and attack is melee
 		local bFlankingRules = OptionsManager.getOption("CE_FR"); 
-		if (bFlankingRules == 'on') and (sAttackType == 'M') then			
+		if (bFlankingRules == 'option_val_on') and (sAttackType == 'M') then			
 			local bFlanking = Flanking.isFlanking(rSource, rTarget);
 			if bFlanking == true then 
 				TokenHelper.postChatMessage("Flanking melee attack."); 
 				bADV = true;
 			end		
+		end		
+		if (bFlankingRules == 'option_val_2') and (sAttackType == 'M') then
+			local bFlanking = Flanking.isFlanking(rSource, rTarget);
+			if bFlanking == true then 
+				TokenHelper.postChatMessage("Flanking melee attack."); 
+				nAddMod = 2;
+			end								
+		end
+		if (bFlankingRules == 'option_val_on_5') and (sAttackType == 'M') then
+			local bFlanking = Flanking.isFlanking(rSource, rTarget);
+			if bFlanking == true then 
+				TokenHelper.postChatMessage("Flanking melee attack."); 
+				nAddMod = 5;
+			end								
 		end				
-
+		
 		-- Get condition modifiers
 		if EffectManager5E.hasEffect(rSource, "ADVATK", rTarget) then
 			bADV = true;
@@ -415,8 +419,8 @@ function modAttack(rSource, rTarget, rRoll)
 			table.insert(rRoll.aDice, "p" .. vDie:sub(2));
 		end
 	end
-	rRoll.nMod = rRoll.nMod + nAddMod;
-	
+	rRoll.nMod = rRoll.nMod + nAddMod;	
+
 	ActionsManager2.encodeAdvantage(rRoll, bADV, bDIS);
 end
 
