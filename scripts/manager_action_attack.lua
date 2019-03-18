@@ -255,7 +255,8 @@ function modAttack(rSource, rTarget, rRoll)
 			--Debug.chat('modAttackweapon', rSource, rTarget, sAttackType, sWeaponName)
 			
 			-- only get range modifiers if we have a source and target (no target if rolling from CT NPC without target or dropping on target for example, same for PC sheets)
-			if (rSource ~= nil and rTarget ~= nil) then
+			local bConditions = RangedAttack.checkConditions(rSource, rTarget);			
+			if bConditions ~= false then
 				bRanged, bInRange, bDIS, sMessage = RangedAttack.getRangeModifier5e(rSource, rTarget, sAttackType, sWeaponName);			
 				TokenHelper.postChatMessage(sMessage);		
 			end

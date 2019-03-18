@@ -241,3 +241,6 @@ v1.5.1 (March 15th, 2019) (patch)
 - New flanking modifier options for menu. Off/Advantage/+2/+5. [5e_combat_enhancer: registerMenuItems, manager_action_attack: modAttack]
 - Bug fix: Pinging map didn't work. Fixed. [manager_ping.lua: doPing (fixed image path)]
 - Bug fix: Blood splatter size scaling issues. Fixed. Menu options changed to re-balance to changes. [scripts/manager_token2.lua: createSplatter, 5e_combat_enhancer.lua: registerMenuItems]
+
+v1.5.2 (March 18th, 2019) (patch)
+* Added conditions checking function call before running ranged modifier logic. This was done to cover various situations, such as when running theater of the mind combat, entries on CT but missing or no tokens on map, no map open, attacking from CT entry (without token) onto token on map, etc. [scripts/manager_action_attack.lua: modAttack]

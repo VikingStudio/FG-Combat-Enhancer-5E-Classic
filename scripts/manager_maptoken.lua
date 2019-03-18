@@ -42,8 +42,7 @@ end
 ]]--
 function onExtendedTokenSelection(target, ...)
 	local topSelection = arg[1];	
-	local selectedTokens = TokenHelper.getControlImageByToken(target).getSelectedTokens(); 
-	
+	local selectedTokens = TokenHelper.getControlImageByToken(target).getSelectedTokens(); 		
 
 	--Debug.console('EXTENDED SELECTION'); 
 

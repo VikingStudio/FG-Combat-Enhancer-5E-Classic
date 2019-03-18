@@ -4,7 +4,7 @@ All items in this section are under consideration and due to be looked at for fu
 The list may not be up to date.
 
 
->>>>>> TODO Immediate.
+>>>>>> TODO
 * In full screen backround mode bring and keep chat and dice modifiers on top as menu option. Not possible? error: 'bringToFront: Panel display order can not be changed'
     coreprg scripts/manager_image.lua
 * only draw direction lines and move token which represents own character (might not be possible due to core code)
@@ -26,6 +26,12 @@ The list may not be up to date.
 * Lock combat tracker in place. Trace locking code from menu for Chat window to see if it's possible to see example.
     From Moon Wizard: You’d have to convert the combat tracker to a panel to get it to lock. As a byproduct, it will always be open. Though, you’ll probably want to remove the combat tracker button too, so you don’t close the panel when you don’t want to.
 * Delete all spell splatter with key-combination or button on top of window.
+* If token removed from CT with pop-up menu, token is moved to bottom layer. If added again, it remains in the bottom layer. Move it back to the top "play" layer. 
+    /scripts/manager_maptoken.lua: onExtendedTokenSelection -> onNpcMenuSelection line 509
+    - pop-up menu handling : 
+        registerMenuItem
+        onMenuSelection 
+* Move mini-effects pop up location to under token. /scripts/manager_minieffect.lua: onMenuSelection         
 
 >>> Wishlist long term, large tasks.
 
