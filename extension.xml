@@ -24,7 +24,7 @@
 		<version>1.5.4</version>
 		
 		<author>Styrmir T.</author>
-		<description>5e Combat Enhancer v1.5.4</description>
+		<description>5e Combat Enhancer</description>
 		
 		<ruleset>
 			<name>5E</name>
@@ -41,8 +41,7 @@
 			<maxversion>2.9.9</maxversion>			
 		</dependency>
 		
-	</properties>
-    
+	</properties>    	
 
 	<base>									
 		<!-- Custom .lua code files for 5e Combat Enhancer -->
@@ -211,7 +210,7 @@
 		</options>-->
 
 		
-	</base>		
+	</base>			
 
-	<announcement text="5e Combat Enhancer" font="emotefont" icon="ec_icon" />	
+	<announcement text="5e Combat Enhancer v1.5.4" font="emotefont" icon="ec_icon" />			
 </root>
