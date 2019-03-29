@@ -244,3 +244,8 @@ v1.5.1 (March 15th, 2019) (patch)
 
 v1.5.2 (March 18th, 2019) (patch)
 * Added conditions checking function call before running ranged modifier logic. This was done to cover various situations, such as when running theater of the mind combat, entries on CT but missing or no tokens on map, no map open, attacking from CT entry (without token) onto token on map, etc. [scripts/manager_action_attack.lua: modAttack]
+
+v1.5.3 (March 29th, 2019) (patch)
+* Added dependency for the Token Helper extension. [extension.xml]
+* Fixed scaling issues of blood splatters for certain maps. [scripts/manager_token2.lua: createSplatter]
+* Removed some deprecated range code. [scripts/manager_token2.lua: getDistance, getTokenDistance]

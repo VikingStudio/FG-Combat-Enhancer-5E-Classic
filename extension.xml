@@ -21,7 +21,7 @@
 
 	<properties>
 		<name>5e Combat Enhancer</name>
-		<version>1.5.2</version>
+		<version>1.5.3</version>
 		
 		<author>Styrmir T.</author>
 		<description>5e Combat Enhancer</description>
@@ -33,6 +33,14 @@
 			<minrelease>7</minrelease>
 			-->
 		</ruleset>
+				
+		<dependency>
+			<name>Core RPG - Token Helper v1_1_3</name>
+			<!--
+			<minversion>1.1.3</minversion>
+			<maxversion>2.9.9</maxversion>
+			-->
+		</dependency>
 	</properties>
     
 

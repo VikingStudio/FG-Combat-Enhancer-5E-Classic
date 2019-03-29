@@ -12,11 +12,6 @@ local TOKEN_HEALTH_MINBAR = 14;
 local TOKEN_HEALTH_WIDTH = 20;
 
 function onInit()
-	-- TokenManager to get distance
-	TokenManager.getDistance = getDistance;
-	local distance, badjacent = TokenManager.getDistance();
-	--Debug.chat(distance);
-
 	--Debug.console('LOADED CUSTOM TOKENMANAGER2'); 
 	DB.addHandler("combattracker.list.*.hp", "onUpdate", updateHealth);
 	DB.addHandler("combattracker.list.*.hptemp", "onUpdate", updateHealth);
@@ -988,11 +983,26 @@ function createSplatter(tokenCT,nodeCT,targetLayer)
 	}; 
 
 	Debug.console("ATTEMPTING To Grab Image Window of " .. tokenCT.getName() .. " id: " .. tokenCT.getId()); 	
-	local ctrlImage, wndImage, bWindowOpened = ImageManager.getImageControl(tokenCT, false);
+	
+	-- find window instance for regular image window or if not found, background image window
+	local windowInstance = Interface.findWindow("imagewindow", imgParentContainer)	
+	if windowInstance == nil then 
+		local wndImage, bWindowOpened;
+		ctrlImage, windowInstance, bWindowOpened = ImageManager.getImageControl(tokenCT, false);			
+	end		
 
-	if ctrlImage then	
-		imgCtlBackground = ctrlImage;		
-		imgCtlPlay = ctrlImage;		
+	if windowInstance then	
+		wc = windowInstance.getControls();
+		for k,v in pairs(wc) do
+			--Debug.console("WINDOW INSTANCE >> " .. tostring(k) .. ' -- ' .. tostring(v.getName())); 
+			if v.getName() == "image" then
+				imgCtlBackground = v; 	
+			elseif v.getName() == "features_image" then
+				imgCtlFeature = v; 	
+			elseif v.getName() == "play_image" then
+				imgCtlPlay = v; 	
+			end
+		end		
 
 		local posX, posY, tokenMap; 
 		posX, posY = tokenCT.getPosition(); 
@@ -1299,95 +1309,3 @@ function getWidgetList(tokenCT, sSubset)
 	
 	return aWidgets;
 end
-
-
-
-
-
-
--- Code base start for automated range advantages/disadvantages/auto fail to attacks given range between attacker and set target ranged attack is made against.
-function getDistance(nodeAttacker, nodeTarget)
-	if nodeAttacker and nodeTarget then
-		local tokenAttacker = CombatManager.getTokenFromCT(CombatManager.asNodeCTName(nodeAttacker))
-		local tokenTarget = CombatManager.getTokenFromCT(CombatManager.asNodeCTName(nodeTarget))
-		if tokenAttacker and tokenTarget then
-			local nodeAttackerContainer = tokenAttacker.getContainerNode()
-			local nodeTargetContainer = tokenTarget.getContainerNode()
-			if nodeAttackerContainer.getNodeName() == nodeTargetContainer.getNodeName() then
-				local ctrlImage, winImage, bWindowOpened = ImageManager.getImageControl(tokenAttacker, true)
-				if ctrlImage and winImage then
-					local nDistance, _, bAdjacent = getTokenDistance(ctrlImage, tokenAttacker, tokenTarget)
-					if bWindowOpened then
-						winImage.close()
-					end					
-					return nDistance, bAdjacent
-				end
-			end
-		end
-	end
-end
-
-function getTokenDistance(ctrlImage, tokenTargeter, tokenTarget)
-	if ctrlImage and ctrlImage.hasGrid() and tokenTargeter and tokenTarget then
-		local scaleCtrl = function(ctrlImage)
-			if ctrlImage.window and
-				ctrlImage.window.toolbar and
-				ctrlImage.window.toolbar.subwindow and
-				ctrlImage.window.toolbar.subwindow.scale then
-				local ctrlScale = ctrlImage.window.toolbar.subwindow.scale
-				if ctrlScale.isValid and ctrlScale.getScaleValue and ctrlScale.getScaleLabel then
-					return ctrlScale
-				end
-			end
-		end
-		local sGridType = ctrlImage.getGridType()
-		local nTargeterPosX, nTargeterPosY = tokenTargeter.getPosition()
-		local nTargetPosX, nTargetPosY = tokenTarget.getPosition()
-		local nPositionX = nTargetPosX - nTargeterPosX
-		local nPositionY = nTargetPosY - nTargeterPosY
-		local nDistance = 0
-		local bAdjacent = false
-		local nSizeAdjustment = 0
-		local nodeAttackerCT = CombatManager.getCTFromToken(tokenTargeter)
-		local nodeTargetCT = CombatManager.getCTFromToken(tokenTarget)
-		if nodeAttackerCT and nodeTargetCT then
-			local nAttackerSize = math.max(DB.getValue(nodeAttackerCT, "space", 0), 1)
-			local nTargetSize = math.max(DB.getValue(nodeTargetCT, "space", 0), 1)
-			nSizeAdjustment = (nAttackerSize + nTargetSize - 2) / 2
-		end
-		if sGridType == "hexrow" or sGridType == "hexcolumn" then
-			local nGridHexWidth, nGridHexHeight = ctrlImage.getGridHexElementDimensions()
-			nDistance, bAdjacent = ImageManagerSW.measureVector(nPositionX, nPositionY, sGridType, ctrlImage.getGridSize(), nGridHexWidth, nGridHexHeight, nSizeAdjustment)
-		else
-			nDistance, bAdjacent = ImageManagerSW.measureVector(nPositionX, nPositionY, sGridType, ctrlImage.getGridSize(), nil, nil, nSizeAdjustment)
-		end
-		local ctrlScale = scaleCtrl(ctrlImage)
-		if ctrlScale and ctrlScale.isValid() then
-			return ImageManagerSW.scaledDistance(nDistance, ctrlScale), ctrlScale.getScaleLabel(), bAdjacent
-		else
-			return nDistance, nil, bAdjacent
-		end
-	end
-end
-
-
--- calling getDistance in SW ruleset
---[[
-
-	local getDistance = function(nodeAttacker, nodeTarget)
-		if OptionsManager.isOption("AARP", "on") then
-			local nDistance, bAdjacent = TokenManager.getDistance(nodeAttacker, nodeTarget)
-			return nDistance, bAdjacent
-		end
-	end
-
-local sAttackerType, nodeAttacker = ActorManager.getTypeAndNode(rSource)
-local sTargetType, nodeTarget = ActorManager.getTypeAndNode(rTarget)
-
-for _,rTarget in pairs(vTargets or {}) do
-		local nScore = rRollResult.nTotalScore
-		
-		local sTargetType, nodeTarget = ActorManager.getTypeAndNode(rTarget)
-		local aAgainstTargetModifiers = EffectManager.getEffectAgainstMe(sTargetType, nodeTarget)
-		local nDistance, bAdjacent = getDistance(nodeAttacker, nodeTarget)
-]]--
