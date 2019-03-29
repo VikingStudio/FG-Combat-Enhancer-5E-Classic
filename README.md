@@ -249,3 +249,6 @@ v1.5.3 (March 29th, 2019) (patch)
 * Added dependency for the Token Helper extension. [extension.xml]
 * Fixed scaling issues of blood splatters for certain maps. [scripts/manager_token2.lua: createSplatter]
 * Removed some deprecated range code. [scripts/manager_token2.lua: getDistance, getTokenDistance]
+
+v1.5.4 (March 29th, 2019) (patch)
+* Dependency changes. [extension.xml]

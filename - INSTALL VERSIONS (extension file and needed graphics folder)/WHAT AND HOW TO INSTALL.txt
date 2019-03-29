@@ -1,4 +1,4 @@
-Extension file: "5e-Combat-Enhancer v?_?_?.ext" 
+Extension file: "5e-Combat-Enhancer.ext" 
 
 Includes: 
 	This is the actual extension, it includes the compressed codebase and a number of graphics.
@@ -41,7 +41,7 @@ How to use:
 
 Other files:
 
-Original extension file: advanced_kombat_5e-master.ext
+Original extension file: 'Backup of Older Versions/advanced_kombat_5e-master.ext'
 
 This file is merely here for backup purposes, do not use this extension file along side the main extension.
 This is the original retired extension that this extension has built upon and improved.
