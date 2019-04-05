@@ -113,19 +113,6 @@ function onClickDown( token, button, image )
 			end				
 		end
 	end	
-
-	-- TEST SECTION
-	--bringInterfaceToFront();
-	--applyRangedWeaponModifiers();	
-	--pingExpandingCircle()
-	-- END OF TEST SECTION
-
-	-- Allow players to move their own tokens with middle mouse button press when tokens are locked.
-	-- Possibly add this as a menu option to allow or disallow.
-	--if button == 2 then
-		-- token move on path defined during locked stage
-	--	owner = getTokenPlayer( token );
-	--end
 end
 
 

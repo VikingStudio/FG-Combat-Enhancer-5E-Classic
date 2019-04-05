@@ -26,7 +26,7 @@ Features Summary
     Also try interacting with the tokens AND map, while holding down shift, alt, ctrl keys, or a combination of those, while using the left and right mouse buttons and the scroll wheel to discover some special functionality.
     - Shift + scroll while hovering over a token, gives you an altitude counter for example, and the distance to your target is actually calculated with the height in mind.
     - Shift + left click on token. Opens tokens information dialogue window.
-    - Shift + left click on map, zooms and relocates the players view to that of the DM in their clients if they have that map/image open.
+    - Ctrl + Shift + left click on map, zooms and relocates the players view to that of the DM in their clients if they have that map/image open.
     - Alt + left click on token. Deletes the token image from the map.
     - Alt + ctrl + left click on token. Deletes the token image from the map and entry in CT.
 
