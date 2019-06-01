@@ -456,6 +456,7 @@ function setActiveVisible()
 	end
 
 	if bNPC and spells.getWindowCount() > 0 then
+		spellslots.setVisible(v);
 		spells.setVisible(v);
 		spells_label.setVisible(v);
 	else

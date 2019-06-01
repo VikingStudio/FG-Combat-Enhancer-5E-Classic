@@ -13,7 +13,6 @@ The list may not be up to date.
 * lowest automatic damage to NPC 1 hp option
 * change PC unconscious, 0 hp graphic options (tringle to big for one), and make new more sleek and less obtrusive graphics    
 * Change weapon list loops to while not nil return, instead of for loops, this would then also work for spell lists (if i do those)
-* crossbow expert, no disadvantage when opponnent within 5', works for all weapons and spells
 * refractor 5e combat enhancer, change copyright for that file to myself and smiteworks: split into different files, each handling a particular aspect, getting muddled
 * update horizontal health bar to be even longer, long enough to cover gargantuan tokens (400x400). (current 850x38) why is this not covering the full width of the target? code change needed?
 * height changes don't work when larger or above creatures change their altitude
@@ -32,9 +31,14 @@ The list may not be up to date.
         registerMenuItem
         onMenuSelection 
 * Move mini-effects pop up location to under token. /scripts/manager_minieffect.lua: onMenuSelection         
+* Run clear saves automatically on next spell cast?
 
 >>> Wishlist long term, large tasks.
-
+* Flanking against larger than medium sized opponents.
+* Seperate flanking option settings in menu for medium and smaller, and large and larger. As I like to seperate the two. +2 for medium and smaller. Only flanking (advantage) against large and larger if skill check against DC or AC done by a player.
+* Altitude calculations currently only make calculations between what is the set altitude difference of the two tokens. Set up a menu item option to selects how it's calculated. 
+    Default, height differences define height. D&D 5E, box calculations, interception like for current range calculations. Large creature has 10' square it occupies for example in 3D.
+* Add range calculations settings options. Center of tokens range / 5e range (edge of square it occupies)    
     
 //////////////////////////////////////////
 

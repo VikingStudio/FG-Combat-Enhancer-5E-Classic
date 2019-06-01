@@ -252,3 +252,6 @@ v1.5.3 (March 29th, 2019) (patch)
 
 v1.5.4 (March 29th, 2019) (patch)
 * Dependency changes. [extension.xml]
+
+v1.5.5 (June 1st, 2019) (patch)
+* Spell slots missing for NPC entries in CT for spell casters (not innate spellcasters). Added spellslots to CT for casters. [ct/scripts/ct_entry.lua: setActiveVisible]
