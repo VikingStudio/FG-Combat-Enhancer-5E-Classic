@@ -271,6 +271,13 @@ function modAttack(rSource, rTarget, rRoll)
 				bADV = true;
 			end		
 		end		
+		if (bFlankingRules == 'option_val_1') and (sAttackType == 'M') then
+			local bFlanking = Flanking.isFlanking(rSource, rTarget);
+			if bFlanking == true then 
+				TokenHelper.postChatMessage("Flanking melee attack."); 
+				nAddMod = 1;
+			end								
+		end		
 		if (bFlankingRules == 'option_val_2') and (sAttackType == 'M') then
 			local bFlanking = Flanking.isFlanking(rSource, rTarget);
 			if bFlanking == true then 

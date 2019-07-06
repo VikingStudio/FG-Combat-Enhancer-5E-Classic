@@ -56,12 +56,15 @@ function doPing(x,y,imgctl)
 	if Input.isShiftPressed() and Input.isControlPressed() and imgctlPing then
 		local tokenMap = imgctlPing.addToken(tokenproto, x, y);
 		if tokenMap then
-			tokenMap.setVisible(true); 
-			--Debug.console('creation was a success!'); 
-			updatePingDataNode(tokenMap,imgctlPing); 
+			tokenMap.setVisible(true); 			
+			updatePingDataNode(tokenMap,imgctlPing, true); 
+		end			
+	elseif Input.isShiftPressed() and imgctlPing then
+		local tokenMap = imgctlPing.addToken(tokenproto, x, y);
+		if tokenMap then
+			tokenMap.setVisible(true); 		
+			updatePingDataNode(tokenMap,imgctlPing, false); 
 		end
-	else
-		updatePingDataNode(nil,imgctlPing); 
 	end
 
 end
@@ -99,7 +102,7 @@ end
 	Update the ping data node. If a token is present
 	then update the reference, if it's not then remove it.
 ]]--
-function updatePingDataNode(token,imgctlPing)
+function updatePingDataNode(token,imgctlPing, bMoveView)
 	local nodePing = DB.findNode('ping');
 	local nodePingId = nil;
 	local nodePingImage = nil; 
@@ -131,7 +134,10 @@ function updatePingDataNode(token,imgctlPing)
 			local x,y = token.getPosition();
 			--Debug.console('position x:' .. x .. ' y:' .. y); 
 			nodePingId.setValue(tostring(token.getId()));
-			sendPingOOB(imgNode,x,y,vpz); 
+			
+			if (bMoveView == true) then
+				sendPingOOB(imgNode,x,y,vpz); 
+			end
 		else
 			nodePingImage.setValue(''); 
 			nodePingId.setValue(''); 

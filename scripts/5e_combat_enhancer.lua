@@ -55,7 +55,7 @@ function registerMenuItems()
 	OptionsManager.registerOption2("CE_SNIA", false, "option_header_5ecombatenhancer", "option_skip_non_initiatived_actor", "option_entry_cycler",
 		{ labels = "option_val_on", values = "on", baselabel = "option_val_off", baseval = "off", default = "on" })		
 	OptionsManager.registerOption2("CE_FR", false, "option_header_5ecombatenhancer", "option_flanking_rules", "option_entry_cycler",
-		{ labels = "Advantage|+2|+5", values = "option_val_on|option_val_2|option_val_on_5", baselabel = "option_val_off", baseval = "option_val_off", default = "option_val_off" })	
+		{ labels = "Advantage|+1|+2|+5", values = "option_val_on|option_val_1|option_val_2|option_val_on_5", baselabel = "option_val_off", baseval = "option_val_off", default = "option_val_off" })	
 	OptionsManager.registerOption2("CE_HHB", false, "option_header_5ecombatenhancer", "option_horizontal_health_bars", "option_entry_cycler",
 		{ labels = "option_val_on", values = "on", baselabel = "option_val_off", baseval = "off", default = "on" })							
 	OptionsManager.registerOption2("CE_RMM", false, "option_header_5ecombatenhancer", "option_ranged_melee_modifier", "option_entry_cycler",
