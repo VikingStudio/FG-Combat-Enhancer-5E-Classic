@@ -4,7 +4,7 @@
 -- Check the version and inform of incompatibility
 ]]--
 
-local SUPPORTED_VERSION = "3.3.7"; 
+local SUPPORTED_VERSION = "3.3.8"; 
 
 function onInit()
 	if User.isHost() then
@@ -18,7 +18,7 @@ function onInit()
 			nExtVer = extInfo.version; 
 		end
 
-		if nMajor == 3 and nMinor == 3 and nSub == 7 then
+		if nMajor == 3 and nMinor == 3 and nSub == 8 then
 			Debug.console('5e Enhanced Combat Version check: Version is ' .. SUPPORTED_VERSION .. ', and valid'); 
 		else
 			Debug.console('5e Enhanced Combat Version check: Invalid version ' .. sVersion); 

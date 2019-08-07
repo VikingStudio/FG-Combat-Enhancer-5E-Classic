@@ -259,3 +259,6 @@ v1.5.5 (June 1st, 2019) (patch)
 v1.5.6 (July 6th, 2019) (patch)
 * Shift + Left-Mouse Click on image, now adds a ping icon on the map, without moving the players views and zoom level. [scripts/manager_ping.lua: doPing, updatePingDataNode]
 * Added option for a +1 modifier for flanking. [scripts/5e_combat_enhancer.lua: registerMenuItems | scripts/manager_action_attack.lua: modAttack]
+
+v1.5.7 (August 7th, 2019) (updated)
+* Updated version checking to check for FG v3.3.8 instead of previous v3.3.7. [scripts/manager_versionchk.lua]

@@ -21,7 +21,7 @@
 
 	<properties>
 		<name>5e Combat Enhancer</name>
-		<version>1.5.6</version>
+		<version>1.5.7</version>
 		
 		<author>Styrmir T.</author>
 		<description>5e Combat Enhancer</description>
@@ -213,5 +213,5 @@
 		
 	</base>			
 
-	<announcement text="5e Combat Enhancer v1.5.6" font="emotefont" icon="ec_icon" />			
+	<announcement text="5e Combat Enhancer v1.5.7" font="emotefont" icon="ec_icon" />			
 </root>
