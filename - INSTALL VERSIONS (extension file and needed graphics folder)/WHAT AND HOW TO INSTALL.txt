@@ -15,7 +15,7 @@ How to use:
 =======
 
 
-Graphics folder: "Combat Enhancer" folder.
+Graphics folder: "Combat Enhancer" folder or "Combat Enhancer Graphics.zip" file then extract contents. Both contain the same content.
 
 Includes:
 	Blood splatter graphics on npc/pc death.
