@@ -1,4 +1,4 @@
-# 5e-Combat-Enhancer
+# FG Combat Enhancer 5E Classic
 A community extension I'm writing to improve 5e combat in Fantasy Grounds.
 
 Support thread: https://www.fantasygrounds.com/forums/showthread.php?47146-5e-Combat-Enhancer-(built-on-retired-GPL-Advanced-Kombat-extension)
