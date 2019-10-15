@@ -1,5 +1,7 @@
-# 5e-Combat-Enhancer
-A community extension I'm writing to improve 5e combat in Fantasy Grounds.
+#  Combat Enhancer 5E Classic
+A community extension I've written to improve 5e combat in Fantasy Grounds for the original Fantasy Grounds.
+
+The FG Unity version is a seperate extension found here: https://github.com/StyrmirThorarins/FG-Combat-Enhancer-5E-Unity
 
 Support thread: https://www.fantasygrounds.com/forums/showthread.php?47146-5e-Combat-Enhancer-(built-on-retired-GPL-Advanced-Kombat-extension)
 
@@ -262,6 +264,9 @@ v1.5.6 (July 6th, 2019) (patch)
 
 v1.5.7 (August 7th, 2019) (updated)
 * Updated version checking to check for FG v3.3.8 instead of previous v3.3.7. [scripts/manager_versionchk.lua]
+<<<<<<< HEAD
 
 v1.5.8 (October 14th, 2019) (updated)
 * Disabled FG version checking. [extension.xml: <script name="VersionCheck" file="scripts/manager_versionchk.lua" /> commented out]
+=======
+>>>>>>> 0b4a84551d9860caf0e92d18e9e3e387c6af1950
