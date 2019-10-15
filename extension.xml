@@ -21,7 +21,7 @@
 
 	<properties>
 		<name>Combat Enhancer 5E Classic</name>
-		<version>1.5.7</version>
+		<version>1.5.8</version>
 		
 		<author>Styrmir T.</author>
 		<description>Combat Enhancer 5E Classic</description>
@@ -79,7 +79,7 @@
 
 		<!-- Status icons -->
 		<icon name="ec_icon" file="icon.png" />		
-		<script name="VersionCheck" file="scripts/manager_versionchk.lua" />
+		<!-- <script name="VersionCheck" file="scripts/manager_versionchk.lua" /> -->
         <script name="TokenManager2" file="scripts/manager_token2.lua" />
         <script name="CombatManager2" file="scripts/manager_combat2.lua" />
 		<script name="DataCommon" file="scripts/data_common.lua" />
@@ -215,5 +215,5 @@
 		
 	</base>			
 
-	<announcement text="Combat Enhancer 5E Classic v1.5.7" font="emotefont" icon="ec_icon" />			
+	<announcement text="Combat Enhancer 5E Classic v1.5.8" font="emotefont" icon="ec_icon" />			
 </root>
