@@ -264,3 +264,6 @@ v1.5.6 (July 6th, 2019) (patch)
 
 v1.5.7 (August 7th, 2019) (updated)
 * Updated version checking to check for FG v3.3.8 instead of previous v3.3.7. [scripts/manager_versionchk.lua]
+
+v1.5.8 (October 14th, 2019) (updated)
+* Disabled FG version checking. [extension.xml: <script name="VersionCheck" file="scripts/manager_versionchk.lua" />]
