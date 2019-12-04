@@ -270,6 +270,20 @@ function removeCTTarget(nodeSourceCT, nodeSourceCTTarget)
 	end
 end
 
+function removeCTTargetEntry(nodeSourceCT, nodeSourceCTTarget)
+	-- Get linked tokens (if any)
+	local tokenSource = CombatManager.getTokenFromCT(nodeSourceCT);
+	local tokenTarget = CombatManager.getTokenFromCT(DB.getValue(nodeSourceCTTarget, "noderef", ""));
+	
+	-- Delete CT target record
+	nodeSourceCTTarget.delete();
+	
+	-- If source linked token is actually targeting target linked token, then remove targeting on map
+	if tokenSource and tokenTarget and (tokenSource.getContainerNode().getNodeName() == tokenTarget.getContainerNode().getNodeName()) then
+		tokenSource.setTarget(false, tokenTarget);
+	end
+end
+
 function removeCTTargeted(nodeTarget)
 	if not nodeTarget then
 		return;

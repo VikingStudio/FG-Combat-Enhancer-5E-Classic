@@ -267,3 +267,6 @@ v1.5.7 (August 7th, 2019) (updated)
 
 v1.5.8 (October 14th, 2019) (updated)
 * Disabled FG version checking. [extension.xml: <script name="VersionCheck" file="scripts/manager_versionchk.lua" />]
+
+v1.5.9 (December 4th, 2019) (patch)
+* Removing a target of an actor in a CT, by left-clicking the icon of the target, would cause an error. Fixed. [scripts/manager_targeting.lua: removeCTTargetEntry]
