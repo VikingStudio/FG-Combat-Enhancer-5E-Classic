@@ -1,7 +1,7 @@
 # Combat Enhancer 5E Classic
 A community extension I've written to improve 5e combat in Fantasy Grounds for the original Fantasy Grounds.
 
-The FG Unity version is a seperate extension found here: https://github.com/StyrmirThorarins/FG-Combat-Enhancer-5E-Unity
+The FG Unity extension that carries over some of this functionality is found here: https://github.com/StyrmirThorarins/FG-5E-Enhancer
 
 Support thread: https://www.fantasygrounds.com/forums/showthread.php?47146-5e-Combat-Enhancer-(built-on-retired-GPL-Advanced-Kombat-extension)
 
