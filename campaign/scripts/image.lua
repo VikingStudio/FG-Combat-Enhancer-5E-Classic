@@ -14,7 +14,7 @@ function onInit()
 	
 	onCursorModeChanged();
 	onGridStateChanged();
-	window.updateDisplay();
+	-- window.updateDisplay();
 
 	-- height modifications
 
@@ -64,8 +64,7 @@ function onGridStateChanged(gridtype)
 
 	--Debug.console("image.lua: onGridStateChanged. Calling updateDisplay.");
 	window.onGridStateChanged();
-	window.updateDisplay();
-
+	-- window.updateDisplay();
 end
 
 function onTargetSelect(aTargets)

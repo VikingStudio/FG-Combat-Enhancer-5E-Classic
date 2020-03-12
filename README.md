@@ -270,3 +270,7 @@ v1.5.8 (October 14th, 2019) (updated)
 
 v1.5.9 (December 4th, 2019) (patch)
 * Removing a target of an actor in a CT, by left-clicking the icon of the target, would cause an error. Fixed. [scripts/manager_targeting.lua: removeCTTargetEntry]
+
+v1.6.0 (March 12th, 2020) 
+* Extension made compatible with FGC v3.3.10.
+* Added load order.

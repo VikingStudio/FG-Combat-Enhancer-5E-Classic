@@ -123,12 +123,20 @@ function onClose()
 	super.onClose()
 end
 
+function onToolbarChanged()
+	if super and super.onToolbarChanged then
+		super.onToolbarChanged()
+	end
+	syncLayerSizeToBaseImage();
+end
+
 function onLockChanged()
 	onStateChanged();
 end
 
-function onStateChanged()
-	super.onStateChanged()
+
+function syncLayerSizeToBaseImage()
+	Debug.console("syncLayerSizeToBaseImage...");
 	
 	-- sync play and features images to base image size which is set in super.onStageChanged
 	local nImageLeft, nImageTop, nImageRight, nImageBottom = image.getStaticBounds()
@@ -137,6 +145,14 @@ function onStateChanged()
 		features_image.setStaticBounds(nImageLeft, nImageTop, nImageRight, nImageBottom)
 		play_image.setStaticBounds(nImageLeft, nImageTop, nImageRight, nImageBottom)
 	end	
+end
+
+function onStateChanged()
+	if super and super.onStateChanged then
+		super.onStateChanged()
+	end	
+	
+	syncLayerSizeToBaseImage();
 
 --	if toolbar then
 --		local bShowToolbar = false

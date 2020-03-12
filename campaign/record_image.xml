@@ -266,7 +266,7 @@
 						else
 							showlayerbar = 1
 						end
-						window.parentcontrol.window.updateDisplay()
+						window.update();
 						window.toolbar_draw.onValueChanged()
 					end
 				</script>
@@ -354,7 +354,7 @@
 
 
 	<!-- Background image window panel toolbar -->
-	<windowclass name="imagepanelwindow_toolbar">
+	<windowclass name="imagepanelwindow_toolbar_v339">
 		<frame>toolbar_back</frame>
 		<script>
 			function onInit()

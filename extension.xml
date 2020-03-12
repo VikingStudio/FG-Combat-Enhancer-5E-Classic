@@ -21,11 +21,13 @@
 
 	<properties>
 		<name>Combat Enhancer 5E Classic</name>
-		<version>1.5.9</version>
+		<version>1.6.0</version>
 		
 		<author>Styrmir T.</author>
 		<description>Combat Enhancer 5E Classic</description>
-		
+
+		<loadorder>50</loadorder>
+
 		<ruleset>
 			<name>5E</name>
 			<!-- 
@@ -36,7 +38,7 @@
 
 			
 		<dependency>
-			<name>Core RPG - Token Helper</name>	
+			<name>Core RPG - Token Helper</name>
 			<!--
 			<minversion>1.1.4</minversion>
 			<maxversion>2.9.9</maxversion>			
@@ -215,5 +217,5 @@
 		
 	</base>			
 
-	<announcement text="Combat Enhancer 5E Classic v1.5.9" font="emotefont" icon="ec_icon" />			
+	<announcement text="Combat Enhancer 5E Classic v1.6.0" font="emotefont" icon="ec_icon" />			
 </root>
