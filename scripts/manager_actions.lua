@@ -26,6 +26,10 @@ end
 -- HANDLERS
 --
 
+function useFGUDiceValues(bUseFGUDiceValues)
+Debug.chat("useFGUDiceValues Not Implemented")
+end
+
 function initAction(sActionType)
 	if not GameSystem.actions[sActionType] then
 		GameSystem.actions[sActionType] = { bUseModStack = "true" };
