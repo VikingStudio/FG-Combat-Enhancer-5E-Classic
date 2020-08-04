@@ -21,7 +21,7 @@
 
 	<properties>
 		<name>Combat Enhancer 5E Classic</name>
-		<version>1.6.0</version>
+		<version>1.6.1</version>
 		
 		<author>Styrmir T.</author>
 		<description>Combat Enhancer 5E Classic</description>
@@ -217,5 +217,5 @@
 		
 	</base>			
 
-	<announcement text="Combat Enhancer 5E Classic v1.6.0" font="emotefont" icon="ec_icon" />			
+	<announcement text="Combat Enhancer 5E Classic v1.6.1" font="emotefont" icon="ec_icon" />			
 </root>
